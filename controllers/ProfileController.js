@@ -5,7 +5,7 @@ var Profile = require('../models/Profile')
 // - - - - - - - - - - - - - - - - - - - - HELPER METHODS - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 function convertToJson(profiles){
-	var restuls = new Array()
+	var results = new Array()
 	for (var i=0; i<profiles.length; i++){
 		var p = profiles[i]
 		results.push(p.summary())
@@ -48,13 +48,13 @@ module.exports = {
 
 		delete params['limit']
 
-		Profile.find(params, null, {limit:limit, sort:{priority: -1}}, function(err, completion){
+		Profile.find(params, null, {limit:limit, sort:{priority: -1}}, function(err, profiles){
 			if (err) {
 				completion({confirmation:'fail', message:err.message}, null)
 				return
 			}
 
-			completion(null, converToJson(profiles))
+			completion(null, convertToJson(profiles))
  		})
 	},
 

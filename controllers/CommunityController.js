@@ -72,7 +72,7 @@ module.exports = {
 		slug = slug.replace('?', '-')
 		communityinfo['slug'] = slug
 
-		Community.create(communityinfo, function(err, communities){
+		Community.create(communityinfo, function(err, community){
 			if (err) {
 				completion({confirmation: 'fail', message: err.message}, null)
 				return

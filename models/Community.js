@@ -16,7 +16,7 @@ CommunitySchema.methods.summary = function(){
 		address: this.address,
 		city: this.city,
 		state: this.state,
-		timestamp: this.state,
+		timestamp: this.timestamp,
 		id: this._id
     }
 
