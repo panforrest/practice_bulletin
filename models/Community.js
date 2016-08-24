@@ -7,11 +7,9 @@ var CommunitySchema = new mongoose.Schema({
     city: {type:String, trim:true, lowercase:true, default:''},
     state: {type:String, trim:true, lowercase:true, default:''},
     timestamp: {type:Date, default:Date.now}
-
-    })    
+})    
 
 CommunitySchema.methods.summary = function(){
-
 	var summary = {
 		name: this.name,
 		slug: this.slug,

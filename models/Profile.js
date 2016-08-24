@@ -9,7 +9,6 @@ ProfileSchema = new mongoose.Schema({
 })
 
 ProfileSchema.methods.summary = function(){
-
 	var summary = {
 		firstName: this.firstname,
 		lastName: this.lastname,
