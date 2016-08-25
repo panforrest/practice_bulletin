@@ -24231,12 +24231,21 @@
 	        case _constants2.default.PROFILES_RECEIVED:
 	            console.log('PROFILES RECEIVED: ' + action.profiles);
 	            var newState = Object.assign({}, state);
+	            newState['profilesArray'] = action.profiles;
 	
-	            var array = [];
+	            var s = {};
 	            for (var i = 0; i < action.profiles.length; i++) {
 	                var profile = action.profiles[i];
-	                array.push(profile);
+	                s[profile._id] = profile;
 	            }
+	
+	            newState['profiles'] = s;
+	            return newState;
+	
+	        case _constants2.default.PROFILE_CREATED:
+	            var newState = Object.assign({}, state);
+	            var array = Object.assign([], newState.profilesArray);
+	            array.push(action.profile);
 	
 	            newState['profilesArray'] = array;
 	            return newState;
@@ -25112,13 +25121,14 @@
 			key: 'addProfile',
 			value: function addProfile(event) {
 				console.log('addProfile: ' + JSON.stringify(this.state.newProfile));
-				_api2.default.handlePost('/api/profile', this.state.newProfile, function (err, result) {
+				_api2.default.handlePost('/api/profile', this.state.newProfile, function (err, response) {
 					if (err) {
 						alert('oops! ' + err);
 						return;
 					}
 	
-					console.log('Profile Created: ' + JSON.stringify(result));
+					// console.log('Profile Created: '+JSON.stringify(result))
+					_store2.default.dispatch(_actions2.default.profileCreated(response.result));
 				});
 			}
 		}, {
@@ -25169,6 +25179,7 @@
 	
 	var stateToProps = function stateToProps(state) {
 	
+		console.log('STATE TO PROPS: ' + JSON.stringify(state));
 		return {
 			profiles: state.profileReducer.profilesArray
 		};

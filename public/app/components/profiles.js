@@ -45,13 +45,14 @@ class Profiles extends Component {
 
     addProfile(event){
     	console.log('addProfile: '+JSON.stringify(this.state.newProfile))
-    	api.handlePost('/api/profile', this.state.newProfile, function(err, result){
+    	api.handlePost('/api/profile', this.state.newProfile, function(err, response){
     		if (err) {
     			alert('oops! ' + err)
     			return
     		}
 
-            console.log('Profile Created: '+JSON.stringify(result))
+            // console.log('Profile Created: '+JSON.stringify(result))
+            store.dispatch(actions.profileCreated(response.result))
     	})
     }
 
@@ -80,7 +81,7 @@ class Profiles extends Component {
 
 const stateToProps = function(state){
 
-
+    console.log('STATE TO PROPS: '+JSON.stringify(state))
 	return {
 		profiles: state.profileReducer.profilesArray
 	}
