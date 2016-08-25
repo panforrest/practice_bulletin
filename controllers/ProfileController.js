@@ -59,7 +59,7 @@ module.exports = {
 	},
 
 	post: function(profileinfo, completion) {
-		Profile.create(profileinfo, function(err, completion){
+		Profile.create(profileinfo, function(err, profile){
 			if (err) {
 				completion({confirmation:'fail', message:err.message}, null)
 				return

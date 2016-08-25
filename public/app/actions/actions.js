@@ -22,7 +22,21 @@ export default {
 
 		}
 
-	},   
+	}, 
+
+	profileCreated: function(profile){
+		return{
+			type: constants.PROFILE_CREATED,
+			profile: profile
+		}
+	},
+
+	profilesReceived: function(profiles){
+		return {
+			type: constants.PROFILES_RECEIVED,
+			profiles: profiles
+		}
+	}  
 
 }
 
