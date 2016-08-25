@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import api from '../utils/api'
+import store from '../stores/store'
+import actions from '../actions/actions'
+import { connect } from 'react-redux'
 
 class Communities extends Component {
 
@@ -16,6 +19,20 @@ class Communities extends Component {
             }
 		}
 	}
+
+    componentDidMount(){
+        //console.log('componentDidMount: ')
+        api.handleGet('/api/community', null, function(err, response){
+            if (err){
+                alert('oops! '+err)
+                return
+            }
+
+            store.dispatch(actions.communitiesReceived(response.results))
+        })
+
+
+    }
 
 	updateNewCommunity(event){
 		console.log('updateNewcommunity: '+event.target.id+' = '+event.target.value)
@@ -36,10 +53,17 @@ class Communities extends Component {
             } 
 
             console.log('addNewCommunity:'+JSON.stringify(result))
+            
+
     	})
     }
 
     render() {
+        console.log('RENDER: '+this.props.communities)
+        var communityList = this.props.communities.map(function(community, i){
+            return <li key={community.id}> {community.name}, {community.city}</li>
+        })
+
     	return(
     		<div>
     		    This is community Component!
@@ -48,7 +72,9 @@ class Communities extends Component {
                 <input onChange={this.updateNewCommunity} type="text" id="address" name="address" placeholder="Address" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="city" name="city" placeholder="City" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="state" name="state" placeholder="State" /><br />
-                <button onClick={this.addNewCommunity}>Add</button>
+                <button onClick={this.addNewCommunity}>Add</button> <br/>
+
+                {communityList}
     		</div>
 
     	)
@@ -56,4 +82,13 @@ class Communities extends Component {
 
 }
 
-export default Communities
+const propsToState = function(state){
+    console.log('POPS TO STATE: '+JSON.stringify(state))
+
+    return {
+        communities: state.communityReducer.communitiesArray
+    }
+
+}
+
+export default connect(propsToState)(Communities)
