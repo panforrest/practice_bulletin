@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import api from '../utils/api'
+import store from '../stores/store'
+import { connect } from 'react-redux'
+import actions from '../actions/actions'
 
 class Profiles extends Component {
 	constructor(props, context){
@@ -15,6 +18,19 @@ class Profiles extends Component {
 		    }  
 		}
 		
+	}
+
+	componentDidMount(){
+		console.log('componentDidMount:')
+		api.handleGet('/api/profile', null, function(err, response){
+			if(err) {
+				alert('oops! ' + err)
+				return
+			}
+
+			// console.log('componentDidMount: '+JSON.stringify(results))
+			store.dispatch(actions.profilesReceived(response.results))
+		})
 	}
 
     updateNewProfile(event){
@@ -40,13 +56,18 @@ class Profiles extends Component {
     }
 
 	render(){
+		console.log('RENDER: '+JSON.stringify(this.props.profiles))
+		var profileList = this.props.profiles.map(function(profile, i){
+			return <li key={profile.id}> {profile.firstName}, {profile.lastName}</li>
+		})
 
 
 		return (
 			<div>
-			    <h3>This is Profiles Component!</h3>                
+			    <h3>This is Profiles Component!</h3> <br />
+			    {profileList}               
 
-			    <input onChange={this.updateNewProfile} name="firstName" id="firstName" placeholder="First Name"/><br />
+			    <input onChange={this.updateNewProfile} type="text" name="firstName" id="firstName" placeholder="First Name"/><br />
 			    <input onChange={this.updateNewProfile} type="text" name="laststName" id="lastName" placeholder="Last Name"/><br />
 			    <input onChange={this.updateNewProfile} type="text" name="email" id="email" placeholder="Email Address"/><br />
 			    <input onChange={this.updateNewProfile} type="text" name="password" id="password" placeholder="Password"/><br />
@@ -57,4 +78,12 @@ class Profiles extends Component {
 	}
 }
 
-export default Profiles
+const stateToProps = function(state){
+
+
+	return {
+		profiles: state.profileReducer.profilesArray
+	}
+}
+
+export default connect(stateToProps)(Profiles)

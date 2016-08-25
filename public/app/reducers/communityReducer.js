@@ -11,7 +11,7 @@ export default function(state = initialState, action) {
     
     switch(action.type) {
         case constants.COMMUNITIES_RECEIVED:
-            console.log('COMMUNITIES_RECEIVED: '+JSON.stringify(action.communities))
+            // console.log('COMMUNITIES_RECEIVED: '+JSON.stringify(action.communities))
             var newState = Object.assign({}, state)
             newState['communitiesArray']=action.communities
             var s = {}

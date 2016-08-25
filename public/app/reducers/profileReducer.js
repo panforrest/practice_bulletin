@@ -1,7 +1,7 @@
 import constants from '../constants/constants'
 
 var initialState = {
-    profile: {},
+    profiles: {},
     profilesArray: []
 }
 
@@ -10,8 +10,10 @@ export default function(state=initialState, action){
         case constants.PROFILES_RECEIVED:
             console.log('PROFILES RECEIVED: '+action.profiles)
             var newState = Object.assign({}, state)
-            for (i=0; i<array.profiles.length; i++) {
-            	var profile = array.profiles[i]
+
+            var array = []
+            for (var i=0; i<action.profiles.length; i++) {
+            	var profile = action.profiles[i]
                 array.push(profile)
             }
 

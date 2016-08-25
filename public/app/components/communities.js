@@ -35,7 +35,7 @@ class Communities extends Component {
     }
 
 	updateNewCommunity(event){
-		console.log('updateNewcommunity: '+event.target.id+' = '+event.target.value)
+		// console.log('updateNewcommunity: '+event.target.id+' = '+event.target.value)
 		var community = Object.assign({}, this.state.newCommunity)
         community[event.target.id] = event.target.value
         this.setState({
@@ -59,7 +59,7 @@ class Communities extends Component {
     }
 
     render() {
-        console.log('RENDER: '+this.props.communities)
+        // console.log('RENDER: '+this.props.communities)
         var communityList = this.props.communities.map(function(community, i){
             return <li key={community.id}> {community.name}, {community.city}</li>
         })
@@ -83,7 +83,7 @@ class Communities extends Component {
 }
 
 const propsToState = function(state){
-    console.log('POPS TO STATE: '+JSON.stringify(state))
+    // console.log('POPS TO STATE: '+JSON.stringify(state))
 
     return {
         communities: state.communityReducer.communitiesArray

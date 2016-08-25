@@ -21535,7 +21535,7 @@
 	    }, {
 	        key: 'updateNewCommunity',
 	        value: function updateNewCommunity(event) {
-	            console.log('updateNewcommunity: ' + event.target.id + ' = ' + event.target.value);
+	            // console.log('updateNewcommunity: '+event.target.id+' = '+event.target.value)
 	            var community = Object.assign({}, this.state.newCommunity);
 	            community[event.target.id] = event.target.value;
 	            this.setState({
@@ -21560,7 +21560,7 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            console.log('RENDER: ' + this.props.communities);
+	            // console.log('RENDER: '+this.props.communities)
 	            var communityList = this.props.communities.map(function (community, i) {
 	                return _react2.default.createElement(
 	                    'li',
@@ -21601,7 +21601,7 @@
 	}(_react.Component);
 	
 	var propsToState = function propsToState(state) {
-	    console.log('POPS TO STATE: ' + JSON.stringify(state));
+	    // console.log('POPS TO STATE: '+JSON.stringify(state))
 	
 	    return {
 	        communities: state.communityReducer.communitiesArray
@@ -24161,7 +24161,7 @@
 	
 	    switch (action.type) {
 	        case _constants2.default.COMMUNITIES_RECEIVED:
-	            console.log('COMMUNITIES_RECEIVED: ' + JSON.stringify(action.communities));
+	            // console.log('COMMUNITIES_RECEIVED: '+JSON.stringify(action.communities))
 	            var newState = Object.assign({}, state);
 	            newState['communitiesArray'] = action.communities;
 	            var s = {};
@@ -24231,8 +24231,10 @@
 	        case _constants2.default.PROFILES_RECEIVED:
 	            console.log('PROFILES RECEIVED: ' + action.profiles);
 	            var newState = Object.assign({}, state);
-	            for (i = 0; i < array.profiles.length; i++) {
-	                var profile = array.profiles[i];
+	
+	            var array = [];
+	            for (var i = 0; i < action.profiles.length; i++) {
+	                var profile = action.profiles[i];
 	                array.push(profile);
 	            }
 	
@@ -24252,7 +24254,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var initialState = {
-	    profile: {},
+	    profiles: {},
 	    profilesArray: []
 	};
 
@@ -25042,6 +25044,16 @@
 	
 	var _api2 = _interopRequireDefault(_api);
 	
+	var _store = __webpack_require__(179);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(199);
+	
+	var _actions = __webpack_require__(198);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25073,6 +25085,20 @@
 		}
 	
 		_createClass(Profiles, [{
+			key: 'componentDidMount',
+			value: function componentDidMount() {
+				console.log('componentDidMount:');
+				_api2.default.handleGet('/api/profile', null, function (err, response) {
+					if (err) {
+						alert('oops! ' + err);
+						return;
+					}
+	
+					// console.log('componentDidMount: '+JSON.stringify(results))
+					_store2.default.dispatch(_actions2.default.profilesReceived(response.results));
+				});
+			}
+		}, {
 			key: 'updateNewProfile',
 			value: function updateNewProfile(event) {
 				console.log('updateNewProfile: ' + event.target.id + ' - ' + event.target.value);
@@ -25098,6 +25124,17 @@
 		}, {
 			key: 'render',
 			value: function render() {
+				console.log('RENDER: ' + JSON.stringify(this.props.profiles));
+				var profileList = this.props.profiles.map(function (profile, i) {
+					return _react2.default.createElement(
+						'li',
+						{ key: profile.id },
+						' ',
+						profile.firstName,
+						', ',
+						profile.lastName
+					);
+				});
 	
 				return _react2.default.createElement(
 					'div',
@@ -25107,7 +25144,10 @@
 						null,
 						'This is Profiles Component!'
 					),
-					_react2.default.createElement('input', { onChange: this.updateNewProfile, name: 'firstName', id: 'firstName', placeholder: 'First Name' }),
+					' ',
+					_react2.default.createElement('br', null),
+					profileList,
+					_react2.default.createElement('input', { onChange: this.updateNewProfile, type: 'text', name: 'firstName', id: 'firstName', placeholder: 'First Name' }),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement('input', { onChange: this.updateNewProfile, type: 'text', name: 'laststName', id: 'lastName', placeholder: 'Last Name' }),
 					_react2.default.createElement('br', null),
@@ -25127,7 +25167,14 @@
 		return Profiles;
 	}(_react.Component);
 	
-	exports.default = Profiles;
+	var stateToProps = function stateToProps(state) {
+	
+		return {
+			profiles: state.profileReducer.profilesArray
+		};
+	};
+	
+	exports.default = (0, _reactRedux.connect)(stateToProps)(Profiles);
 
 /***/ }
 /******/ ]);
