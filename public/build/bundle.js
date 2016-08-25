@@ -21542,13 +21542,14 @@
 	        value: function addNewCommunity(event) {
 	            // console.log('submit: ')
 	
-	            _api2.default.handlePost('/api/community', this.state.newCommunity, function (err, result) {
+	            _api2.default.handlePost('/api/community', this.state.newCommunity, function (err, response) {
 	                if (err) {
 	                    alert('oops! ' + err);
 	                    return;
 	                }
 	
-	                console.log('addNewCommunity:' + JSON.stringify(result));
+	                // console.log('addNewCommunity:'+JSON.stringify(result))
+	                _store2.default.dispatch(_actions2.default.communityCreated(response.result));
 	            });
 	        }
 	    }, {
@@ -24152,13 +24153,20 @@
 	        case _constants2.default.COMMUNITIES_RECEIVED:
 	            console.log('COMMUNITIES_RECEIVED: ' + JSON.stringify(action.communities));
 	            var newState = Object.assign({}, state);
-	
-	            var array = [];
+	            newState['communitiesArray'] = action.communities;
+	            var s = {};
 	            for (var i = 0; i < action.communities.length; i++) {
 	                var community = action.communities[i];
-	                array.push(community);
+	                s[community._id] = community;
 	            }
 	
+	            newState['communities'] = s;
+	            return newState;
+	
+	        case _constants2.default.COMMUNITY_CREATED:
+	            var newState = Object.assign({}, state);
+	            var array = Object.assign([], newState.communitiesArray);
+	            array.push(action.community);
 	            newState['communitiesArray'] = array;
 	            return newState;
 	

@@ -46,14 +46,14 @@ class Communities extends Component {
     addNewCommunity(event){
     	// console.log('submit: ')
 
-    	api.handlePost('/api/community', this.state.newCommunity, function(err, result){
+    	api.handlePost('/api/community', this.state.newCommunity, function(err, response){
             if(err){
             	alert('oops! '+err)
             	return
             } 
 
-            console.log('addNewCommunity:'+JSON.stringify(result))
-            
+            // console.log('addNewCommunity:'+JSON.stringify(result))
+            store.dispatch(actions.communityCreated(response.result))
 
     	})
     }
