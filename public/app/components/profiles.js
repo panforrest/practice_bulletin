@@ -21,17 +21,30 @@ class Profiles extends Component {
 	}
 
 	componentDidMount(){
-		console.log('componentDidMount:')
+		// console.log('componentDidMount:')
 		api.handleGet('/api/profile', null, function(err, response){
 			if(err) {
 				alert('oops! ' + err)
 				return
 			}
 
-			// console.log('componentDidMount: '+JSON.stringify(results))
+			console.log('componentDidMount: '+JSON.stringify(response))
 			store.dispatch(actions.profilesReceived(response.results))
 		})
 	}
+
+    addProfile(event){
+    	console.log('addProfile: '+JSON.stringify(this.state.newProfile))
+    	api.handlePost('/api/profile', this.state.newProfile, function(err, response){
+    		if (err) {
+    			alert('oops! ' + err)
+    			return
+    		}
+
+            //console.log('Profile Created: '+JSON.stringify(result))
+            store.dispatch(actions.profileCreated(response.result))
+    	})
+    }
 
     updateNewProfile(event){
     	console.log('updateNewProfile: '+event.target.id+' - '+event.target.value)
@@ -43,18 +56,7 @@ class Profiles extends Component {
 
     }
 
-    addProfile(event){
-    	console.log('addProfile: '+JSON.stringify(this.state.newProfile))
-    	api.handlePost('/api/profile', this.state.newProfile, function(err, response){
-    		if (err) {
-    			alert('oops! ' + err)
-    			return
-    		}
 
-            // console.log('Profile Created: '+JSON.stringify(result))
-            store.dispatch(actions.profileCreated(response.result))
-    	})
-    }
 
 	render(){
 		console.log('RENDER: '+JSON.stringify(this.props.profiles))
@@ -81,7 +83,7 @@ class Profiles extends Component {
 
 const stateToProps = function(state){
 
-    console.log('STATE TO PROPS: '+JSON.stringify(state))
+    console.log('STATE TO PROPS: '+JSON.stringify(state.profileReducer.profilesArray))
 	return {
 		profiles: state.profileReducer.profilesArray
 	}

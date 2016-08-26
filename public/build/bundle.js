@@ -56,13 +56,9 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _communities = __webpack_require__(172);
+	var _Main = __webpack_require__(209);
 	
-	var _communities2 = _interopRequireDefault(_communities);
-	
-	var _profiles = __webpack_require__(208);
-	
-	var _profiles2 = _interopRequireDefault(_profiles);
+	var _Main2 = _interopRequireDefault(_Main);
 	
 	var _reactRedux = __webpack_require__(199);
 	
@@ -77,36 +73,33 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import Communities from './components/communities'
+	// import Profiles from './components/profiles'
+	
 	
 	var App = function (_Component) {
-	        _inherits(App, _Component);
+	  _inherits(App, _Component);
 	
-	        function App() {
-	                _classCallCheck(this, App);
+	  function App() {
+	    _classCallCheck(this, App);
 	
-	                return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
-	        }
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(App).apply(this, arguments));
+	  }
 	
-	        _createClass(App, [{
-	                key: 'render',
-	                value: function render() {
-	                        return _react2.default.createElement(
-	                                'div',
-	                                null,
-	                                'Hello React!',
-	                                _react2.default.createElement(_communities2.default, null),
-	                                _react2.default.createElement(_profiles2.default, null)
-	                        );
-	                }
-	        }]);
+	  _createClass(App, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(_Main2.default, null);
+	    }
+	  }]);
 	
-	        return App;
+	  return App;
 	}(_react.Component);
 	
 	_reactDom2.default.render(_react2.default.createElement(
-	        _reactRedux.Provider,
-	        { store: _store2.default },
-	        _react2.default.createElement(App, null)
+	  _reactRedux.Provider,
+	  { store: _store2.default },
+	  _react2.default.createElement(App, null)
 	), document.getElementById('app'));
 
 /***/ },
@@ -21461,156 +21454,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 172 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _api = __webpack_require__(173);
-	
-	var _api2 = _interopRequireDefault(_api);
-	
-	var _store = __webpack_require__(179);
-	
-	var _store2 = _interopRequireDefault(_store);
-	
-	var _actions = __webpack_require__(198);
-	
-	var _actions2 = _interopRequireDefault(_actions);
-	
-	var _reactRedux = __webpack_require__(199);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Communities = function (_Component) {
-	    _inherits(Communities, _Component);
-	
-	    function Communities(context, props) {
-	        _classCallCheck(this, Communities);
-	
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Communities).call(this, context, props));
-	
-	        _this.updateNewCommunity = _this.updateNewCommunity.bind(_this);
-	        _this.addNewCommunity = _this.addNewCommunity.bind(_this);
-	        _this.state = {
-	            newCommunity: {
-	                name: '',
-	                address: '',
-	                city: '',
-	                state: ''
-	            }
-	        };
-	        return _this;
-	    }
-	
-	    _createClass(Communities, [{
-	        key: 'componentDidMount',
-	        value: function componentDidMount() {
-	            //console.log('componentDidMount: ')
-	            _api2.default.handleGet('/api/community', null, function (err, response) {
-	                if (err) {
-	                    alert('oops! ' + err);
-	                    return;
-	                }
-	
-	                _store2.default.dispatch(_actions2.default.communitiesReceived(response.results));
-	            });
-	        }
-	    }, {
-	        key: 'updateNewCommunity',
-	        value: function updateNewCommunity(event) {
-	            // console.log('updateNewcommunity: '+event.target.id+' = '+event.target.value)
-	            var community = Object.assign({}, this.state.newCommunity);
-	            community[event.target.id] = event.target.value;
-	            this.setState({
-	                newCommunity: community
-	            });
-	        }
-	    }, {
-	        key: 'addNewCommunity',
-	        value: function addNewCommunity(event) {
-	            // console.log('submit: ')
-	
-	            _api2.default.handlePost('/api/community', this.state.newCommunity, function (err, response) {
-	                if (err) {
-	                    alert('oops! ' + err);
-	                    return;
-	                }
-	
-	                // console.log('addNewCommunity:'+JSON.stringify(result))
-	                _store2.default.dispatch(_actions2.default.communityCreated(response.result));
-	            });
-	        }
-	    }, {
-	        key: 'render',
-	        value: function render() {
-	            // console.log('RENDER: '+this.props.communities)
-	            var communityList = this.props.communities.map(function (community, i) {
-	                return _react2.default.createElement(
-	                    'li',
-	                    { key: community.id },
-	                    ' ',
-	                    community.name,
-	                    ', ',
-	                    community.city
-	                );
-	            });
-	
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'This is community Component!',
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'name', name: 'name', placeholder: 'Name' }),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'address', name: 'address', placeholder: 'Address' }),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'city', name: 'city', placeholder: 'City' }),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'state', name: 'state', placeholder: 'State' }),
-	                _react2.default.createElement('br', null),
-	                _react2.default.createElement(
-	                    'button',
-	                    { onClick: this.addNewCommunity },
-	                    'Add'
-	                ),
-	                ' ',
-	                _react2.default.createElement('br', null),
-	                communityList
-	            );
-	        }
-	    }]);
-	
-	    return Communities;
-	}(_react.Component);
-	
-	var propsToState = function propsToState(state) {
-	    // console.log('POPS TO STATE: '+JSON.stringify(state))
-	
-	    return {
-	        communities: state.communityReducer.communitiesArray
-	    };
-	};
-	
-	exports.default = (0, _reactRedux.connect)(propsToState)(Communities);
-
-/***/ },
+/* 172 */,
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24227,9 +24071,10 @@
 	    var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
 	    var action = arguments[1];
 	
+	
 	    switch (action.type) {
 	        case _constants2.default.PROFILES_RECEIVED:
-	            console.log('PROFILES RECEIVED: ' + action.profiles);
+	            console.log('PROFILES_RECEIVED: ' + JSON.stringify(action.profiles));
 	            var newState = Object.assign({}, state);
 	            newState['profilesArray'] = action.profiles;
 	
@@ -24243,6 +24088,7 @@
 	            return newState;
 	
 	        case _constants2.default.PROFILE_CREATED:
+	            console.log('PROFILES_CREATED: ' + JSON.stringify(action.profiles));
 	            var newState = Object.assign({}, state);
 	            var array = Object.assign([], newState.profilesArray);
 	            array.push(action.profile);
@@ -24252,7 +24098,6 @@
 	
 	        default:
 	            return state;
-	
 	    }
 	};
 	
@@ -25034,13 +24879,68 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 208 */
+/* 208 */,
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
 		value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Communities = __webpack_require__(210);
+	
+	var _Communities2 = _interopRequireDefault(_Communities);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Main = function (_Component) {
+		_inherits(Main, _Component);
+	
+		function Main() {
+			_classCallCheck(this, Main);
+	
+			return _possibleConstructorReturn(this, Object.getPrototypeOf(Main).apply(this, arguments));
+		}
+	
+		_createClass(Main, [{
+			key: 'render',
+			value: function render() {
+				return _react2.default.createElement(
+					'div',
+					null,
+					'This is Main component!',
+					_react2.default.createElement(_Communities2.default, null)
+				);
+			}
+		}]);
+	
+		return Main;
+	}(_react.Component);
+	
+	exports.default = Main;
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25057,11 +24957,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _reactRedux = __webpack_require__(199);
-	
 	var _actions = __webpack_require__(198);
 	
 	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _reactRedux = __webpack_require__(199);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25071,121 +24971,118 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	var Profiles = function (_Component) {
-		_inherits(Profiles, _Component);
+	var Communities = function (_Component) {
+	    _inherits(Communities, _Component);
 	
-		function Profiles(props, context) {
-			_classCallCheck(this, Profiles);
+	    function Communities(context, props) {
+	        _classCallCheck(this, Communities);
 	
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Profiles).call(this, props, context));
+	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Communities).call(this, context, props));
 	
-			_this.updateNewProfile = _this.updateNewProfile.bind(_this);
-			_this.addProfile = _this.addProfile.bind(_this);
-			_this.state = {
-				newProfile: {
-					firstName: '',
-					lastName: '',
-					email: '',
-					password: ''
-				}
-			};
+	        _this.updateNewCommunity = _this.updateNewCommunity.bind(_this);
+	        _this.addNewCommunity = _this.addNewCommunity.bind(_this);
+	        _this.state = {
+	            newCommunity: {
+	                name: '',
+	                address: '',
+	                city: '',
+	                state: ''
+	            }
 	
-			return _this;
-		}
+	        };
+	        return _this;
+	    }
 	
-		_createClass(Profiles, [{
-			key: 'componentDidMount',
-			value: function componentDidMount() {
-				console.log('componentDidMount:');
-				_api2.default.handleGet('/api/profile', null, function (err, response) {
-					if (err) {
-						alert('oops! ' + err);
-						return;
-					}
+	    _createClass(Communities, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            console.log('componentDidMount: ');
+	            _api2.default.handleGet('/api/community', null, function (err, response) {
+	                if (err) {
+	                    alert('oops! ' + err);
+	                    return;
+	                }
 	
-					// console.log('componentDidMount: '+JSON.stringify(results))
-					_store2.default.dispatch(_actions2.default.profilesReceived(response.results));
-				});
-			}
-		}, {
-			key: 'updateNewProfile',
-			value: function updateNewProfile(event) {
-				console.log('updateNewProfile: ' + event.target.id + ' - ' + event.target.value);
-				var profile = Object.assign({}, this.state.newProfile);
-				profile[event.target.id] = event.target.value;
-				this.setState({
-					newProfile: profile
-				});
-			}
-		}, {
-			key: 'addProfile',
-			value: function addProfile(event) {
-				console.log('addProfile: ' + JSON.stringify(this.state.newProfile));
-				_api2.default.handlePost('/api/profile', this.state.newProfile, function (err, response) {
-					if (err) {
-						alert('oops! ' + err);
-						return;
-					}
+	                _store2.default.dispatch(_actions2.default.communitiesReceived(response.results));
+	            });
+	        }
+	    }, {
+	        key: 'addNewCommunity',
+	        value: function addNewCommunity(event) {
+	            // console.log('submit: ')
 	
-					// console.log('Profile Created: '+JSON.stringify(result))
-					_store2.default.dispatch(_actions2.default.profileCreated(response.result));
-				});
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				console.log('RENDER: ' + JSON.stringify(this.props.profiles));
-				var profileList = this.props.profiles.map(function (profile, i) {
-					return _react2.default.createElement(
-						'li',
-						{ key: profile.id },
-						' ',
-						profile.firstName,
-						', ',
-						profile.lastName
-					);
-				});
+	            _api2.default.handlePost('/api/community', this.state.newCommunity, function (err, response) {
+	                if (err) {
+	                    alert('oops! ' + err);
+	                    return;
+	                }
 	
-				return _react2.default.createElement(
-					'div',
-					null,
-					_react2.default.createElement(
-						'h3',
-						null,
-						'This is Profiles Component!'
-					),
-					' ',
-					_react2.default.createElement('br', null),
-					profileList,
-					_react2.default.createElement('input', { onChange: this.updateNewProfile, type: 'text', name: 'firstName', id: 'firstName', placeholder: 'First Name' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { onChange: this.updateNewProfile, type: 'text', name: 'laststName', id: 'lastName', placeholder: 'Last Name' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { onChange: this.updateNewProfile, type: 'text', name: 'email', id: 'email', placeholder: 'Email Address' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { onChange: this.updateNewProfile, type: 'text', name: 'password', id: 'password', placeholder: 'Password' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement(
-						'button',
-						{ onClick: this.addProfile },
-						'Add'
-					)
-				);
-			}
-		}]);
+	                // console.log('addNewCommunity:'+JSON.stringify(result))
+	                _store2.default.dispatch(_actions2.default.communityCreated(response.result));
+	            });
+	        }
+	    }, {
+	        key: 'updateNewCommunity',
+	        value: function updateNewCommunity(event) {
+	            // console.log('updateNewcommunity: '+event.target.id+' = '+event.target.value)
+	            var community = Object.assign({}, this.state.newCommunity);
+	            community[event.target.id] = event.target.value;
+	            this.setState({
+	                newCommunity: community
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            // console.log('RENDER: '+this.props.communities)
+	            var communityList = this.props.communities.map(function (community, i) {
+	                return _react2.default.createElement(
+	                    'li',
+	                    { key: community.id },
+	                    ' ',
+	                    community.name,
+	                    ', ',
+	                    community.city
+	                );
+	            });
 	
-		return Profiles;
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'This is community Component!',
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'name', name: 'name', placeholder: 'Name' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'address', name: 'address', placeholder: 'Address' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'city', name: 'city', placeholder: 'City' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'state', name: 'state', placeholder: 'State' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                    'button',
+	                    { onClick: this.addNewCommunity },
+	                    'Add'
+	                ),
+	                ' ',
+	                _react2.default.createElement('br', null),
+	                communityList
+	            );
+	        }
+	    }]);
+	
+	    return Communities;
 	}(_react.Component);
 	
-	var stateToProps = function stateToProps(state) {
+	var propsToState = function propsToState(state) {
+	    // console.log('POPS TO STATE: '+JSON.stringify(state))
 	
-		console.log('STATE TO PROPS: ' + JSON.stringify(state));
-		return {
-			profiles: state.profileReducer.profilesArray
-		};
+	    return {
+	        communities: state.communityReducer.communitiesArray
+	    };
 	};
 	
-	exports.default = (0, _reactRedux.connect)(stateToProps)(Profiles);
+	exports.default = (0, _reactRedux.connect)(propsToState)(Communities);
 
 /***/ }
 /******/ ]);

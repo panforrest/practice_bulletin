@@ -17,11 +17,12 @@ class Communities extends Component {
             	city:'',
             	state:''
             }
+
 		}
 	}
 
     componentDidMount(){
-        //console.log('componentDidMount: ')
+        console.log('componentDidMount: ')
         api.handleGet('/api/community', null, function(err, response){
             if (err){
                 alert('oops! '+err)
@@ -31,7 +32,20 @@ class Communities extends Component {
             store.dispatch(actions.communitiesReceived(response.results))
         })
 
+    }
 
+    addNewCommunity(event){
+        // console.log('submit: ')
+
+        api.handlePost('/api/community', this.state.newCommunity, function(err, response){
+            if(err){
+                alert('oops! '+err)
+                return
+            } 
+
+            // console.log('addNewCommunity:'+JSON.stringify(result))
+            store.dispatch(actions.communityCreated(response.result))
+        })
     }
 
 	updateNewCommunity(event){
@@ -42,21 +56,6 @@ class Communities extends Component {
         	newCommunity: community
         })
 	}
-
-    addNewCommunity(event){
-    	// console.log('submit: ')
-
-    	api.handlePost('/api/community', this.state.newCommunity, function(err, response){
-            if(err){
-            	alert('oops! '+err)
-            	return
-            } 
-
-            // console.log('addNewCommunity:'+JSON.stringify(result))
-            store.dispatch(actions.communityCreated(response.result))
-
-    	})
-    }
 
     render() {
         // console.log('RENDER: '+this.props.communities)
@@ -79,7 +78,6 @@ class Communities extends Component {
 
     	)
     }
-
 }
 
 const propsToState = function(state){
@@ -88,7 +86,6 @@ const propsToState = function(state){
     return {
         communities: state.communityReducer.communitiesArray
     }
-
 }
 
 export default connect(propsToState)(Communities)
