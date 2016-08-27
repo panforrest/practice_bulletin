@@ -23,7 +23,7 @@ router.get('/:page', function(req, res, next) {
 	//convert react code into HTML:
     var html = ReactDOMServer.renderToString(React.createElement(ServerApp, {page:page}))
     //
-    res.render(page, { react: html })
+    res.render(page, { react: html });
 
 });
 
