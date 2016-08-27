@@ -27,6 +27,13 @@ var Main = (function (Component) {
 	_inherits(Main, Component);
 
 	_prototypeProperties(Main, null, {
+		componentDidMount: {
+			value: function componentDidMount() {
+				console.log("Main: " + this.props.page);
+			},
+			writable: true,
+			configurable: true
+		},
 		render: {
 			value: function render() {
 				return React.createElement(

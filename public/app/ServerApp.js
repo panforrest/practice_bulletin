@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import Main from './components/Main' 
 import store from './stores/store'
 import { Provider } from 'react-redux'
-import Main from './components/Main' 
 
 
 class App extends Component{

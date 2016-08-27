@@ -13,11 +13,11 @@ var _react = require("react");
 var React = _interopRequire(_react);
 
 var Component = _react.Component;
+var Main = _interopRequire(require("./components/Main"));
+
 var store = _interopRequire(require("./stores/store"));
 
 var Provider = require("react-redux").Provider;
-var Main = _interopRequire(require("./components/Main"));
-
 var App = (function (Component) {
 	function App() {
 		_classCallCheck(this, App);
