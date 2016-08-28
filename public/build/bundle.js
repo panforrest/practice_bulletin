@@ -85,6 +85,7 @@
 	        _this.state = {
 	            page: 'home'
 	        };
+	
 	        return _this;
 	    }
 	
@@ -92,7 +93,8 @@
 	        key: 'componentWillMount',
 	        value: function componentWillMount() {
 	            //what's purpose for this?
-	            var path = window.location.pathname.replace('/', ''); //http://localhost:3000
+	            var pathname = window.location.pathname;
+	            var path = pathname.replace('/', ''); //http://localhost:3000
 	
 	            var page = 'home';
 	            if (path.length > 0) {
@@ -24300,41 +24302,30 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	        value: true
 	});
 	
 	exports.default = function () {
-	    var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-	    var action = arguments[1];
+	        var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	        var action = arguments[1];
 	
+	        switch (action.type) {
+	                case _constants2.default.PROFILES_RECEIVED:
+	                        console.log('PROFILES_RECEIVED: ' + JSON.stringify(action.profiles));
+	                        var newState = Object.assign({}, state);
+	                        var array = [];
 	
-	    switch (action.type) {
-	        case _constants2.default.PROFILES_RECEIVED:
-	            console.log('PROFILES_RECEIVED: ' + JSON.stringify(action.profiles));
-	            var newState = Object.assign({}, state);
-	            newState['profilesArray'] = action.profiles;
+	                        for (var i = 0; i < action.profiles.length; i++) {
+	                                var profile = action.profiles[i];
+	                                array.push(profile);
+	                        }
 	
-	            var s = {};
-	            for (var i = 0; i < action.profiles.length; i++) {
-	                var profile = action.profiles[i];
-	                s[profile._id] = profile;
-	            }
+	                        newState['profilesArray'] = array;
+	                        return newState;
 	
-	            newState['profiles'] = s;
-	            return newState;
-	
-	        case _constants2.default.PROFILE_CREATED:
-	            console.log('PROFILES_CREATED: ' + JSON.stringify(action.profiles));
-	            var newState = Object.assign({}, state);
-	            var array = Object.assign([], newState.profilesArray);
-	            array.push(action.profile);
-	
-	            newState['profilesArray'] = array;
-	            return newState;
-	
-	        default:
-	            return state;
-	    }
+	                default:
+	                        return state;
+	        }
 	};
 	
 	var _constants = __webpack_require__(197);
@@ -24344,8 +24335,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var initialState = {
-	    profiles: {},
-	    profilesArray: []
+	        profiles: {},
+	        profilesArray: []
 	};
 
 /***/ },
@@ -25121,7 +25112,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	    value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25129,6 +25120,20 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _api = __webpack_require__(174);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	var _actions = __webpack_require__(199);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _store = __webpack_require__(180);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(200);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25139,29 +25144,122 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Register = function (_Component) {
-		_inherits(Register, _Component);
+	    _inherits(Register, _Component);
 	
-		function Register() {
-			_classCallCheck(this, Register);
+	    function Register(props, context) {
+	        _classCallCheck(this, Register);
 	
-			return _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).apply(this, arguments));
-		}
+	        var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props, context));
 	
-		_createClass(Register, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					'Register Page'
-				);
-			}
-		}]);
+	        _this.updateNewProfile = _this.updateNewProfile.bind(_this);
+	        _this.submit = _this.submit.bind(_this);
+	        _this.state = {
+	            newProfile: {
+	                firstName: '',
+	                lastName: '',
+	                email: '',
+	                password: ''
+	            }
+	        };
+	        return _this;
+	    }
 	
-		return Register;
+	    _createClass(Register, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            // console.log('componentDidMount: ')
+	            _api2.default.handleGet('/api/profile', null, function (err, response) {
+	                if (err) {
+	                    alert(err.message);
+	                    return;
+	                }
+	                console.log('Community Received: ' + JSON.stringify(response));
+	
+	                _store2.default.dispatch(_actions2.default.profilesReceived(response.results));
+	            });
+	        }
+	    }, {
+	        key: 'updateNewProfile',
+	        value: function updateNewProfile(event) {
+	
+	            console.log('updateNewProfile: ' + event.target.id + ' - ' + event.target.value);
+	            var profile = Object.assign({}, this.state.newProfile);
+	            profile[event.target.id] = event.target.value;
+	            this.setState({
+	                newProfile: profile
+	            });
+	        }
+	    }, {
+	        key: 'submit',
+	        value: function submit(event) {
+	            // console.log('submit: '+JSON.stringify(this.state.newProfile))
+	            _api2.default.handlePost('/api/profile', this.state.newProfile, function (err, response) {
+	                if (err) {
+	                    alert(err.message);
+	                    return;
+	                }
+	
+	                console.log(JSON.stringify(response.result));
+	                // store.dispatch(actions.profilesReceived(response.results))
+	            });
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            console.log('RENDER: ' + JSON.stringify(this.props.profiles));
+	            var profileList = this.props.profiles.map(function (profile, i) {
+	                return _react2.default.createElement(
+	                    'li',
+	                    { key: profile.id },
+	                    profile.firstName,
+	                    ', ',
+	                    profile.lastName,
+	                    ', ',
+	                    profile.email,
+	                    ', ',
+	                    profile.password
+	                );
+	            });
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Register Page ',
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewProfile, name: 'firstName', id: 'firstName', placeholder: 'First Name' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewProfile, name: 'lastName', id: 'lasstName', placeholder: 'Last Name' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewProfile, name: 'email', id: 'email', placeholder: 'Email' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement('input', { onChange: this.updateNewProfile, name: 'password', id: 'password', placeholder: 'Password' }),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                    'button',
+	                    { onClick: this.submit },
+	                    'SUBMIT'
+	                ),
+	                _react2.default.createElement('br', null),
+	                _react2.default.createElement(
+	                    'ol',
+	                    null,
+	                    profileList
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Register;
 	}(_react.Component);
 	
-	exports.default = Register;
+	var stateToProps = function stateToProps(state) {
+	    console.log('STATE TO PROPS: ' + JSON.stringify(state));
+	    return {
+	        profiles: state.profileReducer.profilesArray
+	    };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(stateToProps)(Register);
 
 /***/ }
 /******/ ]);

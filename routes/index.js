@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
 
 	//convert react code into HTML:
     var html = ReactDOMServer.renderToString(React.createElement(ServerApp, {page:'home'}))
-    //
     res.render('index', { react: html })
 
 });

@@ -6,33 +6,43 @@ var initialState = {
 }
 
 export default function(state = initialState, action){
-    
     switch(action.type){
-        case constants.PROFILES_RECEIVED:
+    	case constants.PROFILES_RECEIVED:
             console.log('PROFILES_RECEIVED: '+JSON.stringify(action.profiles))
             var newState = Object.assign({}, state)
-            newState['profilesArray'] = action.profiles
+            var array = []
 
-            var s = {}
             for (var i=0; i<action.profiles.length; i++){
-                var profile = action.profiles[i]   
-                s[profile._id] = profile
+            	var profile = action.profiles[i]
+            	array.push(profile)
             }
-
-            newState['profiles'] = s
-            return newState 
-
-        case constants.PROFILE_CREATED:
-            console.log('PROFILES_CREATED: '+JSON.stringify(action.profiles))
-            var newState = Object.assign({}, state)
-            var array = Object.assign([], newState.profilesArray) 
-            array.push(action.profile)            
-
+            
             newState['profilesArray'] = array
-            return newState             
+    	    return newState
 
-        default:
-            return state
+    	default:
+    	    return state
     }
 
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

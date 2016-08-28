@@ -11,9 +11,11 @@ var initialState = {
 
 module.exports = function (_x, action) {
     var state = arguments[0] === undefined ? initialState : arguments[0];
+
+
     switch (action.type) {
         case constants.PROFILES_RECEIVED:
-            console.log("PROFILES RECEIVED: " + action.profiles);
+            console.log("PROFILES_RECEIVED: " + JSON.stringify(action.profiles));
             var newState = Object.assign({}, state);
             newState.profilesArray = action.profiles;
 
@@ -27,6 +29,7 @@ module.exports = function (_x, action) {
             return newState;
 
         case constants.PROFILE_CREATED:
+            console.log("PROFILES_CREATED: " + JSON.stringify(action.profiles));
             var newState = Object.assign({}, state);
             var array = Object.assign([], newState.profilesArray);
             array.push(action.profile);
@@ -34,13 +37,7 @@ module.exports = function (_x, action) {
             newState.profilesArray = array;
             return newState;
 
-
         default:
             return state;
-
-
-
-
-
     }
 };

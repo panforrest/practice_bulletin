@@ -5,15 +5,18 @@ import store from './stores/store'
 import { Provider } from 'react-redux'
 
 class App extends Component {
+
     constructor(props, context){
     	super(props, context)
     	this.state = {
             page: 'home'
     	}
+
     }
 
     componentWillMount(){  //what's purpose for this?
-        var path = window.location.pathname.replace('/', ''); //http://localhost:3000
+        var pathname = window.location.pathname
+        var path = pathname.replace('/', ''); //http://localhost:3000
 
         var page = 'home'
         if (path.length >0) {
@@ -25,7 +28,6 @@ class App extends Component {
         	page: page
         })
     }
-
 
 	render() {
         return(
