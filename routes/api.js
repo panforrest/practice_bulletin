@@ -88,6 +88,11 @@ router.post('/:resource', function(req, res, next) {
 			return
 		}
 
+		if (resource == 'profile') {          //   install cookies!!
+            req.session.user = result.id
+		}
+
+
 		res.json({
 	    	confirmation: 'success',
 	    	result: result

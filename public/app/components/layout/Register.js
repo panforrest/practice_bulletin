@@ -5,6 +5,7 @@ import store from '../../stores/store'
 import { connect } from 'react-redux'
 
 class Register extends Component {
+    
     constructor(props, context){
     	super(props, context)
     	this.updateNewProfile = this.updateNewProfile.bind(this)
