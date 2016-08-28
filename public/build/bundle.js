@@ -24302,30 +24302,38 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	        value: true
+	    value: true
 	});
 	
 	exports.default = function () {
-	        var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-	        var action = arguments[1];
+	    var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	    var action = arguments[1];
 	
-	        switch (action.type) {
-	                case _constants2.default.PROFILES_RECEIVED:
-	                        console.log('PROFILES_RECEIVED: ' + JSON.stringify(action.profiles));
-	                        var newState = Object.assign({}, state);
-	                        var array = [];
+	    switch (action.type) {
+	        case _constants2.default.PROFILES_RECEIVED:
+	            console.log('PROFILES_RECEIVED: ' + JSON.stringify(action.profiles));
+	            var newState = Object.assign({}, state);
+	            newState['profilesArray'] = action.profiles;
+	            var s = {};
+	            for (var i = 0; i < action.profiles.length; i++) {
+	                var profile = action.profiles[i];
+	                s[profile._id] = profile;
+	            }
 	
-	                        for (var i = 0; i < action.profiles.length; i++) {
-	                                var profile = action.profiles[i];
-	                                array.push(profile);
-	                        }
+	            newState['profiles'] = s;
+	            return newState;
 	
-	                        newState['profilesArray'] = array;
-	                        return newState;
+	        case _constants2.default.PROFILE_CREATED:
+	            var newState = Object.assign({}, state);
+	            var array = Object.assign([], newState.profilesArray);
+	            array.push(action.profile);
 	
-	                default:
-	                        return state;
-	        }
+	            newState['profilesArray'] = array;
+	            return newState;
+	
+	        default:
+	            return state;
+	    }
 	};
 	
 	var _constants = __webpack_require__(197);
@@ -24335,8 +24343,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var initialState = {
-	        profiles: {},
-	        profilesArray: []
+	    profiles: {},
+	    profilesArray: []
 	};
 
 /***/ },
@@ -25200,7 +25208,7 @@
 	                }
 	
 	                console.log(JSON.stringify(response.result));
-	                // store.dispatch(actions.profilesReceived(response.results))
+	                _store2.default.dispatch(_actions2.default.profileCreated(response.result));
 	            });
 	        }
 	    }, {

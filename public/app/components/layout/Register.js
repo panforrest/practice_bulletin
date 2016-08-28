@@ -51,7 +51,7 @@ class Register extends Component {
     		}
 
     		console.log(JSON.stringify(response.result))
-    		// store.dispatch(actions.profilesReceived(response.results))
+    		store.dispatch(actions.profileCreated(response.result))
     	})
     }
 
