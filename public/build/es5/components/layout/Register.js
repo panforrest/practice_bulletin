@@ -51,8 +51,6 @@ var Register = (function (Component) {
                         return;
                     }
                     console.log("Community Received: " + JSON.stringify(response));
-
-                    store.dispatch(actions.profilesReceived(response.results));
                 });
             },
             writable: true,
@@ -79,8 +77,9 @@ var Register = (function (Component) {
                         return;
                     }
 
-                    console.log(JSON.stringify(response.result));
-                    store.dispatch(actions.profileCreated(response.result));
+                    console.log("PROFILE CREATED: " + JSON.stringify(response));
+                    //store.dispatch(actions.profileCreated(response.result))
+                    window.location.href = "/account";
                 });
             },
             writable: true,
@@ -145,3 +144,4 @@ var stateToProps = function (state) {
 };
 
 module.exports = connect(stateToProps)(Register);
+//store.dispatch(actions.profilesReceived(response.results))

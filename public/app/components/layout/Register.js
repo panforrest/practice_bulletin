@@ -29,7 +29,7 @@ class Register extends Component {
             }
             console.log('Community Received: '+JSON.stringify(response))
 
-            store.dispatch(actions.profilesReceived(response.results))
+            //store.dispatch(actions.profilesReceived(response.results))
         })
     }
 
@@ -51,8 +51,9 @@ class Register extends Component {
     			return
     		}
 
-    		console.log(JSON.stringify(response.result))
-    		store.dispatch(actions.profileCreated(response.result))
+    		console.log('PROFILE CREATED: '+JSON.stringify(response))
+    		//store.dispatch(actions.profileCreated(response.result))
+            window.location.href = '/account'
     	})
     }
 

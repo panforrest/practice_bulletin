@@ -25189,7 +25189,7 @@
 	                }
 	                console.log('Community Received: ' + JSON.stringify(response));
 	
-	                _store2.default.dispatch(_actions2.default.profilesReceived(response.results));
+	                //store.dispatch(actions.profilesReceived(response.results))
 	            });
 	        }
 	    }, {
@@ -25213,8 +25213,9 @@
 	                    return;
 	                }
 	
-	                console.log(JSON.stringify(response.result));
-	                _store2.default.dispatch(_actions2.default.profileCreated(response.result));
+	                console.log('PROFILE CREATED: ' + JSON.stringify(response));
+	                //store.dispatch(actions.profileCreated(response.result))
+	                window.location.href = '/account';
 	            });
 	        }
 	    }, {
