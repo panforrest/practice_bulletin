@@ -80,6 +80,7 @@ var Register = (function (Component) {
                     }
 
                     console.log(JSON.stringify(response.result));
+                    store.dispatch(actions.profileCreated(response.result));
                 });
             },
             writable: true,
@@ -144,4 +145,3 @@ var stateToProps = function (state) {
 };
 
 module.exports = connect(stateToProps)(Register);
-// store.dispatch(actions.profilesReceived(response.results))

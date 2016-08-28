@@ -13,45 +13,24 @@ var _react = require("react");
 var React = _interopRequire(_react);
 
 var Component = _react.Component;
-var Communities = _interopRequire(require("../components/Communities"));
-
-var Register = _interopRequire(require("../components/layout/Register"));
-
-var Account = _interopRequire(require("../components/layout/Account"));
-
-var Main = (function (Component) {
-	function Main() {
-		_classCallCheck(this, Main);
+var Account = (function (Component) {
+	function Account() {
+		_classCallCheck(this, Account);
 
 		if (Component != null) {
 			Component.apply(this, arguments);
 		}
 	}
 
-	_inherits(Main, Component);
+	_inherits(Account, Component);
 
-	_prototypeProperties(Main, null, {
-		componentDidMount: {
-			value: function componentDidMount() {
-				console.log("MAIN: " + this.props.page);
-			},
-			writable: true,
-			configurable: true
-		},
+	_prototypeProperties(Account, null, {
 		render: {
 			value: function render() {
-				var content = null;
-				var page = this.props.page;
-				if (page == "home") content = React.createElement(Communities, null);
-
-				if (page == "register") content = React.createElement(Register, null);
-
-				if (page == "account") content = React.createElement(Account, null);
-
 				return React.createElement(
 					"div",
 					null,
-					content
+					"This is Account Component!"
 				);
 			},
 			writable: true,
@@ -59,7 +38,7 @@ var Main = (function (Component) {
 		}
 	});
 
-	return Main;
+	return Account;
 })(Component);
 
-module.exports = Main;
+module.exports = Account;
