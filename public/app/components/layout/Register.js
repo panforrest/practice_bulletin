@@ -7,6 +7,7 @@ class Register extends Component {
 		super(props, context)
 		this.updateUser = this.updateUser.bind(this)
 		this.register = this.register.bind(this)
+		this.login = this.login.bind(this)
 		this.state={
 			user: {
 				firstName:'',
@@ -40,6 +41,21 @@ class Register extends Component {
     	})
     }
 
+    login(event){
+    	event.preventDefault()
+    	// console.log('LOGIN: '+JSON.stringify(this.state.user))
+    	api.handlePost('/account/login', this.state.user, function(err, response){
+    		console.log('LOGIN TEST: ')
+    		if (err) {
+    			alert('oops: '+err.message)
+    			return
+    		}
+
+    		console.log('USER LOGGED IN: '+JSON.stringify(response))
+    		window.location.href = '/account'
+    	})
+    }
+
 	render(){
 		return (
 			<div>
@@ -48,6 +64,11 @@ class Register extends Component {
 				<input type="text" onChange={this.updateUser} id="email" placeholder="Email" /><br />
 				<input type="text" onChange={this.updateUser} id="password" placeholder="Password" /><br />
 				<button onClick={this.register}>Register</button>
+				<br />
+				<br />
+				<input type="text" onChange={this.updateUser} id="email" placeholder="Email" /><br />
+				<input type="text" onChange={this.updateUser} id="password" placeholder="Password" /><br />
+				<button onClick={this.login}>Login</button>
 			</div>
 		)
 	}

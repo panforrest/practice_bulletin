@@ -25213,6 +25213,7 @@
 	
 			_this.updateUser = _this.updateUser.bind(_this);
 			_this.register = _this.register.bind(_this);
+			_this.login = _this.login.bind(_this);
 			_this.state = {
 				user: {
 					firstName: '',
@@ -25250,6 +25251,22 @@
 				});
 			}
 		}, {
+			key: 'login',
+			value: function login(event) {
+				event.preventDefault();
+				// console.log('LOGIN: '+JSON.stringify(this.state.user))
+				_api2.default.handlePost('/account/login', this.state.user, function (err, response) {
+					console.log('LOGIN TEST: ');
+					if (err) {
+						alert('oops: ' + err.message);
+						return;
+					}
+	
+					console.log('USER LOGGED IN: ' + JSON.stringify(response));
+					window.location.href = '/account';
+				});
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -25267,6 +25284,17 @@
 						'button',
 						{ onClick: this.register },
 						'Register'
+					),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('input', { type: 'text', onChange: this.updateUser, id: 'email', placeholder: 'Email' }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement('input', { type: 'text', onChange: this.updateUser, id: 'password', placeholder: 'Password' }),
+					_react2.default.createElement('br', null),
+					_react2.default.createElement(
+						'button',
+						{ onClick: this.login },
+						'Login'
 					)
 				);
 			}

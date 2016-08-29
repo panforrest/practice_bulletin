@@ -24,6 +24,7 @@ var Register = (function (Component) {
 		_get(Object.getPrototypeOf(Register.prototype), "constructor", this).call(this, props, context);
 		this.updateUser = this.updateUser.bind(this);
 		this.register = this.register.bind(this);
+		this.login = this.login.bind(this);
 		this.state = {
 			user: {
 				firstName: "",
@@ -66,6 +67,24 @@ var Register = (function (Component) {
 			writable: true,
 			configurable: true
 		},
+		login: {
+			value: function login(event) {
+				event.preventDefault();
+				// console.log('LOGIN: '+JSON.stringify(this.state.user))
+				api.handlePost("/account/login", this.state.user, function (err, response) {
+					console.log("LOGIN TEST: ");
+					if (err) {
+						alert("oops: " + err.message);
+						return;
+					}
+
+					console.log("USER LOGGED IN: " + JSON.stringify(response));
+					window.location.href = "/account";
+				});
+			},
+			writable: true,
+			configurable: true
+		},
 		render: {
 			value: function render() {
 				return React.createElement(
@@ -83,6 +102,17 @@ var Register = (function (Component) {
 						"button",
 						{ onClick: this.register },
 						"Register"
+					),
+					React.createElement("br", null),
+					React.createElement("br", null),
+					React.createElement("input", { type: "text", onChange: this.updateUser, id: "email", placeholder: "Email" }),
+					React.createElement("br", null),
+					React.createElement("input", { type: "text", onChange: this.updateUser, id: "password", placeholder: "Password" }),
+					React.createElement("br", null),
+					React.createElement(
+						"button",
+						{ onClick: this.login },
+						"Login"
 					)
 				);
 			},
