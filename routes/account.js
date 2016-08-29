@@ -6,6 +6,17 @@ var profileController = require('../controllers/profileController')
 router.get('/:action', function(req, res, next){
 
     var action = req.params.action
+    if (action == 'logout') {
+        req.session.reset()
+        res.json({
+            confirmation: 'success',
+            message: 'bye'
+        })
+
+        return
+    }
+
+    var action = req.params.action
     if (action == 'currentuser') {
 
         if (req.session == null) {

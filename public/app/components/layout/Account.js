@@ -9,6 +9,7 @@ class Account extends Component {
 
 	constructor(props, context){
 		super(props, context)
+		this.logout = this.logout.bind(this)
 		this.state = {
 			currentUser: {
 				firstName:'',
@@ -38,11 +39,25 @@ class Account extends Component {
 
 	}
 
+	logout(event){
+		event.preventDefault()
+		console.log('LOGOUT: ')
+		api.handleGet('/account/logout', null, function(err, response){
+			if (err) {
+				alert(err.message)
+				return
+			}
+
+			window.location.href = '/'
+		})
+	}
+
 	render() {
 		return (
             <div>
                 This is the Account Page!
                 <h1>{this.props.currentUser.firstName}, {this.props.currentUser.lastName}</h1>
+                <button onClick={this.logout}>Logout</button>
             </div>    
 		)
 	}

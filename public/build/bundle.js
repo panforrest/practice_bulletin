@@ -64,7 +64,7 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _reactRedux = __webpack_require__(200);
+	var _reactRedux = __webpack_require__(201);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21493,11 +21493,11 @@
 	
 	var _Communities2 = _interopRequireDefault(_Communities);
 	
-	var _Register = __webpack_require__(209);
+	var _Register = __webpack_require__(210);
 	
 	var _Register2 = _interopRequireDefault(_Register);
 	
-	var _Account = __webpack_require__(210);
+	var _Account = __webpack_require__(211);
 	
 	var _Account2 = _interopRequireDefault(_Account);
 	
@@ -21571,11 +21571,11 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(199);
+	var _actions = __webpack_require__(200);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
-	var _reactRedux = __webpack_require__(200);
+	var _reactRedux = __webpack_require__(201);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -23341,7 +23341,7 @@
 	
 	var _profileReducer2 = _interopRequireDefault(_profileReducer);
 	
-	var _accountReducer = __webpack_require__(211);
+	var _accountReducer = __webpack_require__(199);
 	
 	var _accountReducer2 = _interopRequireDefault(_accountReducer);
 	
@@ -24370,6 +24370,49 @@
 		value: true
 	});
 	
+	exports.default = function () {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+		var action = arguments[1];
+	
+		switch (action.type) {
+			case _constants2.default.CURRENT_USER_RECEIVED:
+				console.log('CURRENT_USER_RECEIVED: ' + JSON.stringify(action.user));
+				var newState = Object.assign({}, state);
+				newState['currentUser'] = action.user;
+	
+				return newState;
+	
+			default:
+				return state;
+		}
+	};
+	
+	var _constants = __webpack_require__(197);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var initialState = {
+		currentUser: {
+			id: null,
+			firstName: '',
+			lastName: '',
+			email: '',
+			password: ''
+		}
+	};
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
 	var _constants = __webpack_require__(197);
 	
 	var _constants2 = _interopRequireDefault(_constants);
@@ -24421,7 +24464,7 @@
 	};
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24429,11 +24472,11 @@
 	exports.__esModule = true;
 	exports.connect = exports.Provider = undefined;
 	
-	var _Provider = __webpack_require__(201);
+	var _Provider = __webpack_require__(202);
 	
 	var _Provider2 = _interopRequireDefault(_Provider);
 	
-	var _connect = __webpack_require__(204);
+	var _connect = __webpack_require__(205);
 	
 	var _connect2 = _interopRequireDefault(_connect);
 	
@@ -24443,7 +24486,7 @@
 	exports.connect = _connect2["default"];
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24453,11 +24496,11 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(202);
+	var _storeShape = __webpack_require__(203);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _warning = __webpack_require__(203);
+	var _warning = __webpack_require__(204);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -24527,7 +24570,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24543,7 +24586,7 @@
 	});
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24572,7 +24615,7 @@
 	}
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -24584,19 +24627,19 @@
 	
 	var _react = __webpack_require__(1);
 	
-	var _storeShape = __webpack_require__(202);
+	var _storeShape = __webpack_require__(203);
 	
 	var _storeShape2 = _interopRequireDefault(_storeShape);
 	
-	var _shallowEqual = __webpack_require__(205);
+	var _shallowEqual = __webpack_require__(206);
 	
 	var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 	
-	var _wrapActionCreators = __webpack_require__(206);
+	var _wrapActionCreators = __webpack_require__(207);
 	
 	var _wrapActionCreators2 = _interopRequireDefault(_wrapActionCreators);
 	
-	var _warning = __webpack_require__(203);
+	var _warning = __webpack_require__(204);
 	
 	var _warning2 = _interopRequireDefault(_warning);
 	
@@ -24604,11 +24647,11 @@
 	
 	var _isPlainObject2 = _interopRequireDefault(_isPlainObject);
 	
-	var _hoistNonReactStatics = __webpack_require__(207);
+	var _hoistNonReactStatics = __webpack_require__(208);
 	
 	var _hoistNonReactStatics2 = _interopRequireDefault(_hoistNonReactStatics);
 	
-	var _invariant = __webpack_require__(208);
+	var _invariant = __webpack_require__(209);
 	
 	var _invariant2 = _interopRequireDefault(_invariant);
 	
@@ -24971,7 +25014,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -25002,7 +25045,7 @@
 	}
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25019,7 +25062,7 @@
 	}
 
 /***/ },
-/* 207 */
+/* 208 */
 /***/ function(module, exports) {
 
 	/**
@@ -25075,7 +25118,7 @@
 
 
 /***/ },
-/* 208 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {/**
@@ -25133,7 +25176,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
-/* 209 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25235,7 +25278,7 @@
 	exports.default = Register;
 
 /***/ },
-/* 210 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25258,13 +25301,13 @@
 	
 	var _store2 = _interopRequireDefault(_store);
 	
-	var _actions = __webpack_require__(199);
+	var _actions = __webpack_require__(200);
 	
 	var _actions2 = _interopRequireDefault(_actions);
 	
-	var _reactRedux = __webpack_require__(200);
+	var _reactRedux = __webpack_require__(201);
 	
-	var _accountReducer = __webpack_require__(211);
+	var _accountReducer = __webpack_require__(199);
 	
 	var _accountReducer2 = _interopRequireDefault(_accountReducer);
 	
@@ -25284,6 +25327,7 @@
 	
 			var _this2 = _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).call(this, props, context));
 	
+			_this2.logout = _this2.logout.bind(_this2);
 			_this2.state = {
 				currentUser: {
 					firstName: '',
@@ -25315,6 +25359,20 @@
 				});
 			}
 		}, {
+			key: 'logout',
+			value: function logout(event) {
+				event.preventDefault();
+				console.log('LOGOUT: ');
+				_api2.default.handleGet('/account/logout', null, function (err, response) {
+					if (err) {
+						alert(err.message);
+						return;
+					}
+	
+					window.location.href = '/';
+				});
+			}
+		}, {
 			key: 'render',
 			value: function render() {
 				return _react2.default.createElement(
@@ -25327,6 +25385,11 @@
 						this.props.currentUser.firstName,
 						', ',
 						this.props.currentUser.lastName
+					),
+					_react2.default.createElement(
+						'button',
+						{ onClick: this.logout },
+						'Logout'
 					)
 				);
 			}
@@ -25341,49 +25404,6 @@
 		};
 	};
 	exports.default = (0, _reactRedux.connect)(stateToProps)(Account);
-
-/***/ },
-/* 211 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	
-	exports.default = function () {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-		var action = arguments[1];
-	
-		switch (action.type) {
-			case _constants2.default.CURRENT_USER_RECEIVED:
-				console.log('CURRENT_USER_RECEIVED: ' + JSON.stringify(action.user));
-				var newState = Object.assign({}, state);
-				newState['currentUser'] = action.user;
-	
-				return newState;
-	
-			default:
-				return state;
-		}
-	};
-	
-	var _constants = __webpack_require__(197);
-	
-	var _constants2 = _interopRequireDefault(_constants);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var initialState = {
-		currentUser: {
-			id: null,
-			firstName: '',
-			lastName: '',
-			email: '',
-			password: ''
-		}
-	};
 
 /***/ }
 /******/ ]);

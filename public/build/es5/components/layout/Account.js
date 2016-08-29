@@ -29,6 +29,7 @@ var Account = (function (Component) {
 		_classCallCheck(this, Account);
 
 		_get(Object.getPrototypeOf(Account.prototype), "constructor", this).call(this, props, context);
+		this.logout = this.logout.bind(this);
 		this.state = {
 			currentUser: {
 				firstName: "",
@@ -63,6 +64,22 @@ var Account = (function (Component) {
 			writable: true,
 			configurable: true
 		},
+		logout: {
+			value: function logout(event) {
+				event.preventDefault();
+				console.log("LOGOUT: ");
+				api.handleGet("/account/logout", null, function (err, response) {
+					if (err) {
+						alert(err.message);
+						return;
+					}
+
+					window.location.href = "/";
+				});
+			},
+			writable: true,
+			configurable: true
+		},
 		render: {
 			value: function render() {
 				return React.createElement(
@@ -75,6 +92,11 @@ var Account = (function (Component) {
 						this.props.currentUser.firstName,
 						", ",
 						this.props.currentUser.lastName
+					),
+					React.createElement(
+						"button",
+						{ onClick: this.logout },
+						"Logout"
 					)
 				);
 			},
