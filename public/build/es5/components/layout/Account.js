@@ -90,7 +90,7 @@ var Account = (function (Component) {
 						"h1",
 						null,
 						this.props.currentUser.firstName,
-						", ",
+						" ",
 						this.props.currentUser.lastName
 					),
 					React.createElement(

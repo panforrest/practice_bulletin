@@ -56,7 +56,7 @@ class Account extends Component {
 		return (
             <div>
                 This is the Account Page!
-                <h1>{this.props.currentUser.firstName}, {this.props.currentUser.lastName}</h1>
+                <h1>{this.props.currentUser.firstName} {this.props.currentUser.lastName}</h1>
                 <button onClick={this.logout}>Logout</button>
             </div>    
 		)

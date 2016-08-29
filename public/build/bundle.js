@@ -25411,7 +25411,7 @@
 						'h1',
 						null,
 						this.props.currentUser.firstName,
-						', ',
+						' ',
 						this.props.currentUser.lastName
 					),
 					_react2.default.createElement(
