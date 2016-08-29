@@ -8,7 +8,6 @@ module.exports = {
 
 	communityCreated: function (community) {
 		return {
-
 			type: constants.COMMUNITY_CREATED,
 			community: community
 
@@ -35,6 +34,13 @@ module.exports = {
 		return {
 			type: constants.PROFILES_RECEIVED,
 			profiles: profiles
+		};
+	},
+
+	currentUserReceived: function (user) {
+		return {
+			type: constants.CURRENT_USER_RECEIVED,
+			user: user
 		};
 	}
 
