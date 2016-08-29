@@ -24,7 +24,7 @@ module.exports = {
 
 		// fetch specific profile by ID
 		if (params.id !=null){
-			Profile.findById(params.id, function(err, completion){
+			Profile.findById(params.id, function(err, profile){
 				if (err) {
 					completion({message:'Profile '+profile.id+' not found'}, null)
 					return
