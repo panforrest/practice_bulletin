@@ -13,28 +13,27 @@ class Account extends Component {
 			currentUser: {
 				firstName:'',
 				lastName:'',
-				email:'',
-				password: ''
+				email:''
 			}
 		}
 	}
 
 	componentDidMount(){
-		// var _this = this
+		var _this = this
 		api.handleGet('/account/currentuser', null, function(err, response){
 			if (err) {
                 alert(err.message)
                 return
 			}
 
-			console.log(JSON.stringify(response))
+			// console.log(JSON.stringify(response))
 			// var user = response.user
 			// _this.setState({
 			// 	currentUser: user
 			// })
 			// return
-			store.dispatch(actions.currentUserReceived(response))
-
+			store.dispatch(actions.currentUserReceived(response.user))
+            return
 		})
 
 	}
@@ -43,7 +42,7 @@ class Account extends Component {
 		return (
             <div>
                 This is the Account Page!
-                <h1>{this.state.currentUser.firstName}, {this.state.currentUser.lastName}</h1>
+                <h1>{this.props.currentUser.firstName}, {this.props.currentUser.lastName}</h1>
             </div>    
 		)
 	}
@@ -54,4 +53,4 @@ const stateToProps=function(state){
 		currentUser: state.accountReducer.currentUser
 	}
 }
-export default connect(stateToProps)(Account)
+export default connect (stateToProps)(Account)

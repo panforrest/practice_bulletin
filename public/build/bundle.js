@@ -25282,36 +25282,36 @@
 		function Account(props, context) {
 			_classCallCheck(this, Account);
 	
-			var _this = _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).call(this, props, context));
+			var _this2 = _possibleConstructorReturn(this, (Account.__proto__ || Object.getPrototypeOf(Account)).call(this, props, context));
 	
-			_this.state = {
+			_this2.state = {
 				currentUser: {
 					firstName: '',
 					lastName: '',
-					email: '',
-					password: ''
+					email: ''
 				}
 			};
-			return _this;
+			return _this2;
 		}
 	
 		_createClass(Account, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				// var _this = this
+				var _this = this;
 				_api2.default.handleGet('/account/currentuser', null, function (err, response) {
 					if (err) {
 						alert(err.message);
 						return;
 					}
 	
-					console.log(JSON.stringify(response));
+					// console.log(JSON.stringify(response))
 					// var user = response.user
 					// _this.setState({
 					// 	currentUser: user
 					// })
 					// return
-					_store2.default.dispatch(_actions2.default.currentUserReceived(response));
+					_store2.default.dispatch(_actions2.default.currentUserReceived(response.user));
+					return;
 				});
 			}
 		}, {
@@ -25324,9 +25324,9 @@
 					_react2.default.createElement(
 						'h1',
 						null,
-						this.state.currentUser.firstName,
+						this.props.currentUser.firstName,
 						', ',
-						this.state.currentUser.lastName
+						this.props.currentUser.lastName
 					)
 				);
 			}
@@ -25360,7 +25360,7 @@
 			case _constants2.default.CURRENT_USER_RECEIVED:
 				console.log('CURRENT_USER_RECEIVED: ' + JSON.stringify(action.user));
 				var newState = Object.assign({}, state);
-				newState['currentUser'] = action.User;
+				newState['currentUser'] = action.user;
 	
 				return newState;
 	

@@ -33,8 +33,7 @@ var Account = (function (Component) {
 			currentUser: {
 				firstName: "",
 				lastName: "",
-				email: "",
-				password: ""
+				email: ""
 			}
 		};
 	}
@@ -44,20 +43,21 @@ var Account = (function (Component) {
 	_prototypeProperties(Account, null, {
 		componentDidMount: {
 			value: function componentDidMount() {
-				// var _this = this
+				var _this = this;
 				api.handleGet("/account/currentuser", null, function (err, response) {
 					if (err) {
 						alert(err.message);
 						return;
 					}
 
-					console.log(JSON.stringify(response));
+					// console.log(JSON.stringify(response))
 					// var user = response.user
 					// _this.setState({
 					// 	currentUser: user
 					// })
 					// return
-					store.dispatch(actions.currentUserReceived(response));
+					store.dispatch(actions.currentUserReceived(response.user));
+					return;
 				});
 			},
 			writable: true,
@@ -72,9 +72,9 @@ var Account = (function (Component) {
 					React.createElement(
 						"h1",
 						null,
-						this.state.currentUser.firstName,
+						this.props.currentUser.firstName,
 						", ",
-						this.state.currentUser.lastName
+						this.props.currentUser.lastName
 					)
 				);
 			},
