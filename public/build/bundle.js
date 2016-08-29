@@ -83,7 +83,8 @@
 	        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props, context));
 	
 	        _this.state = {
-	            page: 'home'
+	            page: 'home',
+	            slug: null
 	        };
 	
 	        return _this;
@@ -97,19 +98,22 @@
 	            var path = pathname.replace('/', ''); //http://localhost:3000
 	
 	            var page = 'home';
+	            var slug = null;
 	            if (path.length > 0) {
 	                var parts = path.split('/');
 	                page = parts[0];
+	                if (parts.length > 1) slug = parts[1];
 	            }
 	
 	            this.setState({
-	                page: page
+	                page: page,
+	                slug: slug
 	            });
 	        }
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            return _react2.default.createElement(_Main2.default, { page: this.state.page });
+	            return _react2.default.createElement(_Main2.default, { page: this.state.page, slug: this.state.slug });
 	        }
 	    }]);
 	
@@ -21738,8 +21742,20 @@
 			_superagent2.default.post(endpoint).send(body).set('Accept, applicaiton/json').end(function (err, res) {
 				if (err) {
 					if (completion != null) completion(err, null);
-				} else {
-					if (completion != null) completion(null, res.body);
+	
+					return;
+				}
+				// else {
+				// 	if (completion != null)
+				// 		completion(null, res.body)        		
+				// }
+	
+				if (completion != null) {
+					if (res.body.confirmation == 'success') {
+						completion(null, res.body);
+					} else {
+						completion({ message: res.body.message }, null);
+					}
 				}
 			});
 		},
@@ -25212,12 +25228,17 @@
 			var _this = _possibleConstructorReturn(this, (Register.__proto__ || Object.getPrototypeOf(Register)).call(this, props, context));
 	
 			_this.updateUser = _this.updateUser.bind(_this);
+			_this.updateCredentials = _this.updateCredentials.bind(_this);
 			_this.register = _this.register.bind(_this);
 			_this.login = _this.login.bind(_this);
 			_this.state = {
 				user: {
 					firstName: '',
 					lastName: '',
+					email: '',
+					password: ''
+				},
+				credentials: {
 					email: '',
 					password: ''
 				}
@@ -25233,6 +25254,15 @@
 				updatedUser[event.target.id] = event.target.value;
 				this.setState({
 					user: updatedUser
+				});
+			}
+		}, {
+			key: 'updateCredentials',
+			value: function updateCredentials(event) {
+				var credentials = Object.assign({}, this.state.credentials);
+				credentials[event.target.id] = event.target.value;
+				this.setState({
+					credentials: credentials
 				});
 			}
 		}, {
@@ -25255,10 +25285,10 @@
 			value: function login(event) {
 				event.preventDefault();
 				// console.log('LOGIN: '+JSON.stringify(this.state.user))
-				_api2.default.handlePost('/account/login', this.state.user, function (err, response) {
-					console.log('LOGIN TEST: ');
-					if (err) {
-						alert('oops: ' + err.message);
+				_api2.default.handlePost('/account/login', this.state.credentials, function (err, response) {
+					// console.log('LOGIN TEST: ')
+					if (err != null) {
+						alert(err.message);
 						return;
 					}
 	
@@ -25285,11 +25315,14 @@
 						{ onClick: this.register },
 						'Register'
 					),
+					_react2.default.createElement(
+						'h2',
+						null,
+						'Login'
+					),
+					_react2.default.createElement('input', { type: 'text', onChange: this.updateCredentials, id: 'email', placeholder: 'Email' }),
 					_react2.default.createElement('br', null),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { type: 'text', onChange: this.updateUser, id: 'email', placeholder: 'Email' }),
-					_react2.default.createElement('br', null),
-					_react2.default.createElement('input', { type: 'text', onChange: this.updateUser, id: 'password', placeholder: 'Password' }),
+					_react2.default.createElement('input', { type: 'text', onChange: this.updateCredentials, id: 'password', placeholder: 'Password' }),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement(
 						'button',
@@ -25335,10 +25368,6 @@
 	
 	var _reactRedux = __webpack_require__(201);
 	
-	var _accountReducer = __webpack_require__(199);
-	
-	var _accountReducer2 = _interopRequireDefault(_accountReducer);
-	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25347,6 +25376,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
+	// import accountReducer from '../../reducers/accountReducer'
 	var Account = function (_Component) {
 		_inherits(Account, _Component);
 	
@@ -25372,16 +25402,11 @@
 				var _this = this;
 				_api2.default.handleGet('/account/currentuser', null, function (err, response) {
 					if (err) {
+	
 						alert(err.message);
 						return;
 					}
 	
-					// console.log(JSON.stringify(response))
-					// var user = response.user
-					// _this.setState({
-					// 	currentUser: user
-					// })
-					// return
 					_store2.default.dispatch(_actions2.default.currentUserReceived(response.user));
 					return;
 				});
@@ -25391,6 +25416,7 @@
 			value: function logout(event) {
 				event.preventDefault();
 				console.log('LOGOUT: ');
+	
 				_api2.default.handleGet('/account/logout', null, function (err, response) {
 					if (err) {
 						alert(err.message);
@@ -25427,10 +25453,12 @@
 	}(_react.Component);
 	
 	var stateToProps = function stateToProps(state) {
+	
 		return {
 			currentUser: state.accountReducer.currentUser
 		};
 	};
+	
 	exports.default = (0, _reactRedux.connect)(stateToProps)(Account);
 
 /***/ }

@@ -46,7 +46,9 @@ router.get('/:action', function(req, res, next){
     }
 })
 
+
 router.post('/:action', function(req, res, next){
+
     var action = req.params.action
     if (action == 'login') {
         var credentials = req.body  //email, password
@@ -73,22 +75,28 @@ router.post('/:action', function(req, res, next){
             var profile = results[0]
 
             //TODO: check password
-            var hashedPassword = bcrypt.compareSync(credentials.password, profile.password)
-            if (hashedPassword == false) {            
+            var passwordCorrect = bcrypt.compareSync(credentials.password, profile.password)
+            if (passwordCorrect == false) {            
                 res.json({
                     consirmation: 'fail',
                     message: 'Password incorrect'
-                })  
+                }) 
+
                 return  
             }
+
 
             req.session.user = profile.id  //install cookies to track current user
             res.json({
                 confirmation: 'success',
                 user: profile
             })
+
+            return
         })
     }
+
+    
 })
 
 module.exports = router

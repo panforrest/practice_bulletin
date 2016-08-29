@@ -23,12 +23,17 @@ var Register = (function (Component) {
 
 		_get(Object.getPrototypeOf(Register.prototype), "constructor", this).call(this, props, context);
 		this.updateUser = this.updateUser.bind(this);
+		this.updateCredentials = this.updateCredentials.bind(this);
 		this.register = this.register.bind(this);
 		this.login = this.login.bind(this);
 		this.state = {
 			user: {
 				firstName: "",
 				lastName: "",
+				email: "",
+				password: ""
+			},
+			credentials: {
 				email: "",
 				password: ""
 			}
@@ -45,6 +50,17 @@ var Register = (function (Component) {
 				updatedUser[event.target.id] = event.target.value;
 				this.setState({
 					user: updatedUser
+				});
+			},
+			writable: true,
+			configurable: true
+		},
+		updateCredentials: {
+			value: function updateCredentials(event) {
+				var credentials = Object.assign({}, this.state.credentials);
+				credentials[event.target.id] = event.target.value;
+				this.setState({
+					credentials: credentials
 				});
 			},
 			writable: true,
@@ -71,10 +87,10 @@ var Register = (function (Component) {
 			value: function login(event) {
 				event.preventDefault();
 				// console.log('LOGIN: '+JSON.stringify(this.state.user))
-				api.handlePost("/account/login", this.state.user, function (err, response) {
-					console.log("LOGIN TEST: ");
-					if (err) {
-						alert("oops: " + err.message);
+				api.handlePost("/account/login", this.state.credentials, function (err, response) {
+					// console.log('LOGIN TEST: ')
+					if (err != null) {
+						alert(err.message);
 						return;
 					}
 
@@ -103,11 +119,14 @@ var Register = (function (Component) {
 						{ onClick: this.register },
 						"Register"
 					),
+					React.createElement(
+						"h2",
+						null,
+						"Login"
+					),
+					React.createElement("input", { type: "text", onChange: this.updateCredentials, id: "email", placeholder: "Email" }),
 					React.createElement("br", null),
-					React.createElement("br", null),
-					React.createElement("input", { type: "text", onChange: this.updateUser, id: "email", placeholder: "Email" }),
-					React.createElement("br", null),
-					React.createElement("input", { type: "text", onChange: this.updateUser, id: "password", placeholder: "Password" }),
+					React.createElement("input", { type: "text", onChange: this.updateCredentials, id: "password", placeholder: "Password" }),
 					React.createElement("br", null),
 					React.createElement(
 						"button",

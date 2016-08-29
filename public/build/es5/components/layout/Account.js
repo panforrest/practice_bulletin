@@ -22,8 +22,7 @@ var store = _interopRequire(require("../../stores/store"));
 var actions = _interopRequire(require("../../actions/actions"));
 
 var connect = require("react-redux").connect;
-var accountReducer = _interopRequire(require("../../reducers/accountReducer"));
-
+// import accountReducer from '../../reducers/accountReducer'
 var Account = (function (Component) {
 	function Account(props, context) {
 		_classCallCheck(this, Account);
@@ -51,12 +50,6 @@ var Account = (function (Component) {
 						return;
 					}
 
-					// console.log(JSON.stringify(response))
-					// var user = response.user
-					// _this.setState({
-					// 	currentUser: user
-					// })
-					// return
 					store.dispatch(actions.currentUserReceived(response.user));
 					return;
 				});
@@ -68,6 +61,7 @@ var Account = (function (Component) {
 			value: function logout(event) {
 				event.preventDefault();
 				console.log("LOGOUT: ");
+
 				api.handleGet("/account/logout", null, function (err, response) {
 					if (err) {
 						alert(err.message);
@@ -113,4 +107,5 @@ var stateToProps = function (state) {
 		currentUser: state.accountReducer.currentUser
 	};
 };
+
 module.exports = connect(stateToProps)(Account);

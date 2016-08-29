@@ -9,7 +9,8 @@ class App extends Component {
     constructor(props, context){
     	super(props, context)
     	this.state = {
-            page: 'home'
+            page: 'home', 
+            slug: null
     	}
 
     }
@@ -19,19 +20,23 @@ class App extends Component {
         var path = pathname.replace('/', ''); //http://localhost:3000
 
         var page = 'home'
+        var slug = null
         if (path.length >0) {
         	var parts = path.split('/')
         	page = parts[0]
+            if (parts.length > 1)
+                slug = parts[1]
         }
 
         this.setState({
-        	page: page
+        	page: page,
+            slug: slug
         })
     }
 
 	render() {
         return(
-                <Main page={this.state.page}/>
+                <Main page={this.state.page} slug={this.state.slug}/>
         )
 	}
 }
