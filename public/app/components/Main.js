@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Communities from '../components/Communities'
 import Register from '../components/layout/Register'
 import Account from '../components/layout/Account'
+import Nav from './Nav'
 
 class Main extends Component {
 
@@ -23,6 +24,7 @@ class Main extends Component {
 
 		return (
 			<div>
+			    <Nav />
                 { content }
 			</div>
 		)

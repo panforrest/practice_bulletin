@@ -19,6 +19,8 @@ var Register = _interopRequire(require("../components/layout/Register"));
 
 var Account = _interopRequire(require("../components/layout/Account"));
 
+var Nav = _interopRequire(require("./Nav"));
+
 var Main = (function (Component) {
 	function Main() {
 		_classCallCheck(this, Main);
@@ -51,6 +53,7 @@ var Main = (function (Component) {
 				return React.createElement(
 					"div",
 					null,
+					React.createElement(Nav, null),
 					content
 				);
 			},
