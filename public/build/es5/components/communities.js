@@ -22,6 +22,8 @@ var store = _interopRequire(require("../stores/store"));
 var actions = _interopRequire(require("../actions/actions"));
 
 var connect = require("react-redux").connect;
+var CommunityPreview = _interopRequire(require("./CommunityPreview"));
+
 var Communities = (function (Component) {
     function Communities(context, props) {
         _classCallCheck(this, Communities);
@@ -91,25 +93,35 @@ var Communities = (function (Component) {
             value: function render() {
                 // console.log('RENDER: '+this.props.communities)
                 var communityList = this.props.communities.map(function (community, i) {
-                    return React.createElement(
-                        "li",
-                        { key: community.id },
-                        " ",
-                        React.createElement(
-                            "a",
-                            { href: "/community/" + community.slug },
-                            community.name,
-                            ", ",
-                            community.city
-                        )
-                    );
+                    return React.createElement(CommunityPreview, { key: community.id, community: community });
                 });
 
                 return React.createElement(
                     "div",
-                    null,
-                    "This is community Component!",
-                    React.createElement("br", null),
+                    { className: "container clearifx" },
+                    React.createElement(
+                        "div",
+                        { className: "col_three_fifth bothsidebar nobottommargin" },
+                        React.createElement(
+                            "div",
+                            { className: "fancy-title title-border" },
+                            React.createElement(
+                                "h3",
+                                null,
+                                "Communities"
+                            )
+                        ),
+                        React.createElement(
+                            "div",
+                            { id: "posts", className: "events small-thumbs" },
+                            communityList
+                        )
+                    ),
+                    React.createElement(
+                        "h3",
+                        null,
+                        "Add Community"
+                    ),
                     React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "name", name: "name", placeholder: "Name" }),
                     React.createElement("br", null),
                     React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "address", name: "address", placeholder: "Address" }),
@@ -125,7 +137,7 @@ var Communities = (function (Component) {
                     ),
                     " ",
                     React.createElement("br", null),
-                    communityList
+                    React.createElement("br", null)
                 );
             },
             writable: true,

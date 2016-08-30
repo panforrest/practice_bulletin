@@ -3,6 +3,7 @@ import api from '../utils/api'
 import store from '../stores/store'
 import actions from '../actions/actions'
 import { connect } from 'react-redux'
+import CommunityPreview from './CommunityPreview'
 
 class Communities extends Component {
 
@@ -60,20 +61,32 @@ class Communities extends Component {
     render() {
         // console.log('RENDER: '+this.props.communities)
         var communityList = this.props.communities.map(function(community, i){
-            return <li key={community.id}> <a href={'/community/'+community.slug}>{community.name}, {community.city}</a></li>
+            return <CommunityPreview key={community.id} community={community} />
         })
 
     	return(
-    		<div>
-    		    This is community Component!
-                <br />
-    		    <input onChange={this.updateNewCommunity} type="text" id="name" name="name" placeholder="Name" /><br />
+    		<div className="container clearifx">
+                <div className="col_three_fifth bothsidebar nobottommargin">
+                    <div className="fancy-title title-border">
+                        <h3>Communities</h3>
+                    </div>
+
+                    <div id="posts" className="events small-thumbs">
+                        {communityList}
+                    </div>    
+                </div>
+                <h3>Add Community</h3>
+                <input onChange={this.updateNewCommunity} type="text" id="name" name="name" placeholder="Name" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="address" name="address" placeholder="Address" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="city" name="city" placeholder="City" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="state" name="state" placeholder="State" /><br />
                 <button onClick={this.addNewCommunity}>Add</button> <br/>
 
-                {communityList}
+
+
+
+                <br />
+
     		</div>
 
     	)
