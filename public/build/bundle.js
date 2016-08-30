@@ -21513,6 +21513,10 @@
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
+	var _Footer = __webpack_require__(215);
+	
+	var _Footer2 = _interopRequireDefault(_Footer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21552,7 +21556,8 @@
 					'div',
 					null,
 					_react2.default.createElement(_Nav2.default, null),
-					content
+					content,
+					_react2.default.createElement(_Footer2.default, null)
 				);
 			}
 		}]);
@@ -25828,6 +25833,159 @@
 	}(_react.Component);
 	
 	exports.default = CommunityPreview;
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Footer = function (_Component) {
+	    _inherits(Footer, _Component);
+	
+	    function Footer() {
+	        _classCallCheck(this, Footer);
+	
+	        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+	    }
+	
+	    _createClass(Footer, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { id: "copyrights" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "container clearfix" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "col_half" },
+	                        _react2.default.createElement("img", { src: "images/footer-logo.png", alt: "", className: "footer-logo" }),
+	                        "Copyrights © 2014 All Rights Reserved by Canvas Inc."
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "col_half col_last tright" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "copyrights-menu copyright-links fright clearfix" },
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                "Home"
+	                            ),
+	                            "/",
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                "About"
+	                            ),
+	                            "/",
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                "Features"
+	                            ),
+	                            "/",
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                "Portfolio"
+	                            ),
+	                            "/",
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                "FAQs"
+	                            ),
+	                            "/",
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                "Contact"
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { className: "fright clearfix" },
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-facebook" },
+	                                _react2.default.createElement("i", { className: "icon-facebook" }),
+	                                _react2.default.createElement("i", { className: "icon-facebook" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-twitter" },
+	                                _react2.default.createElement("i", { className: "icon-twitter" }),
+	                                _react2.default.createElement("i", { className: "icon-twitter" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-gplus" },
+	                                _react2.default.createElement("i", { className: "icon-gplus" }),
+	                                _react2.default.createElement("i", { className: "icon-gplus" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-pinterest" },
+	                                _react2.default.createElement("i", { className: "icon-pinterest" }),
+	                                _react2.default.createElement("i", { className: "icon-pinterest" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-vimeo" },
+	                                _react2.default.createElement("i", { className: "icon-vimeo" }),
+	                                _react2.default.createElement("i", { className: "icon-vimeo" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-github" },
+	                                _react2.default.createElement("i", { className: "icon-github" }),
+	                                _react2.default.createElement("i", { className: "icon-github" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-yahoo" },
+	                                _react2.default.createElement("i", { className: "icon-yahoo" }),
+	                                _react2.default.createElement("i", { className: "icon-yahoo" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#", className: "social-icon si-small si-borderless nobottommargin si-linkedin" },
+	                                _react2.default.createElement("i", { className: "icon-linkedin" }),
+	                                _react2.default.createElement("i", { className: "icon-linkedin" })
+	                            )
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return Footer;
+	}(_react.Component);
+	
+	exports.default = Footer;
 
 /***/ }
 /******/ ]);

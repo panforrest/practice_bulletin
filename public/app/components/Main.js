@@ -4,6 +4,7 @@ import Register from '../components/layout/Register'
 import Account from '../components/layout/Account'
 import Community from './layout/Community'
 import Nav from '../components/Nav'
+import Footer from '../components/Footer'
 
 class Main extends Component {
 
@@ -33,6 +34,7 @@ class Main extends Component {
 
 
                 { content }
+                <Footer />
 			</div>
 		)
 	}

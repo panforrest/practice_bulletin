@@ -23,6 +23,8 @@ var Community = _interopRequire(require("./layout/Community"));
 
 var Nav = _interopRequire(require("../components/Nav"));
 
+var Footer = _interopRequire(require("../components/Footer"));
+
 var Main = (function (Component) {
 	function Main() {
 		_classCallCheck(this, Main);
@@ -56,7 +58,8 @@ var Main = (function (Component) {
 					"div",
 					null,
 					React.createElement(Nav, null),
-					content
+					content,
+					React.createElement(Footer, null)
 				);
 			},
 			writable: true,
