@@ -26,4 +26,20 @@ router.get('/:page', function(req, res, next) {
 
 });
 
+router.get('/:page/:slug', function(req, res, next) {
+    var page = req.params.page
+    if (page == 'api' || page == 'account'){
+    	next()
+    	return
+    }
+
+    var slug = req.params.slug
+
+	//convert react code into HTML:
+    var html = ReactDOMServer.renderToString(React.createElement(ServerApp, {page:page, slug:slug}))
+    //
+    res.render(page, { react: html });
+
+});
+
 module.exports = router;

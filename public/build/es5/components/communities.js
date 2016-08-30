@@ -95,9 +95,13 @@ var Communities = (function (Component) {
                         "li",
                         { key: community.id },
                         " ",
-                        community.name,
-                        ", ",
-                        community.city
+                        React.createElement(
+                            "a",
+                            { href: "/community/" + community.slug },
+                            community.name,
+                            ", ",
+                            community.city
+                        )
                     );
                 });
 

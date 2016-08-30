@@ -13,52 +13,24 @@ var _react = require("react");
 var React = _interopRequire(_react);
 
 var Component = _react.Component;
-var Communities = _interopRequire(require("../components/Communities"));
-
-var Register = _interopRequire(require("../components/layout/Register"));
-
-var Account = _interopRequire(require("../components/layout/Account"));
-
-var Community = _interopRequire(require("./layout/Community"));
-
-var Nav = _interopRequire(require("./Nav"));
-
-var Main = (function (Component) {
-	function Main() {
-		_classCallCheck(this, Main);
+var Community = (function (Component) {
+	function Community() {
+		_classCallCheck(this, Community);
 
 		if (Component != null) {
 			Component.apply(this, arguments);
 		}
 	}
 
-	_inherits(Main, Component);
+	_inherits(Community, Component);
 
-	_prototypeProperties(Main, null, {
-		componentDidMount: {
-			value: function componentDidMount() {
-				console.log("MAIN: " + this.props.page);
-			},
-			writable: true,
-			configurable: true
-		},
+	_prototypeProperties(Community, null, {
 		render: {
 			value: function render() {
-				var content = null;
-				var page = this.props.page;
-				if (page == "home") content = React.createElement(Communities, null);
-
-				if (page == "register") content = React.createElement(Register, null);
-
-				if (page == "account") content = React.createElement(Account, null);
-
-				if (page == "community") content = React.createElement(Community, { slug: this.props.slug });
-
 				return React.createElement(
 					"div",
 					null,
-					React.createElement(Nav, null),
-					content
+					"This is Community component!"
 				);
 			},
 			writable: true,
@@ -66,7 +38,7 @@ var Main = (function (Component) {
 		}
 	});
 
-	return Main;
+	return Community;
 })(Component);
 
-module.exports = Main;
+module.exports = Community;

@@ -60,7 +60,7 @@ class Communities extends Component {
     render() {
         // console.log('RENDER: '+this.props.communities)
         var communityList = this.props.communities.map(function(community, i){
-            return <li key={community.id}> {community.name}, {community.city}</li>
+            return <li key={community.id}> <a href={'/community/'+community.slug}>{community.name}, {community.city}</a></li>
         })
 
     	return(

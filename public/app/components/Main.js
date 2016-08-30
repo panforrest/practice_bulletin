@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Communities from '../components/Communities'
 import Register from '../components/layout/Register'
 import Account from '../components/layout/Account'
+import Community from './layout/Community'
 import Nav from './Nav'
 
 class Main extends Component {
@@ -22,9 +23,15 @@ class Main extends Component {
 		if (page == 'account')
 			content = <Account />
 
+		if (page == 'community')
+			content = <Community slug={this.props.slug} />
+
 		return (
 			<div>
 			    <Nav />
+
+
+			    
                 { content }
 			</div>
 		)
