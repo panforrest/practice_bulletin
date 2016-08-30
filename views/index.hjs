@@ -5,8 +5,6 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <meta name="author" content="SemiColonWeb" />
 
-    <!-- Stylesheets
-    ============================================= -->
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="/css/bootstrap.css" type="text/css" />
     <link rel="stylesheet" href="/css/style.css" type="text/css" />
@@ -31,31 +29,7 @@
 
   <body>
 
-        <header id="header" className="transparent-header dark">
 
-            <div id="header-wrap">
-                <div className="container clearfix">
-                    <div id="primary-menu-trigger"><i className="icon-reorder"></i></div>
-
-                    <div id="logo">
-                        <a href="/" class="standard-logo" data-dark-logo="/images/logo-dark.png">
-                            <img src="/images/logo.png" alt="Canvas Logo" />
-                        </a>
-                        <a href="/" class="retina-logo" data-dark-logo="/images/logo-dark@2x.png">
-                            <img src="/images/logo@2x.png" alt="Canvas Logo" />
-                        </a>
-                    </div>
-
-                    <nav id="primary-menu">
-                        <ul>
-                            <li><a href="/"><div>Home</div></a>
-                            <li><a href="/register"><div>Register</div></a>
-                            <li><a href="/"><div>Home</div></a>
-                        </ul>
-                    </nav>
-                </div>     
-            </div>
-        </header>
 
     <div id='app'>{{{react}}}<div>
     

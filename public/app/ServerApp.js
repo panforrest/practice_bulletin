@@ -9,7 +9,7 @@ class App extends Component{
 	render(){
 		return(
                 <Provider store={store}>
-			        <Main page={this.props.page} />
+			        <Main page={this.props.page} slug={this.props.slug} />
 			    </Provider>
 		)
 	}

@@ -35,7 +35,7 @@ var App = (function (Component) {
 				return React.createElement(
 					Provider,
 					{ store: store },
-					React.createElement(Main, { page: this.props.page })
+					React.createElement(Main, { page: this.props.page, slug: this.props.slug })
 				);
 			},
 			writable: true,

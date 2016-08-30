@@ -21533,7 +21533,7 @@
 		_createClass(Main, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				console.log('MAIN: ' + this.props.page);
+				// console.log('MAIN: '+this.props.page)
 			}
 		}, {
 			key: 'render',
@@ -25480,10 +25480,10 @@
 /* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+					value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25501,26 +25501,99 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Nav = function (_Component) {
-	    _inherits(Nav, _Component);
+					_inherits(Nav, _Component);
 	
-	    function Nav() {
-	        _classCallCheck(this, Nav);
+					function Nav() {
+									_classCallCheck(this, Nav);
 	
-	        return _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).apply(this, arguments));
-	    }
+									return _possibleConstructorReturn(this, (Nav.__proto__ || Object.getPrototypeOf(Nav)).apply(this, arguments));
+					}
 	
-	    _createClass(Nav, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                'This is Nave component!'
-	            );
-	        }
-	    }]);
+					_createClass(Nav, [{
+									key: "render",
+									value: function render() {
+													return _react2.default.createElement(
+																	"header",
+																	{ id: "header", className: "transparent-header dark" },
+																	_react2.default.createElement(
+																					"div",
+																					{ id: "header-wrap" },
+																					_react2.default.createElement(
+																									"div",
+																									{ className: "container clearfix" },
+																									_react2.default.createElement(
+																													"div",
+																													{ id: "primary-menu-trigger" },
+																													_react2.default.createElement("i", { className: "icon-reorder" })
+																									),
+																									_react2.default.createElement(
+																													"div",
+																													{ id: "logo" },
+																													_react2.default.createElement(
+																																	"a",
+																																	{ href: "/", className: "standard-logo", "data-dark-logo": "/images/logo-dark.png" },
+																																	_react2.default.createElement("img", { src: "/images/logo.png", alt: "Canvas Logo" })
+																													),
+																													_react2.default.createElement(
+																																	"a",
+																																	{ href: "/", className: "retina-logo", "data-dark-logo": "/images/logo-dark@2x.png" },
+																																	_react2.default.createElement("img", { src: "/images/logo@2x.png", alt: "Canvas Logo" })
+																													)
+																									),
+																									_react2.default.createElement(
+																													"nav",
+																													{ id: "primary-menu" },
+																													_react2.default.createElement(
+																																	"ul",
+																																	null,
+																																	_react2.default.createElement(
+																																					"li",
+																																					null,
+																																					_react2.default.createElement(
+																																									"a",
+																																									{ href: "/" },
+																																									_react2.default.createElement(
+																																													"div",
+																																													null,
+																																													"Home"
+																																									)
+																																					)
+																																	),
+																																	_react2.default.createElement(
+																																					"li",
+																																					null,
+																																					_react2.default.createElement(
+																																									"a",
+																																									{ href: "/register" },
+																																									_react2.default.createElement(
+																																													"div",
+																																													null,
+																																													"Register"
+																																									)
+																																					)
+																																	),
+																																	_react2.default.createElement(
+																																					"li",
+																																					null,
+																																					_react2.default.createElement(
+																																									"a",
+																																									{ href: "/" },
+																																									_react2.default.createElement(
+																																													"div",
+																																													null,
+																																													"Home"
+																																									)
+																																					)
+																																	)
+																													)
+																									)
+																					)
+																	)
+													);
+									}
+					}]);
 	
-	    return Nav;
+					return Nav;
 	}(_react.Component);
 	
 	exports.default = Nav;
@@ -25532,7 +25605,7 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -25540,6 +25613,10 @@
 	var _react = __webpack_require__(1);
 	
 	var _react2 = _interopRequireDefault(_react);
+	
+	var _api = __webpack_require__(174);
+	
+	var _api2 = _interopRequireDefault(_api);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25550,26 +25627,69 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var Community = function (_Component) {
-		_inherits(Community, _Component);
+	  _inherits(Community, _Component);
 	
-		function Community() {
-			_classCallCheck(this, Community);
+	  function Community(props, context) {
+	    _classCallCheck(this, Community);
 	
-			return _possibleConstructorReturn(this, (Community.__proto__ || Object.getPrototypeOf(Community)).apply(this, arguments));
-		}
+	    var _this2 = _possibleConstructorReturn(this, (Community.__proto__ || Object.getPrototypeOf(Community)).call(this, props, context));
 	
-		_createClass(Community, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					null,
-					'This is Community component!'
-				);
-			}
-		}]);
+	    _this2.state = {
+	      community: {
+	        name: ''
+	      }
+	    };
+	    return _this2;
+	  }
 	
-		return Community;
+	  _createClass(Community, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this = this;
+	      var endpoint = '/api/community?slug=' + this.props.slug;
+	      _api2.default.handleGet(endpoint, null, function (err, response) {
+	        if (err) {
+	          alert(err.message);
+	          return;
+	        }
+	        console.log('Community Page: componentDidMount ' + JSON.stringify(response.results));
+	        var results = response.results;
+	        var community = results[0];
+	        _this.setState({
+	          community: community
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          this.state.community.name
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          null,
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Post'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Post'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Community;
 	}(_react.Component);
 	
 	exports.default = Community;

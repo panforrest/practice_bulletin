@@ -21,7 +21,7 @@ var Account = _interopRequire(require("../components/layout/Account"));
 
 var Community = _interopRequire(require("./layout/Community"));
 
-var Nav = _interopRequire(require("./Nav"));
+var Nav = _interopRequire(require("../components/Nav"));
 
 var Main = (function (Component) {
 	function Main() {
@@ -36,9 +36,7 @@ var Main = (function (Component) {
 
 	_prototypeProperties(Main, null, {
 		componentDidMount: {
-			value: function componentDidMount() {
-				console.log("MAIN: " + this.props.page);
-			},
+			value: function componentDidMount() {},
 			writable: true,
 			configurable: true
 		},
@@ -70,3 +68,4 @@ var Main = (function (Component) {
 })(Component);
 
 module.exports = Main;
+// console.log('MAIN: '+this.props.page)

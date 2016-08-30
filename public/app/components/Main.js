@@ -3,12 +3,12 @@ import Communities from '../components/Communities'
 import Register from '../components/layout/Register'
 import Account from '../components/layout/Account'
 import Community from './layout/Community'
-import Nav from './Nav'
+import Nav from '../components/Nav'
 
 class Main extends Component {
 
 	componentDidMount(){
-		console.log('MAIN: '+this.props.page)
+		// console.log('MAIN: '+this.props.page)
 	}
 
 	render(){
@@ -31,7 +31,7 @@ class Main extends Component {
 			    <Nav />
 
 
-			    
+
                 { content }
 			</div>
 		)
