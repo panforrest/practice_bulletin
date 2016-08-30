@@ -21497,11 +21497,11 @@
 	
 	var _Communities2 = _interopRequireDefault(_Communities);
 	
-	var _Register = __webpack_require__(210);
+	var _Register = __webpack_require__(211);
 	
 	var _Register2 = _interopRequireDefault(_Register);
 	
-	var _Account = __webpack_require__(211);
+	var _Account = __webpack_require__(212);
 	
 	var _Account2 = _interopRequireDefault(_Account);
 	
@@ -21509,7 +21509,7 @@
 	
 	var _Community2 = _interopRequireDefault(_Community);
 	
-	var _Nav = __webpack_require__(212);
+	var _Nav = __webpack_require__(214);
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
@@ -21556,6 +21556,11 @@
 					'div',
 					null,
 					_react2.default.createElement(_Nav2.default, null),
+					_react2.default.createElement(
+						'section',
+						{ id: 'slider', style: { background: 'url("/images/nyc.jpg") center', overflow: 'visible' }, 'data-height-lg': '450', 'data-height-md': '450', 'data-height-sm': '600', 'data-height-xs': '600', 'data-height-xxs': '600' },
+						_react2.default.createElement('br', null)
+					),
 					content,
 					_react2.default.createElement(_Footer2.default, null)
 				);
@@ -21597,9 +21602,13 @@
 	
 	var _reactRedux = __webpack_require__(201);
 	
-	var _CommunityPreview = __webpack_require__(214);
+	var _CommunityPreview = __webpack_require__(210);
 	
 	var _CommunityPreview2 = _interopRequireDefault(_CommunityPreview);
+	
+	var _Nav = __webpack_require__(214);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -21626,7 +21635,6 @@
 	                city: '',
 	                state: ''
 	            }
-	
 	        };
 	        return _this;
 	    }
@@ -21680,6 +21688,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'container clearifx' },
+	                _react2.default.createElement(_Nav2.default, null),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col_three_fifth bothsidebar nobottommargin' },
@@ -21701,7 +21710,58 @@
 	                _react2.default.createElement(
 	                    'h3',
 	                    null,
-	                    'Add Community'
+	                    'Sign up'
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col_one_third nobottommargin' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { 'class': 'well well-lg nobottommargin' },
+	                        _react2.default.createElement(
+	                            'form',
+	                            { id: 'login-form', name: 'login-form', 'class': 'nobottommargin', action: '#', method: 'post' },
+	                            _react2.default.createElement(
+	                                'h3',
+	                                null,
+	                                'Login to your Account'
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { 'class': 'col_full' },
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    { 'for': 'login-form-username' },
+	                                    'Username:'
+	                                ),
+	                                _react2.default.createElement('input', { type: 'text', id: 'login-form-username', name: 'login-form-username', value: '', 'class': 'required form-control input-block-level' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { 'class': 'col_full' },
+	                                _react2.default.createElement(
+	                                    'label',
+	                                    { 'for': 'login-form-password' },
+	                                    'Password:'
+	                                ),
+	                                _react2.default.createElement('input', { type: 'password', id: 'login-form-password', name: 'login-form-password', value: '', 'class': 'required form-control input-block-level' })
+	                            ),
+	                            _react2.default.createElement(
+	                                'div',
+	                                { 'class': 'col_full nobottommargin' },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { 'class': 'button button-3d nomargin', id: 'login-form-submit', name: 'login-form-submit', value: 'login' },
+	                                    'Login'
+	                                ),
+	                                _react2.default.createElement(
+	                                    'a',
+	                                    { href: '#', 'class': 'fright' },
+	                                    'Forgot Password?'
+	                                )
+	                            )
+	                        )
+	                    )
 	                ),
 	                _react2.default.createElement('input', { onChange: this.updateNewCommunity, type: 'text', id: 'name', name: 'name', placeholder: 'Name' }),
 	                _react2.default.createElement('br', null),
@@ -25229,6 +25289,127 @@
 /* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var CommunityPreview = function (_Component) {
+	    _inherits(CommunityPreview, _Component);
+	
+	    function CommunityPreview() {
+	        _classCallCheck(this, CommunityPreview);
+	
+	        return _possibleConstructorReturn(this, (CommunityPreview.__proto__ || Object.getPrototypeOf(CommunityPreview)).apply(this, arguments));
+	    }
+	
+	    _createClass(CommunityPreview, [{
+	        key: "render",
+	        value: function render() {
+	            return _react2.default.createElement(
+	                "div",
+	                { className: "entry clearfix" },
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "entry-image hidden-sm" },
+	                    _react2.default.createElement(
+	                        "a",
+	                        { href: '/community/' + this.props.community.slug },
+	                        _react2.default.createElement("img", { src: "images/events/thumbs/1.jpg", alt: "tenetur" })
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "entry-c" },
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "entry-title" },
+	                        _react2.default.createElement(
+	                            "h2",
+	                            null,
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: '/community/' + this.props.community.slug },
+	                                this.props.community.name
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "ul",
+	                        { className: "entry-meta clearfix" },
+	                        _react2.default.createElement(
+	                            "li",
+	                            null,
+	                            _react2.default.createElement(
+	                                "span",
+	                                { className: "label label-warning" },
+	                                "Private"
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "li",
+	                            null,
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                _react2.default.createElement("i", { className: "icon-time" }),
+	                                " ",
+	                                this.props.community.address,
+	                                " "
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "li",
+	                            null,
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#" },
+	                                _react2.default.createElement("i", { className: "icon-map-marker2" }),
+	                                " ",
+	                                this.props.community.city,
+	                                " "
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement("hr", { style: { borderTop: '1px solid #ddd' } }),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "entry-content" },
+	                        _react2.default.createElement(
+	                            "a",
+	                            { href: '/community/' + this.props.community.slug, className: "btn  btn-danger" },
+	                            "Visit"
+	                        )
+	                    )
+	                )
+	            );
+	        }
+	    }]);
+	
+	    return CommunityPreview;
+	}(_react.Component);
+	
+	exports.default = CommunityPreview;
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
@@ -25373,7 +25554,7 @@
 	exports.default = Register;
 
 /***/ },
-/* 211 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25496,7 +25677,103 @@
 	exports.default = (0, _reactRedux.connect)(stateToProps)(Account);
 
 /***/ },
-/* 212 */
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _api = __webpack_require__(174);
+	
+	var _api2 = _interopRequireDefault(_api);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Community = function (_Component) {
+	  _inherits(Community, _Component);
+	
+	  function Community(props, context) {
+	    _classCallCheck(this, Community);
+	
+	    var _this2 = _possibleConstructorReturn(this, (Community.__proto__ || Object.getPrototypeOf(Community)).call(this, props, context));
+	
+	    _this2.state = {
+	      community: {
+	        name: ''
+	      }
+	    };
+	    return _this2;
+	  }
+	
+	  _createClass(Community, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var _this = this;
+	      var endpoint = '/api/community?slug=' + this.props.slug;
+	      _api2.default.handleGet(endpoint, null, function (err, response) {
+	        if (err) {
+	          alert(err.message);
+	          return;
+	        }
+	        console.log('Community Page: componentDidMount ' + JSON.stringify(response.results));
+	        var results = response.results;
+	        var community = results[0];
+	        _this.setState({
+	          community: community
+	        });
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(
+	          'h2',
+	          null,
+	          this.state.community.name
+	        ),
+	        _react2.default.createElement(
+	          'ol',
+	          null,
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Post'
+	          ),
+	          _react2.default.createElement(
+	            'li',
+	            null,
+	            'Post'
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Community;
+	}(_react.Component);
+	
+	exports.default = Community;
+
+/***/ },
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -25616,223 +25893,6 @@
 	}(_react.Component);
 	
 	exports.default = Nav;
-
-/***/ },
-/* 213 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _api = __webpack_require__(174);
-	
-	var _api2 = _interopRequireDefault(_api);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Community = function (_Component) {
-	  _inherits(Community, _Component);
-	
-	  function Community(props, context) {
-	    _classCallCheck(this, Community);
-	
-	    var _this2 = _possibleConstructorReturn(this, (Community.__proto__ || Object.getPrototypeOf(Community)).call(this, props, context));
-	
-	    _this2.state = {
-	      community: {
-	        name: ''
-	      }
-	    };
-	    return _this2;
-	  }
-	
-	  _createClass(Community, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      var _this = this;
-	      var endpoint = '/api/community?slug=' + this.props.slug;
-	      _api2.default.handleGet(endpoint, null, function (err, response) {
-	        if (err) {
-	          alert(err.message);
-	          return;
-	        }
-	        console.log('Community Page: componentDidMount ' + JSON.stringify(response.results));
-	        var results = response.results;
-	        var community = results[0];
-	        _this.setState({
-	          community: community
-	        });
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(
-	          'h2',
-	          null,
-	          this.state.community.name
-	        ),
-	        _react2.default.createElement(
-	          'ol',
-	          null,
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'Post'
-	          ),
-	          _react2.default.createElement(
-	            'li',
-	            null,
-	            'Post'
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Community;
-	}(_react.Component);
-	
-	exports.default = Community;
-
-/***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var CommunityPreview = function (_Component) {
-	    _inherits(CommunityPreview, _Component);
-	
-	    function CommunityPreview() {
-	        _classCallCheck(this, CommunityPreview);
-	
-	        return _possibleConstructorReturn(this, (CommunityPreview.__proto__ || Object.getPrototypeOf(CommunityPreview)).apply(this, arguments));
-	    }
-	
-	    _createClass(CommunityPreview, [{
-	        key: "render",
-	        value: function render() {
-	            return _react2.default.createElement(
-	                "div",
-	                { className: "entry clearfix" },
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "entry-image hidden-sm" },
-	                    _react2.default.createElement(
-	                        "a",
-	                        { href: '/community/' + this.props.community.slug },
-	                        _react2.default.createElement("img", { src: "images/events/thumbs/1.jpg", alt: "tenetur" })
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    "div",
-	                    { className: "entry-c" },
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "entry-title" },
-	                        _react2.default.createElement(
-	                            "h2",
-	                            null,
-	                            _react2.default.createElement(
-	                                "a",
-	                                { href: '/community/' + this.props.community.slug },
-	                                this.props.community.name
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        "ul",
-	                        { className: "entry-meta clearfix" },
-	                        _react2.default.createElement(
-	                            "li",
-	                            null,
-	                            _react2.default.createElement(
-	                                "span",
-	                                { className: "label label-warning" },
-	                                "Private"
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "li",
-	                            null,
-	                            _react2.default.createElement(
-	                                "a",
-	                                { href: "#" },
-	                                _react2.default.createElement("i", { className: "icon-time" }),
-	                                " ",
-	                                this.props.community.address,
-	                                " "
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            "li",
-	                            null,
-	                            _react2.default.createElement(
-	                                "a",
-	                                { href: "#" },
-	                                _react2.default.createElement("i", { className: "icon-map-marker2" }),
-	                                " ",
-	                                this.props.community.city,
-	                                " "
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement("hr", { style: { borderTop: '1px solid #ddd' } }),
-	                    _react2.default.createElement(
-	                        "div",
-	                        { className: "entry-content" },
-	                        _react2.default.createElement(
-	                            "a",
-	                            { href: '/community/' + this.props.community.slug, className: "btn  btn-danger" },
-	                            "Visit"
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return CommunityPreview;
-	}(_react.Component);
-	
-	exports.default = CommunityPreview;
 
 /***/ },
 /* 215 */

@@ -4,6 +4,7 @@ import store from '../stores/store'
 import actions from '../actions/actions'
 import { connect } from 'react-redux'
 import CommunityPreview from './CommunityPreview'
+import Nav from '../components/Nav'
 
 class Communities extends Component {
 
@@ -18,7 +19,6 @@ class Communities extends Component {
             	city:'',
             	state:''
             }
-
 		}
 	}
 
@@ -66,6 +66,11 @@ class Communities extends Component {
 
     	return(
     		<div className="container clearifx">
+                <Nav />
+
+
+
+
                 <div className="col_three_fifth bothsidebar nobottommargin">
                     <div className="fancy-title title-border">
                         <h3>Communities</h3>
@@ -75,13 +80,42 @@ class Communities extends Component {
                         {communityList}
                     </div>    
                 </div>
-                <h3>Add Community</h3>
+
+                <h3>Sign up</h3>
+
+                    <div className="col_one_third nobottommargin">
+
+                        <div class="well well-lg nobottommargin">
+                            <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+
+                                <h3>Login to your Account</h3>
+
+                                <div class="col_full">
+                                    <label for="login-form-username">Username:</label>
+                                    <input type="text" id="login-form-username" name="login-form-username" value="" class="required form-control input-block-level" />
+                                </div>
+
+                                <div class="col_full">
+                                    <label for="login-form-password">Password:</label>
+                                    <input type="password" id="login-form-password" name="login-form-password" value="" class="required form-control input-block-level" />
+                                </div>
+
+                                <div class="col_full nobottommargin">
+                                    <button class="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+                                    <a href="#" class="fright">Forgot Password?</a>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+
                 <input onChange={this.updateNewCommunity} type="text" id="name" name="name" placeholder="Name" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="address" name="address" placeholder="Address" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="city" name="city" placeholder="City" /><br />
                 <input onChange={this.updateNewCommunity} type="text" id="state" name="state" placeholder="State" /><br />
                 <button onClick={this.addNewCommunity}>Add</button> <br/>
-
+            
 
 
 

@@ -24,6 +24,8 @@ var actions = _interopRequire(require("../actions/actions"));
 var connect = require("react-redux").connect;
 var CommunityPreview = _interopRequire(require("./CommunityPreview"));
 
+var Nav = _interopRequire(require("../components/Nav"));
+
 var Communities = (function (Component) {
     function Communities(context, props) {
         _classCallCheck(this, Communities);
@@ -38,7 +40,6 @@ var Communities = (function (Component) {
                 city: "",
                 state: ""
             }
-
         };
     }
 
@@ -99,6 +100,7 @@ var Communities = (function (Component) {
                 return React.createElement(
                     "div",
                     { className: "container clearifx" },
+                    React.createElement(Nav, null),
                     React.createElement(
                         "div",
                         { className: "col_three_fifth bothsidebar nobottommargin" },
@@ -120,7 +122,58 @@ var Communities = (function (Component) {
                     React.createElement(
                         "h3",
                         null,
-                        "Add Community"
+                        "Sign up"
+                    ),
+                    React.createElement(
+                        "div",
+                        { className: "col_one_third nobottommargin" },
+                        React.createElement(
+                            "div",
+                            { "class": "well well-lg nobottommargin" },
+                            React.createElement(
+                                "form",
+                                { id: "login-form", name: "login-form", "class": "nobottommargin", action: "#", method: "post" },
+                                React.createElement(
+                                    "h3",
+                                    null,
+                                    "Login to your Account"
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { "class": "col_full" },
+                                    React.createElement(
+                                        "label",
+                                        { "for": "login-form-username" },
+                                        "Username:"
+                                    ),
+                                    React.createElement("input", { type: "text", id: "login-form-username", name: "login-form-username", value: "", "class": "required form-control input-block-level" })
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { "class": "col_full" },
+                                    React.createElement(
+                                        "label",
+                                        { "for": "login-form-password" },
+                                        "Password:"
+                                    ),
+                                    React.createElement("input", { type: "password", id: "login-form-password", name: "login-form-password", value: "", "class": "required form-control input-block-level" })
+                                ),
+                                React.createElement(
+                                    "div",
+                                    { "class": "col_full nobottommargin" },
+                                    React.createElement(
+                                        "button",
+                                        { "class": "button button-3d nomargin", id: "login-form-submit", name: "login-form-submit", value: "login" },
+                                        "Login"
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", "class": "fright" },
+                                        "Forgot Password?"
+                                    )
+                                )
+                            )
+                        )
                     ),
                     React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "name", name: "name", placeholder: "Name" }),
                     React.createElement("br", null),
