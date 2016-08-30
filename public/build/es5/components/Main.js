@@ -21,8 +21,7 @@ var Account = _interopRequire(require("../components/layout/Account"));
 
 var Community = _interopRequire(require("./layout/Community"));
 
-var Nav = _interopRequire(require("../components/Nav"));
-
+// import Nav from '../components/Nav'
 var Footer = _interopRequire(require("../components/Footer"));
 
 var Main = (function (Component) {
@@ -57,7 +56,6 @@ var Main = (function (Component) {
 				return React.createElement(
 					"div",
 					null,
-					React.createElement(Nav, null),
 					React.createElement(
 						"section",
 						{ id: "slider", style: { background: "url(\"/images/nyc.jpg\") center", overflow: "visible" }, "data-height-lg": "450", "data-height-md": "450", "data-height-sm": "600", "data-height-xs": "600", "data-height-xxs": "600" },

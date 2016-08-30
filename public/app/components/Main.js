@@ -3,7 +3,7 @@ import Communities from '../components/Communities'
 import Register from '../components/layout/Register'
 import Account from '../components/layout/Account'
 import Community from './layout/Community'
-import Nav from '../components/Nav'
+// import Nav from '../components/Nav'
 import Footer from '../components/Footer'
 
 class Main extends Component {
@@ -29,7 +29,7 @@ class Main extends Component {
 
 		return (
 			<div>
-			    <Nav />
+
 
 		        <section id="slider" style={{background: 'url("/images/nyc.jpg") center', overflow:'visible'}} data-height-lg="450" data-height-md="450" data-height-sm="600" data-height-xs="600" data-height-xxs="600">
 		            <br />

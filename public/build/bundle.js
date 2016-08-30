@@ -21509,10 +21509,6 @@
 	
 	var _Community2 = _interopRequireDefault(_Community);
 	
-	var _Nav = __webpack_require__(214);
-	
-	var _Nav2 = _interopRequireDefault(_Nav);
-	
 	var _Footer = __webpack_require__(215);
 	
 	var _Footer2 = _interopRequireDefault(_Footer);
@@ -21524,6 +21520,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import Nav from '../components/Nav'
+	
 	
 	var Main = function (_Component) {
 		_inherits(Main, _Component);
@@ -21555,7 +21553,6 @@
 				return _react2.default.createElement(
 					'div',
 					null,
-					_react2.default.createElement(_Nav2.default, null),
 					_react2.default.createElement(
 						'section',
 						{ id: 'slider', style: { background: 'url("/images/nyc.jpg") center', overflow: 'visible' }, 'data-height-lg': '450', 'data-height-md': '450', 'data-height-sm': '600', 'data-height-xs': '600', 'data-height-xxs': '600' },
@@ -21717,46 +21714,46 @@
 	                    { className: 'col_one_third nobottommargin' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { 'class': 'well well-lg nobottommargin' },
+	                        { className: 'well well-lg nobottommargin' },
 	                        _react2.default.createElement(
 	                            'form',
-	                            { id: 'login-form', name: 'login-form', 'class': 'nobottommargin', action: '#', method: 'post' },
+	                            { id: 'login-form', name: 'login-form', className: 'nobottommargin', action: '#', method: 'post' },
 	                            _react2.default.createElement(
 	                                'h3',
 	                                null,
-	                                'Login to your Account'
+	                                'Free to Join'
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { 'class': 'col_full' },
+	                                { className: 'col_full' },
 	                                _react2.default.createElement(
 	                                    'label',
 	                                    { 'for': 'login-form-username' },
 	                                    'Username:'
 	                                ),
-	                                _react2.default.createElement('input', { type: 'text', id: 'login-form-username', name: 'login-form-username', value: '', 'class': 'required form-control input-block-level' })
+	                                _react2.default.createElement('input', { type: 'text', id: 'login-form-username', name: 'login-form-username', value: '', className: 'required form-control input-block-level' })
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { 'class': 'col_full' },
+	                                { className: 'col_full' },
 	                                _react2.default.createElement(
 	                                    'label',
 	                                    { 'for': 'login-form-password' },
 	                                    'Password:'
 	                                ),
-	                                _react2.default.createElement('input', { type: 'password', id: 'login-form-password', name: 'login-form-password', value: '', 'class': 'required form-control input-block-level' })
+	                                _react2.default.createElement('input', { type: 'password', id: 'login-form-password', name: 'login-form-password', value: '', className: 'required form-control input-block-level' })
 	                            ),
 	                            _react2.default.createElement(
 	                                'div',
-	                                { 'class': 'col_full nobottommargin' },
+	                                { className: 'col_full nobottommargin' },
 	                                _react2.default.createElement(
 	                                    'button',
-	                                    { 'class': 'button button-3d nomargin', id: 'login-form-submit', name: 'login-form-submit', value: 'login' },
+	                                    { className: 'button button-3d nomargin', id: 'login-form-submit', name: 'login-form-submit', value: 'login' },
 	                                    'Login'
 	                                ),
 	                                _react2.default.createElement(
 	                                    'a',
-	                                    { href: '#', 'class': 'fright' },
+	                                    { href: '#', className: 'fright' },
 	                                    'Forgot Password?'
 	                                )
 	                            )
@@ -25426,6 +25423,10 @@
 	
 	var _api2 = _interopRequireDefault(_api);
 	
+	var _Nav = __webpack_require__(214);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25517,6 +25518,12 @@
 				return _react2.default.createElement(
 					'div',
 					null,
+					_react2.default.createElement(_Nav2.default, null),
+					_react2.default.createElement(
+						'h2',
+						null,
+						'Sign up'
+					),
 					_react2.default.createElement('input', { type: 'text', onChange: this.updateUser, id: 'firstName', placeholder: 'First Name' }),
 					_react2.default.createElement('br', null),
 					_react2.default.createElement('input', { type: 'text', onChange: this.updateUser, id: 'lastName', placeholder: 'Last Name' }),
@@ -25583,6 +25590,10 @@
 	
 	var _reactRedux = __webpack_require__(201);
 	
+	var _Nav = __webpack_require__(214);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25591,7 +25602,6 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	// import accountReducer from '../../reducers/accountReducer'
 	var Account = function (_Component) {
 		_inherits(Account, _Component);
 	
@@ -25647,6 +25657,7 @@
 				return _react2.default.createElement(
 					'div',
 					null,
+					_react2.default.createElement(_Nav2.default, null),
 					'This is the Account Page!',
 					_react2.default.createElement(
 						'h1',
@@ -25696,6 +25707,10 @@
 	
 	var _api2 = _interopRequireDefault(_api);
 	
+	var _Nav = __webpack_require__(214);
+	
+	var _Nav2 = _interopRequireDefault(_Nav);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25744,6 +25759,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
+	        _react2.default.createElement(_Nav2.default, null),
 	        _react2.default.createElement(
 	          'h2',
 	          null,

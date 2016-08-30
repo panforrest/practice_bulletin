@@ -129,46 +129,46 @@ var Communities = (function (Component) {
                         { className: "col_one_third nobottommargin" },
                         React.createElement(
                             "div",
-                            { "class": "well well-lg nobottommargin" },
+                            { className: "well well-lg nobottommargin" },
                             React.createElement(
                                 "form",
-                                { id: "login-form", name: "login-form", "class": "nobottommargin", action: "#", method: "post" },
+                                { id: "login-form", name: "login-form", className: "nobottommargin", action: "#", method: "post" },
                                 React.createElement(
                                     "h3",
                                     null,
-                                    "Login to your Account"
+                                    "Free to Join"
                                 ),
                                 React.createElement(
                                     "div",
-                                    { "class": "col_full" },
+                                    { className: "col_full" },
                                     React.createElement(
                                         "label",
                                         { "for": "login-form-username" },
                                         "Username:"
                                     ),
-                                    React.createElement("input", { type: "text", id: "login-form-username", name: "login-form-username", value: "", "class": "required form-control input-block-level" })
+                                    React.createElement("input", { type: "text", id: "login-form-username", name: "login-form-username", value: "", className: "required form-control input-block-level" })
                                 ),
                                 React.createElement(
                                     "div",
-                                    { "class": "col_full" },
+                                    { className: "col_full" },
                                     React.createElement(
                                         "label",
                                         { "for": "login-form-password" },
                                         "Password:"
                                     ),
-                                    React.createElement("input", { type: "password", id: "login-form-password", name: "login-form-password", value: "", "class": "required form-control input-block-level" })
+                                    React.createElement("input", { type: "password", id: "login-form-password", name: "login-form-password", value: "", className: "required form-control input-block-level" })
                                 ),
                                 React.createElement(
                                     "div",
-                                    { "class": "col_full nobottommargin" },
+                                    { className: "col_full nobottommargin" },
                                     React.createElement(
                                         "button",
-                                        { "class": "button button-3d nomargin", id: "login-form-submit", name: "login-form-submit", value: "login" },
+                                        { className: "button button-3d nomargin", id: "login-form-submit", name: "login-form-submit", value: "login" },
                                         "Login"
                                     ),
                                     React.createElement(
                                         "a",
-                                        { href: "#", "class": "fright" },
+                                        { href: "#", className: "fright" },
                                         "Forgot Password?"
                                     )
                                 )

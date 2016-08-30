@@ -85,24 +85,24 @@ class Communities extends Component {
 
                     <div className="col_one_third nobottommargin">
 
-                        <div class="well well-lg nobottommargin">
-                            <form id="login-form" name="login-form" class="nobottommargin" action="#" method="post">
+                        <div className="well well-lg nobottommargin">
+                            <form id="login-form" name="login-form" className="nobottommargin" action="#" method="post">
 
-                                <h3>Login to your Account</h3>
+                                <h3>Free to Join</h3>
 
-                                <div class="col_full">
+                                <div className="col_full">
                                     <label for="login-form-username">Username:</label>
-                                    <input type="text" id="login-form-username" name="login-form-username" value="" class="required form-control input-block-level" />
+                                    <input type="text" id="login-form-username" name="login-form-username" value="" className="required form-control input-block-level" />
                                 </div>
 
-                                <div class="col_full">
+                                <div className="col_full">
                                     <label for="login-form-password">Password:</label>
-                                    <input type="password" id="login-form-password" name="login-form-password" value="" class="required form-control input-block-level" />
+                                    <input type="password" id="login-form-password" name="login-form-password" value="" className="required form-control input-block-level" />
                                 </div>
 
-                                <div class="col_full nobottommargin">
-                                    <button class="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
-                                    <a href="#" class="fright">Forgot Password?</a>
+                                <div className="col_full nobottommargin">
+                                    <button className="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
+                                    <a href="#" className="fright">Forgot Password?</a>
                                 </div>
 
                             </form>
