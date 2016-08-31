@@ -19,6 +19,11 @@ var api = _interopRequire(require("../../utils/api"));
 
 var Nav = _interopRequire(require("../../components/Nav"));
 
+var actions = _interopRequire(require("../../actions/actions"));
+
+var store = _interopRequire(require("../../stores/store"));
+
+var connect = require("react-redux").connect;
 var Community = (function (Component) {
     function Community(props, context) {
         _classCallCheck(this, Community);
@@ -46,12 +51,13 @@ var Community = (function (Component) {
                         alert(err.message);
                         return;
                     }
-                    console.log("Community Page: componentDidMount " + JSON.stringify(response.results));
+                    // console.log('Community Page: componentDidMount '+JSON.stringify(response.results))
                     var results = response.results;
-                    var community = results[0];
-                    _this.setState({
-                        community: community
-                    });
+                    // var community = results[0]
+                    // _this.setState({
+                    // 	community: community
+                    // })
+                    store.dispatch(actions.communitiesReceived(results));
                 });
             },
             writable: true,
@@ -62,21 +68,7 @@ var Community = (function (Component) {
                 return React.createElement(
                     "div",
                     null,
-                    React.createElement(Nav, null),
-                    React.createElement(
-                        "section",
-                        { id: "page-title" },
-                        React.createElement(
-                            "div",
-                            { className: "container clearfix" },
-                            React.createElement(
-                                "h1",
-                                null,
-                                "Welcome to Community ",
-                                this.state.community.name
-                            )
-                        )
-                    ),
+                    React.createElement(Nav, { transparent: "no" }),
                     React.createElement(
                         "section",
                         { id: "content" },
@@ -87,32 +79,69 @@ var Community = (function (Component) {
                                 "div",
                                 { className: "container clearfix" },
                                 React.createElement(
-                                    "h2",
-                                    null,
-                                    this.state.community.name
-                                ),
-                                React.createElement(
-                                    "ol",
-                                    null,
+                                    "div",
+                                    { className: "postcontent nobottommargin clearfix" },
                                     React.createElement(
-                                        "li",
+                                        "h4",
                                         null,
-                                        "Post"
+                                        this.props.community.name
                                     ),
+                                    React.createElement("input", { placeholder: "Post Title", className: "form-control", type: "text" }),
+                                    React.createElement("br", null),
+                                    React.createElement("textarea", { placeholder: "Post Text", className: "form-control" }),
+                                    React.createElement("br", null),
                                     React.createElement(
-                                        "li",
-                                        null,
-                                        "Post"
+                                        "button",
+                                        { className: "btn btn-success" },
+                                        "Add Post"
                                     ),
+                                    React.createElement("br", null),
+                                    React.createElement("hr", { style: { borderTop: "1px solid red #444" } }),
                                     React.createElement(
-                                        "li",
-                                        null,
-                                        "Post"
-                                    ),
-                                    React.createElement(
-                                        "li",
-                                        null,
-                                        "Post"
+                                        "div",
+                                        { className: "list-group" },
+                                        React.createElement(
+                                            "a",
+                                            { href: "#", className: "list-group-item" },
+                                            React.createElement(
+                                                "h4",
+                                                { className: "list-group-item-heading" },
+                                                "List group item heading"
+                                            ),
+                                            React.createElement(
+                                                "p",
+                                                { className: "list-group-item-text" },
+                                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio."
+                                            )
+                                        ),
+                                        React.createElement(
+                                            "a",
+                                            { href: "#", className: "list-group-item" },
+                                            React.createElement(
+                                                "h4",
+                                                { className: "list-group-item-heading" },
+                                                "List group item heading"
+                                            ),
+                                            React.createElement(
+                                                "p",
+                                                { className: "list-group-item-text" },
+                                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio."
+                                            )
+                                        ),
+                                        React.createElement(
+                                            "a",
+                                            { href: "#", className: "list-group-item" },
+                                            React.createElement(
+                                                "h4",
+                                                { className: "list-group-item-heading" },
+                                                "List group item heading"
+                                            ),
+                                            React.createElement(
+                                                "p",
+                                                { className: "list-group-item-text" },
+                                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio."
+                                            )
+                                        )
                                     )
                                 )
                             )
@@ -128,4 +157,13 @@ var Community = (function (Component) {
     return Community;
 })(Component);
 
-module.exports = Community;
+var stateToProps = function (state) {
+    var communitiesArray = state.communityReducer.communitiesArray;
+
+    return {
+        community: communitiesArray.length == 0 ? { name: "" } : communitiesArray[0]
+    };
+};
+
+module.exports = connect(stateToProps)(Community);
+//THIS LINE OF CODE DON'T UNDERSTAND

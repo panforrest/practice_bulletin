@@ -66,10 +66,10 @@ class Communities extends Component {
 
     	return(
     		<div className="container clearifx">
-                <Nav />
+                <Nav transparent="yes" />
 
-
-
+                <section id="slider" style={{background: 'url("/images/nyc.jpg") center', overflow:'visible'}} data-height-lg="450" data-height-md="450" data-height-sm="600" data-height-xs="600" data-height-xxs="600" >
+                </section>
 
                 <div className="col_three_fifth bothsidebar nobottommargin">
                     <div className="fancy-title title-border">

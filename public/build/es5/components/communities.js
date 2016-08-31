@@ -100,7 +100,8 @@ var Communities = (function (Component) {
                 return React.createElement(
                     "div",
                     { className: "container clearifx" },
-                    React.createElement(Nav, null),
+                    React.createElement(Nav, { transparent: "yes" }),
+                    React.createElement("section", { id: "slider", style: { background: "url(\"/images/nyc.jpg\") center", overflow: "visible" }, "data-height-lg": "450", "data-height-md": "450", "data-height-sm": "600", "data-height-xs": "600", "data-height-xxs": "600" }),
                     React.createElement(
                         "div",
                         { className: "col_three_fifth bothsidebar nobottommargin" },

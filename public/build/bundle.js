@@ -21680,7 +21680,8 @@
 	            return _react2.default.createElement(
 	                'div',
 	                { className: 'container clearifx' },
-	                _react2.default.createElement(_Nav2.default, null),
+	                _react2.default.createElement(_Nav2.default, { transparent: 'yes' }),
+	                _react2.default.createElement('section', { id: 'slider', style: { background: 'url("/images/nyc.jpg") center', overflow: 'visible' }, 'data-height-lg': '450', 'data-height-md': '450', 'data-height-sm': '600', 'data-height-xs': '600', 'data-height-xxs': '600' }),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col_three_fifth bothsidebar nobottommargin' },
@@ -25813,6 +25814,16 @@
 	
 	var _Nav2 = _interopRequireDefault(_Nav);
 	
+	var _actions = __webpack_require__(200);
+	
+	var _actions2 = _interopRequireDefault(_actions);
+	
+	var _store = __webpack_require__(180);
+	
+	var _store2 = _interopRequireDefault(_store);
+	
+	var _reactRedux = __webpack_require__(201);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25849,12 +25860,13 @@
 	                    alert(err.message);
 	                    return;
 	                }
-	                console.log('Community Page: componentDidMount ' + JSON.stringify(response.results));
+	                // console.log('Community Page: componentDidMount '+JSON.stringify(response.results))
 	                var results = response.results;
-	                var community = results[0];
-	                _this.setState({
-	                    community: community
-	                });
+	                // var community = results[0]
+	                // _this.setState({
+	                // 	community: community
+	                // })
+	                _store2.default.dispatch(_actions2.default.communitiesReceived(results)); //THIS LINE OF CODE DON'T UNDERSTAND
 	            });
 	        }
 	    }, {
@@ -25863,21 +25875,7 @@
 	            return _react2.default.createElement(
 	                'div',
 	                null,
-	                _react2.default.createElement(_Nav2.default, null),
-	                _react2.default.createElement(
-	                    'section',
-	                    { id: 'page-title' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'container clearfix' },
-	                        _react2.default.createElement(
-	                            'h1',
-	                            null,
-	                            'Welcome to Community ',
-	                            this.state.community.name
-	                        )
-	                    )
-	                ),
+	                _react2.default.createElement(_Nav2.default, { transparent: 'no' }),
 	                _react2.default.createElement(
 	                    'section',
 	                    { id: 'content' },
@@ -25888,32 +25886,69 @@
 	                            'div',
 	                            { className: 'container clearfix' },
 	                            _react2.default.createElement(
-	                                'h2',
-	                                null,
-	                                this.state.community.name
-	                            ),
-	                            _react2.default.createElement(
-	                                'ol',
-	                                null,
+	                                'div',
+	                                { className: 'postcontent nobottommargin clearfix' },
 	                                _react2.default.createElement(
-	                                    'li',
+	                                    'h4',
 	                                    null,
-	                                    'Post'
+	                                    this.props.community.name
 	                                ),
+	                                _react2.default.createElement('input', { placeholder: 'Post Title', className: 'form-control', type: 'text' }),
+	                                _react2.default.createElement('br', null),
+	                                _react2.default.createElement('textarea', { placeholder: 'Post Text', className: 'form-control' }),
+	                                _react2.default.createElement('br', null),
 	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    'Post'
+	                                    'button',
+	                                    { className: 'btn btn-success' },
+	                                    'Add Post'
 	                                ),
+	                                _react2.default.createElement('br', null),
+	                                _react2.default.createElement('hr', { style: { borderTop: '1px solid red #444' } }),
 	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    'Post'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'li',
-	                                    null,
-	                                    'Post'
+	                                    'div',
+	                                    { className: 'list-group' },
+	                                    _react2.default.createElement(
+	                                        'a',
+	                                        { href: '#', className: 'list-group-item' },
+	                                        _react2.default.createElement(
+	                                            'h4',
+	                                            { className: 'list-group-item-heading' },
+	                                            'List group item heading'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'p',
+	                                            { className: 'list-group-item-text' },
+	                                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'a',
+	                                        { href: '#', className: 'list-group-item' },
+	                                        _react2.default.createElement(
+	                                            'h4',
+	                                            { className: 'list-group-item-heading' },
+	                                            'List group item heading'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'p',
+	                                            { className: 'list-group-item-text' },
+	                                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
+	                                        )
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'a',
+	                                        { href: '#', className: 'list-group-item' },
+	                                        _react2.default.createElement(
+	                                            'h4',
+	                                            { className: 'list-group-item-heading' },
+	                                            'List group item heading'
+	                                        ),
+	                                        _react2.default.createElement(
+	                                            'p',
+	                                            { className: 'list-group-item-text' },
+	                                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
+	                                        )
+	                                    )
 	                                )
 	                            )
 	                        )
@@ -25926,7 +25961,15 @@
 	    return Community;
 	}(_react.Component);
 	
-	exports.default = Community;
+	var stateToProps = function stateToProps(state) {
+	    var communitiesArray = state.communityReducer.communitiesArray;
+	
+	    return {
+	        community: communitiesArray.length == 0 ? { name: '' } : communitiesArray[0]
+	    };
+	};
+	
+	exports.default = (0, _reactRedux.connect)(stateToProps)(Community);
 
 /***/ },
 /* 215 */
