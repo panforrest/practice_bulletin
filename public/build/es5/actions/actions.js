@@ -49,5 +49,12 @@ module.exports = {
 			type: constants.POSTS_RECEIVED,
 			posts: posts
 		};
+	},
+
+	postCreated: function (post) {
+		return {
+			type: constants.POST_CREATED,
+			post: post
+		};
 	}
 };

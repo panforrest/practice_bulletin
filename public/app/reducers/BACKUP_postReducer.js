@@ -20,15 +20,6 @@ export default function(state = initialState, action){
             newState['postsArray'] = result
             return newState
 
-        case constants.POST_CREATED:
-            var posts = action.posts
-            var newState = Object.assign({}, state)  
-            var array = Object.assign([], newState.postsArray)
-            array.unshift(action.post)
-            newState['postsArray'] = array
-
-            return newState
-
 		default:
 		    return state    
 	}

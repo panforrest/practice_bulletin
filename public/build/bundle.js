@@ -24405,7 +24405,8 @@
 		PROFILE_CREATED: 'PROFILE_CREATED',
 	
 		CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED',
-		POSTS_RECEIVED: 'POSTS_RECEIVED'
+		POSTS_RECEIVED: 'POSTS_RECEIVED',
+		POST_CREATED: 'POST_CREATED'
 	};
 
 /***/ },
@@ -24565,6 +24566,13 @@
 			return {
 				type: _constants2.default.POSTS_RECEIVED,
 				posts: posts
+			};
+		},
+	
+		postCreated: function postCreated(post) {
+			return {
+				type: _constants2.default.POST_CREATED,
+				post: post
 			};
 		}
 	};
@@ -26190,30 +26198,39 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	
 	exports.default = function () {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
-		var action = arguments[1];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
 	
 	
-		switch (action.type) {
-			case _constants2.default.POSTS_RECEIVED:
-				var posts = action.posts;
-				console.log('POSTS RECEIVED: ' + JSON.stringify(posts));
-				var newState = Object.assign({}, state);
-				var result = [];
-				for (var i = 0; i < posts.length; i++) {
-					var post = posts[i];
-					result.push(post);
-				}
-				newState['postsArray'] = result;
-				return newState;
+	  switch (action.type) {
+	    case _constants2.default.POSTS_RECEIVED:
+	      var posts = action.posts;
+	      console.log('POSTS RECEIVED: ' + JSON.stringify(posts));
+	      var newState = Object.assign({}, state);
+	      var result = [];
+	      for (var i = 0; i < posts.length; i++) {
+	        var post = posts[i];
+	        result.push(post);
+	      }
+	      newState['postsArray'] = result;
+	      return newState;
 	
-			default:
-				return state;
-		}
+	    case _constants2.default.POST_CREATED:
+	      var posts = action.posts;
+	      var newState = Object.assign({}, state);
+	      var array = Object.assign([], newState.postsArray);
+	      array.unshift(action.post);
+	      newState['postsArray'] = array;
+	
+	      return newState;
+	
+	    default:
+	      return state;
+	  }
 	};
 	
 	var _constants = __webpack_require__(197);
@@ -26223,8 +26240,8 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var initialState = {
-		posts: {},
-		postsArray: []
+	  posts: {},
+	  postsArray: []
 	};
 
 /***/ }

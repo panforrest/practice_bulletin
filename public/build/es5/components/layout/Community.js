@@ -120,9 +120,18 @@ var Community = (function (Component) {
             value: function render() {
                 var postList = this.props.posts.map(function (post, i) {
                     return React.createElement(
-                        "div",
-                        null,
-                        post.title
+                        "a",
+                        { key: post.id, her: "#", className: "list-group-item" },
+                        React.createElement(
+                            "h4",
+                            { className: "list-group-item-heading" },
+                            post.title
+                        ),
+                        React.createElement(
+                            "p",
+                            { className: "list-group-item-text" },
+                            post.text
+                        )
                     );
                 });
 
@@ -158,53 +167,7 @@ var Community = (function (Component) {
                                     ),
                                     React.createElement("br", null),
                                     React.createElement("hr", { style: { borderTop: "1px solid red #444" } }),
-                                    postList,
-                                    React.createElement(
-                                        "div",
-                                        { className: "list-group" },
-                                        React.createElement(
-                                            "a",
-                                            { href: "#", className: "list-group-item" },
-                                            React.createElement(
-                                                "h4",
-                                                { className: "list-group-item-heading" },
-                                                "List group item heading"
-                                            ),
-                                            React.createElement(
-                                                "p",
-                                                { className: "list-group-item-text" },
-                                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio."
-                                            )
-                                        ),
-                                        React.createElement(
-                                            "a",
-                                            { href: "#", className: "list-group-item" },
-                                            React.createElement(
-                                                "h4",
-                                                { className: "list-group-item-heading" },
-                                                "List group item heading"
-                                            ),
-                                            React.createElement(
-                                                "p",
-                                                { className: "list-group-item-text" },
-                                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio."
-                                            )
-                                        ),
-                                        React.createElement(
-                                            "a",
-                                            { href: "#", className: "list-group-item" },
-                                            React.createElement(
-                                                "h4",
-                                                { className: "list-group-item-heading" },
-                                                "List group item heading"
-                                            ),
-                                            React.createElement(
-                                                "p",
-                                                { className: "list-group-item-text" },
-                                                "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio."
-                                            )
-                                        )
-                                    )
+                                    postList
                                 )
                             )
                         )
