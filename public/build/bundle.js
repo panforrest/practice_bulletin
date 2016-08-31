@@ -25848,11 +25848,18 @@
 	        var _this2 = _possibleConstructorReturn(this, (Community.__proto__ || Object.getPrototypeOf(Community)).call(this, props, context));
 	
 	        _this2.updatePost = _this2.updatePost.bind(_this2);
+	        _this2.addPost = _this2.addPost.bind(_this2);
 	        _this2.state = {
 	            community: {
 	                name: ''
 	            },
-	            post: {}
+	            post: {
+	                title: '',
+	                text: '',
+	                community: '',
+	                profile: '',
+	                timestamp: ''
+	            }
 	
 	        };
 	        return _this2;
@@ -25882,11 +25889,16 @@
 	        key: 'updatePost',
 	        value: function updatePost(event) {
 	            console.log('updatePost: ' + event.target.id + ' - ' + event.target.value);
-	            // var updatedPost = Object.assign({}, )
-	            // updatedPost[event.target.id] = event.target.value
-	            // this.setState({
-	            //     post: updatedPost
-	            // })
+	            var updatedPost = Object.assign({}, this.state.post);
+	            updatedPost[event.target.id] = event.target.value;
+	            this.setState({
+	                post: updatedPost
+	            });
+	        }
+	    }, {
+	        key: 'addPost',
+	        value: function addPost(event) {
+	            console.log('addPost: ' + JSON.stringify(this.state.post));
 	        }
 	    }, {
 	        key: 'render',
@@ -25918,7 +25930,7 @@
 	                                _react2.default.createElement('br', null),
 	                                _react2.default.createElement(
 	                                    'button',
-	                                    { className: 'btn btn-success' },
+	                                    { onClick: this.addPost, className: 'btn btn-success' },
 	                                    'Add Post'
 	                                ),
 	                                _react2.default.createElement('br', null),

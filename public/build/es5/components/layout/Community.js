@@ -30,11 +30,18 @@ var Community = (function (Component) {
 
         _get(Object.getPrototypeOf(Community.prototype), "constructor", this).call(this, props, context);
         this.updatePost = this.updatePost.bind(this);
+        this.addPost = this.addPost.bind(this);
         this.state = {
             community: {
                 name: ""
             },
-            post: {}
+            post: {
+                title: "",
+                text: "",
+                community: "",
+                profile: "",
+                timestamp: ""
+            }
 
         };
     }
@@ -68,6 +75,18 @@ var Community = (function (Component) {
         updatePost: {
             value: function updatePost(event) {
                 console.log("updatePost: " + event.target.id + " - " + event.target.value);
+                var updatedPost = Object.assign({}, this.state.post);
+                updatedPost[event.target.id] = event.target.value;
+                this.setState({
+                    post: updatedPost
+                });
+            },
+            writable: true,
+            configurable: true
+        },
+        addPost: {
+            value: function addPost(event) {
+                console.log("addPost: " + JSON.stringify(this.state.post));
             },
             writable: true,
             configurable: true
@@ -101,7 +120,7 @@ var Community = (function (Component) {
                                     React.createElement("br", null),
                                     React.createElement(
                                         "button",
-                                        { className: "btn btn-success" },
+                                        { onClick: this.addPost, className: "btn btn-success" },
                                         "Add Post"
                                     ),
                                     React.createElement("br", null),
@@ -176,8 +195,3 @@ var stateToProps = function (state) {
 
 module.exports = connect(stateToProps)(Community);
 //THIS LINE OF CODE DON'T UNDERSTAND
-// var updatedPost = Object.assign({}, )
-// updatedPost[event.target.id] = event.target.value
-// this.setState({
-//     post: updatedPost
-// })

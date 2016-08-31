@@ -10,12 +10,17 @@ class Community extends Component {
     constructor(props, context){
     	super(props, context)
         this.updatePost = this.updatePost.bind(this)
+        this.addPost = this.addPost.bind(this)
     	this.state = {
     		community: {
     			name: ''
     		},
             post: {
-
+                title:'',
+                text:'',
+                community:'',
+                profile:'',
+                timestamp:''
             }
 
     	}
@@ -43,11 +48,16 @@ class Community extends Component {
 
     updatePost(event){
         console.log('updatePost: '+event.target.id+' - '+event.target.value)
-        // var updatedPost = Object.assign({}, )
-        // updatedPost[event.target.id] = event.target.value
-        // this.setState({
-        //     post: updatedPost
-        // })
+        var updatedPost = Object.assign({}, this.state.post)
+        updatedPost[event.target.id] = event.target.value
+        this.setState({
+             post: updatedPost
+        })
+    }
+
+    addPost(event){
+        console.log('addPost: '+JSON.stringify(this.state.post))
+
     }
 
     render(){
@@ -63,7 +73,7 @@ class Community extends Component {
                                 <h4>{this.props.community.name}</h4>
                                 <input onChange={this.updatePost} id="title" placeholder="Post Title" className="form-control" type="text" /><br />
                                 <textarea onChange={this.updatePost} id="text" placeholder="Post Text" className="form-control"></textarea><br /> 
-                                <button className="btn btn-success">Add Post</button><br />
+                                <button onClick={this.addPost} className="btn btn-success">Add Post</button><br />
                                 <hr style={{borderTop: '1px solid red #444'}} />
 
                                 <div className="list-group">
