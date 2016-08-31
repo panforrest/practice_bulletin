@@ -65,16 +65,22 @@ export default {
 		.end(function(err, res){
 			if (err) {
 				if (completion != null)
-					completion(err, null)			
+					completion(err, null)
+				return			
 			}
-			else {
-				if (completion != null)
-					completion(null, res.body)					
-				
-			} 
+
+			if (completion != null) {
+				if (res.boduy.confirmation == 'success'){
+					completion(null, res.body)
+				}
+				else {
+					completion({message: res.body.message}, null)	
+				}
+			}
 		})
 	}
 
+	
 }
 
 

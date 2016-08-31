@@ -2,9 +2,11 @@ var express = require('express');
 var router = express.Router();
 var communityController = require('../controllers/CommunityController')
 var profileController = require('../controllers/ProfileController')
+var postController = require('../controllers/PostController')
 var controllers = {
 	community: communityController,
-	profile: profileController
+	profile: profileController,
+	post: postController
 }
 
 

@@ -21836,8 +21836,15 @@
 			_superagent2.default.put(endpoint).send(body).set('Accept', 'application/json').end(function (err, res) {
 				if (err) {
 					if (completion != null) completion(err, null);
-				} else {
-					if (completion != null) completion(null, res.body);
+					return;
+				}
+	
+				if (completion != null) {
+					if (res.boduy.confirmation == 'success') {
+						completion(null, res.body);
+					} else {
+						completion({ message: res.body.message }, null);
+					}
 				}
 			});
 		}
