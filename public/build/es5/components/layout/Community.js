@@ -86,7 +86,17 @@ var Community = (function (Component) {
         },
         addPost: {
             value: function addPost(event) {
-                console.log("addPost: " + JSON.stringify(this.state.post));
+                //console.log('addPost: '+JSON.stringify(this.state.post))
+                var newPost = Object.assign({}, this.state.post);
+                newPost.community = this.props.community.id;
+                api.handlePost("/api/post", newPost, function (err, response) {
+                    if (err) {
+                        alert("ERROR - " + err.message);
+                        return;
+                    }
+                    var result = response.result;
+                    console.log("POST CREATED: " + JSON.stringify(response));
+                });
             },
             writable: true,
             configurable: true
@@ -195,3 +205,4 @@ var stateToProps = function (state) {
 
 module.exports = connect(stateToProps)(Community);
 //THIS LINE OF CODE DON'T UNDERSTAND
+//console.log('addPost: '+JSON.stringify(response.result))

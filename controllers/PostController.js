@@ -59,18 +59,18 @@ module.exports = {
     },
 
     post: function(postinfo, completion){
-    	var parts = postinfo.name.split(' ')
+    	// var parts = postinfo.name.split(' ')
 
-    	var slug = ''
-    	for (var i=0; i<parts.length; i++){
-            var word = parts[i]
-            slug += word
-            if (i != part.length -1)
-            	slug += '-'
-    	}
+    	// var slug = ''
+    	// for (var i=0; i<parts.length; i++){
+     //        var word = parts[i]
+     //        slug += word
+     //        if (i != part.length -1)
+     //        	slug += '-'
+    	// }
 
-    	slug = slug.replace('?', '')
-    	postinfo['slug'] = slug
+    	// slug = slug.replace('?', '')
+    	// postinfo['slug'] = slug
 
     	Post.create(postinfo, function(err, post){
             if (err) {
