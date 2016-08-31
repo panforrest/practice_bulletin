@@ -90,9 +90,10 @@ class Community extends Component {
     render(){
         var postList = this.props.posts.map(function(post, i){
             return (
-                <div>
-                    {post.title}
-                </div>
+                <a key={post.id} her="#" className="list-group-item">
+                        <h4 className="list-group-item-heading">{post.title}</h4>
+                        <p className="list-group-item-text">{post.text}</p>
+                </a> 
             )
         })
 
@@ -113,20 +114,7 @@ class Community extends Component {
 
                                 {postList}
 
-                                <div className="list-group">
-                                    <a href="#" className="list-group-item">
-                                        <h4 className="list-group-item-heading">List group item heading</h4>
-                                        <p className="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.</p>
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <h4 className="list-group-item-heading">List group item heading</h4>
-                                        <p className="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.</p>
-                                    </a>
-                                    <a href="#" className="list-group-item">
-                                        <h4 className="list-group-item-heading">List group item heading</h4>
-                                        <p className="list-group-item-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.</p>
-                                    </a>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>

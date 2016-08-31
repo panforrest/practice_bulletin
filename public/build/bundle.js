@@ -25941,9 +25941,18 @@
 	        value: function render() {
 	            var postList = this.props.posts.map(function (post, i) {
 	                return _react2.default.createElement(
-	                    'div',
-	                    null,
-	                    post.title
+	                    'a',
+	                    { key: post.id, her: '#', className: 'list-group-item' },
+	                    _react2.default.createElement(
+	                        'h4',
+	                        { className: 'list-group-item-heading' },
+	                        post.title
+	                    ),
+	                    _react2.default.createElement(
+	                        'p',
+	                        { className: 'list-group-item-text' },
+	                        post.text
+	                    )
 	                );
 	            });
 	
@@ -25979,53 +25988,7 @@
 	                                ),
 	                                _react2.default.createElement('br', null),
 	                                _react2.default.createElement('hr', { style: { borderTop: '1px solid red #444' } }),
-	                                postList,
-	                                _react2.default.createElement(
-	                                    'div',
-	                                    { className: 'list-group' },
-	                                    _react2.default.createElement(
-	                                        'a',
-	                                        { href: '#', className: 'list-group-item' },
-	                                        _react2.default.createElement(
-	                                            'h4',
-	                                            { className: 'list-group-item-heading' },
-	                                            'List group item heading'
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'p',
-	                                            { className: 'list-group-item-text' },
-	                                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
-	                                        )
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'a',
-	                                        { href: '#', className: 'list-group-item' },
-	                                        _react2.default.createElement(
-	                                            'h4',
-	                                            { className: 'list-group-item-heading' },
-	                                            'List group item heading'
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'p',
-	                                            { className: 'list-group-item-text' },
-	                                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
-	                                        )
-	                                    ),
-	                                    _react2.default.createElement(
-	                                        'a',
-	                                        { href: '#', className: 'list-group-item' },
-	                                        _react2.default.createElement(
-	                                            'h4',
-	                                            { className: 'list-group-item-heading' },
-	                                            'List group item heading'
-	                                        ),
-	                                        _react2.default.createElement(
-	                                            'p',
-	                                            { className: 'list-group-item-text' },
-	                                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem, sit, reiciendis expedita voluptate fuga perferendis soluta doloribus quasi quia odio.'
-	                                        )
-	                                    )
-	                                )
+	                                postList
 	                            )
 	                        )
 	                    )
