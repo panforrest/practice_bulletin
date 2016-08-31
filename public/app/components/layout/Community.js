@@ -3,16 +3,20 @@ import api from '../../utils/api'
 import Nav from '../../components/Nav'
 
 class Community extends Component {
+
     constructor(props, context){
     	super(props, context)
     	this.state = {
     		community: {
     			name: ''
     		}
+
     	}
     }
 
     componentDidMount(){
+
+
     	var _this = this
     	var endpoint = '/api/community?slug='+this.props.slug
     	api.handleGet(endpoint, null, function(err, response){
@@ -29,19 +33,40 @@ class Community extends Component {
     	})
     }
 
+
 	render(){
 		return(
 			<div>
                 <Nav />
-			    <h2>{this.state.community.name}</h2>
-			    <ol>
-			        <li>Post</li>
-			        <li>Post</li>
+
+                <section id="page-title">
+
+                    <div className="container clearfix">
+                        <h1>Welcome to Community {this.state.community.name}</h1>
+
+                    </div>
+
+                </section>
 
 
-                </ol>
+                <section id="content">
+
+                    <div className="content-wrap">
+
+                        <div className="container clearfix">
+
+
+                            <h2>{this.state.community.name}</h2>
+                                <ol>
+                                    <li>Post</li>
+                                    <li>Post</li>
+                                    <li>Post</li>
+                                    <li>Post</li>
+                                </ol>
+                        </div>
+                    </div>
+                </section>
 			</div>
-
 		)
 	}
 }

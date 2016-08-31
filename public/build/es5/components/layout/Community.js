@@ -20,73 +20,112 @@ var api = _interopRequire(require("../../utils/api"));
 var Nav = _interopRequire(require("../../components/Nav"));
 
 var Community = (function (Component) {
-  function Community(props, context) {
-    _classCallCheck(this, Community);
+    function Community(props, context) {
+        _classCallCheck(this, Community);
 
-    _get(Object.getPrototypeOf(Community.prototype), "constructor", this).call(this, props, context);
-    this.state = {
-      community: {
-        name: ""
-      }
-    };
-  }
+        _get(Object.getPrototypeOf(Community.prototype), "constructor", this).call(this, props, context);
+        this.state = {
+            community: {
+                name: ""
+            }
 
-  _inherits(Community, Component);
-
-  _prototypeProperties(Community, null, {
-    componentDidMount: {
-      value: function componentDidMount() {
-        var _this = this;
-        var endpoint = "/api/community?slug=" + this.props.slug;
-        api.handleGet(endpoint, null, function (err, response) {
-          if (err) {
-            alert(err.message);
-            return;
-          }
-          console.log("Community Page: componentDidMount " + JSON.stringify(response.results));
-          var results = response.results;
-          var community = results[0];
-          _this.setState({
-            community: community
-          });
-        });
-      },
-      writable: true,
-      configurable: true
-    },
-    render: {
-      value: function render() {
-        return React.createElement(
-          "div",
-          null,
-          React.createElement(Nav, null),
-          React.createElement(
-            "h2",
-            null,
-            this.state.community.name
-          ),
-          React.createElement(
-            "ol",
-            null,
-            React.createElement(
-              "li",
-              null,
-              "Post"
-            ),
-            React.createElement(
-              "li",
-              null,
-              "Post"
-            )
-          )
-        );
-      },
-      writable: true,
-      configurable: true
+        };
     }
-  });
 
-  return Community;
+    _inherits(Community, Component);
+
+    _prototypeProperties(Community, null, {
+        componentDidMount: {
+            value: function componentDidMount() {
+
+
+                var _this = this;
+                var endpoint = "/api/community?slug=" + this.props.slug;
+                api.handleGet(endpoint, null, function (err, response) {
+                    if (err) {
+                        alert(err.message);
+                        return;
+                    }
+                    console.log("Community Page: componentDidMount " + JSON.stringify(response.results));
+                    var results = response.results;
+                    var community = results[0];
+                    _this.setState({
+                        community: community
+                    });
+                });
+            },
+            writable: true,
+            configurable: true
+        },
+        render: {
+            value: function render() {
+                return React.createElement(
+                    "div",
+                    null,
+                    React.createElement(Nav, null),
+                    React.createElement(
+                        "section",
+                        { id: "page-title" },
+                        React.createElement(
+                            "div",
+                            { className: "container clearfix" },
+                            React.createElement(
+                                "h1",
+                                null,
+                                "Welcome to Community ",
+                                this.state.community.name
+                            )
+                        )
+                    ),
+                    React.createElement(
+                        "section",
+                        { id: "content" },
+                        React.createElement(
+                            "div",
+                            { className: "content-wrap" },
+                            React.createElement(
+                                "div",
+                                { className: "container clearfix" },
+                                React.createElement(
+                                    "h2",
+                                    null,
+                                    this.state.community.name
+                                ),
+                                React.createElement(
+                                    "ol",
+                                    null,
+                                    React.createElement(
+                                        "li",
+                                        null,
+                                        "Post"
+                                    ),
+                                    React.createElement(
+                                        "li",
+                                        null,
+                                        "Post"
+                                    ),
+                                    React.createElement(
+                                        "li",
+                                        null,
+                                        "Post"
+                                    ),
+                                    React.createElement(
+                                        "li",
+                                        null,
+                                        "Post"
+                                    )
+                                )
+                            )
+                        )
+                    )
+                );
+            },
+            writable: true,
+            configurable: true
+        }
+    });
+
+    return Community;
 })(Component);
 
 module.exports = Community;

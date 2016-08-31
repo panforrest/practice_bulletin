@@ -28,109 +28,128 @@ var Footer = (function (Component) {
         render: {
             value: function render() {
                 return React.createElement(
-                    "div",
-                    { id: "copyrights" },
+                    "footer",
+                    null,
                     React.createElement(
                         "div",
-                        { className: "container clearfix" },
+                        { id: "copyrights" },
                         React.createElement(
                             "div",
-                            { className: "col_half" },
-                            React.createElement("img", { src: "images/footer-logo.png", alt: "", className: "footer-logo" }),
-                            "Copyrights © 2014 All Rights Reserved by Canvas Inc."
-                        ),
-                        React.createElement(
-                            "div",
-                            { className: "col_half col_last tright" },
+                            { className: "container clearfix" },
                             React.createElement(
                                 "div",
-                                { className: "copyrights-menu copyright-links fright clearfix" },
+                                { className: "col_half" },
+                                "Copyrights © 2014 All Rights Reserved by Canvas Inc.",
+                                React.createElement("br", null),
                                 React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "Home"
-                                ),
-                                "/",
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "About"
-                                ),
-                                "/",
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "Features"
-                                ),
-                                "/",
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "Portfolio"
-                                ),
-                                "/",
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "FAQs"
-                                ),
-                                "/",
-                                React.createElement(
-                                    "a",
-                                    { href: "#" },
-                                    "Contact"
+                                    "div",
+                                    { className: "copyright-links" },
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Terms of Use"
+                                    ),
+                                    " / ",
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Privacy Policy"
+                                    )
                                 )
                             ),
                             React.createElement(
                                 "div",
-                                { className: "fright clearfix" },
+                                { className: "col_half col_last tright" },
                                 React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-facebook" },
-                                    React.createElement("i", { className: "icon-facebook" }),
-                                    React.createElement("i", { className: "icon-facebook" })
+                                    "div",
+                                    { className: "copyrights-menu copyright-links fright clearfix" },
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Home"
+                                    ),
+                                    "/",
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "About"
+                                    ),
+                                    "/",
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Features"
+                                    ),
+                                    "/",
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Portfolio"
+                                    ),
+                                    "/",
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "FAQs"
+                                    ),
+                                    "/",
+                                    React.createElement(
+                                        "a",
+                                        { href: "#" },
+                                        "Contact"
+                                    )
                                 ),
                                 React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-twitter" },
-                                    React.createElement("i", { className: "icon-twitter" }),
-                                    React.createElement("i", { className: "icon-twitter" })
-                                ),
-                                React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-gplus" },
-                                    React.createElement("i", { className: "icon-gplus" }),
-                                    React.createElement("i", { className: "icon-gplus" })
-                                ),
-                                React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-pinterest" },
-                                    React.createElement("i", { className: "icon-pinterest" }),
-                                    React.createElement("i", { className: "icon-pinterest" })
-                                ),
-                                React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-vimeo" },
-                                    React.createElement("i", { className: "icon-vimeo" }),
-                                    React.createElement("i", { className: "icon-vimeo" })
-                                ),
-                                React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-github" },
-                                    React.createElement("i", { className: "icon-github" }),
-                                    React.createElement("i", { className: "icon-github" })
-                                ),
-                                React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-yahoo" },
-                                    React.createElement("i", { className: "icon-yahoo" }),
-                                    React.createElement("i", { className: "icon-yahoo" })
-                                ),
-                                React.createElement(
-                                    "a",
-                                    { href: "#", className: "social-icon si-small si-borderless nobottommargin si-linkedin" },
-                                    React.createElement("i", { className: "icon-linkedin" }),
-                                    React.createElement("i", { className: "icon-linkedin" })
+                                    "div",
+                                    { className: "fright clearfix" },
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-facebook" },
+                                        React.createElement("i", { className: "icon-facebook" }),
+                                        React.createElement("i", { className: "icon-facebook" })
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-twitter" },
+                                        React.createElement("i", { className: "icon-twitter" }),
+                                        React.createElement("i", { className: "icon-twitter" })
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-gplus" },
+                                        React.createElement("i", { className: "icon-gplus" }),
+                                        React.createElement("i", { className: "icon-gplus" })
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-pinterest" },
+                                        React.createElement("i", { className: "icon-pinterest" }),
+                                        React.createElement("i", { className: "icon-pinterest" })
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-vimeo" },
+                                        React.createElement("i", { className: "icon-vimeo" }),
+                                        React.createElement("i", { className: "icon-vimeo" })
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-github" },
+                                        React.createElement("i", { className: "icon-github" }),
+                                        React.createElement("i", { className: "icon-github" })
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-yahoo" },
+                                        React.createElement("i", { className: "icon-yahoo" }),
+                                        React.createElement("i", { className: "icon-yahoo" })
+                                    ),
+                                    React.createElement(
+                                        "a",
+                                        { href: "#", className: "social-icon si-small si-borderless nobottommargin si-linkedin" },
+                                        React.createElement("i", { className: "icon-linkedin" }),
+                                        React.createElement("i", { className: "icon-linkedin" })
+                                    )
                                 )
                             )
                         )

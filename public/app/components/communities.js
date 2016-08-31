@@ -110,14 +110,8 @@ class Communities extends Component {
 
                     </div>
 
-                <input onChange={this.updateNewCommunity} type="text" id="name" name="name" placeholder="Name" /><br />
-                <input onChange={this.updateNewCommunity} type="text" id="address" name="address" placeholder="Address" /><br />
-                <input onChange={this.updateNewCommunity} type="text" id="city" name="city" placeholder="City" /><br />
-                <input onChange={this.updateNewCommunity} type="text" id="state" name="state" placeholder="State" /><br />
-                <button onClick={this.addNewCommunity}>Add</button> <br/>
+
             
-
-
 
                 <br />
 
@@ -133,6 +127,7 @@ const propsToState = function(state){
     return {
         communities: state.communityReducer.communitiesArray
     }
+    
 }
 
 export default connect(propsToState)(Communities)

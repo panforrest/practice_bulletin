@@ -175,21 +175,6 @@ var Communities = (function (Component) {
                             )
                         )
                     ),
-                    React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "name", name: "name", placeholder: "Name" }),
-                    React.createElement("br", null),
-                    React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "address", name: "address", placeholder: "Address" }),
-                    React.createElement("br", null),
-                    React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "city", name: "city", placeholder: "City" }),
-                    React.createElement("br", null),
-                    React.createElement("input", { onChange: this.updateNewCommunity, type: "text", id: "state", name: "state", placeholder: "State" }),
-                    React.createElement("br", null),
-                    React.createElement(
-                        "button",
-                        { onClick: this.addNewCommunity },
-                        "Add"
-                    ),
-                    " ",
-                    React.createElement("br", null),
                     React.createElement("br", null)
                 );
             },
