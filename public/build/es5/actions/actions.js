@@ -42,6 +42,12 @@ module.exports = {
 			type: constants.CURRENT_USER_RECEIVED,
 			user: user
 		};
-	}
+	},
 
+	postsReceived: function (posts) {
+		return {
+			type: constants.POSTS_RECEIVED,
+			posts: posts
+		};
+	}
 };

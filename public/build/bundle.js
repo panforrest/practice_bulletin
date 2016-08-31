@@ -23440,12 +23440,17 @@
 	
 	var _accountReducer2 = _interopRequireDefault(_accountReducer);
 	
+	var _postReducer = __webpack_require__(216);
+	
+	var _postReducer2 = _interopRequireDefault(_postReducer);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var reducers = (0, _redux.combineReducers)({
 	    communityReducer: _communityReducer2.default,
 	    profileReducer: _profileReducer2.default,
-	    accountReducer: _accountReducer2.default
+	    accountReducer: _accountReducer2.default,
+	    postReducer: _postReducer2.default
 	});
 	
 	var store = (0, _redux.createStore)(reducers, (0, _redux.applyMiddleware)(_reduxThunk2.default));
@@ -24399,8 +24404,8 @@
 		PROFILES_RECEIVED: 'PROFILES_RECEIVED',
 		PROFILE_CREATED: 'PROFILE_CREATED',
 	
-		CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED'
-	
+		CURRENT_USER_RECEIVED: 'CURRENT_USER_RECEIVED',
+		POSTS_RECEIVED: 'POSTS_RECEIVED'
 	};
 
 /***/ },
@@ -24554,8 +24559,14 @@
 				type: _constants2.default.CURRENT_USER_RECEIVED,
 				user: user
 			};
-		}
+		},
 	
+		postsReceived: function postsReceived(posts) {
+			return {
+				type: _constants2.default.POSTS_RECEIVED,
+				posts: posts
+			};
+		}
 	};
 
 /***/ },
@@ -25895,6 +25906,7 @@
 	                }
 	
 	                console.log('fetchPosts: ' + JSON.stringify(response.results));
+	                _store2.default.dispatch(_actions2.default.postsReceived(response.results));
 	            });
 	        }
 	    }, {
@@ -25927,6 +25939,14 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
+	            var postList = this.props.posts.map(function (post, i) {
+	                return _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    post.title
+	                );
+	            });
+	
 	            return _react2.default.createElement(
 	                'div',
 	                null,
@@ -25959,6 +25979,7 @@
 	                                ),
 	                                _react2.default.createElement('br', null),
 	                                _react2.default.createElement('hr', { style: { borderTop: '1px solid red #444' } }),
+	                                postList,
 	                                _react2.default.createElement(
 	                                    'div',
 	                                    { className: 'list-group' },
@@ -26020,7 +26041,8 @@
 	    var communitiesArray = state.communityReducer.communitiesArray;
 	
 	    return {
-	        community: communitiesArray.length == 0 ? { name: '' } : communitiesArray[0]
+	        community: communitiesArray.length == 0 ? { name: '' } : communitiesArray[0],
+	        posts: state.postReducer.postsArray
 	    };
 	};
 	
@@ -26197,6 +26219,50 @@
 	}(_react.Component);
 	
 	exports.default = Footer;
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	
+	exports.default = function () {
+		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+		var action = arguments[1];
+	
+	
+		switch (action.type) {
+			case _constants2.default.POSTS_RECEIVED:
+				var posts = action.posts;
+				console.log('POSTS RECEIVED: ' + JSON.stringify(posts));
+				var newState = Object.assign({}, state);
+				var result = [];
+				for (var i = 0; i < posts.length; i++) {
+					var post = posts[i];
+					result.push(post);
+				}
+				newState['postsArray'] = result;
+				return newState;
+	
+			default:
+				return state;
+		}
+	};
+	
+	var _constants = __webpack_require__(197);
+	
+	var _constants2 = _interopRequireDefault(_constants);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var initialState = {
+		posts: {},
+		postsArray: []
+	};
 
 /***/ }
 /******/ ]);

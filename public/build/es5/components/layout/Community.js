@@ -80,6 +80,7 @@ var Community = (function (Component) {
                     }
 
                     console.log("fetchPosts: " + JSON.stringify(response.results));
+                    store.dispatch(actions.postsReceived(response.results));
                 });
             },
             writable: true,
@@ -117,6 +118,14 @@ var Community = (function (Component) {
         },
         render: {
             value: function render() {
+                var postList = this.props.posts.map(function (post, i) {
+                    return React.createElement(
+                        "div",
+                        null,
+                        post.title
+                    );
+                });
+
                 return React.createElement(
                     "div",
                     null,
@@ -149,6 +158,7 @@ var Community = (function (Component) {
                                     ),
                                     React.createElement("br", null),
                                     React.createElement("hr", { style: { borderTop: "1px solid red #444" } }),
+                                    postList,
                                     React.createElement(
                                         "div",
                                         { className: "list-group" },
@@ -213,7 +223,8 @@ var stateToProps = function (state) {
     var communitiesArray = state.communityReducer.communitiesArray;
 
     return {
-        community: communitiesArray.length == 0 ? { name: "" } : communitiesArray[0]
+        community: communitiesArray.length == 0 ? { name: "" } : communitiesArray[0],
+        posts: state.postReducer.postsArray
     };
 };
 

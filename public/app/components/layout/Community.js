@@ -56,6 +56,7 @@ class Community extends Component {
             }
 
             console.log('fetchPosts: '+JSON.stringify(response.results))
+            store.dispatch(actions.postsReceived(response.results))
         })
 
     }
@@ -87,6 +88,14 @@ class Community extends Component {
     }
 
     render(){
+        var postList = this.props.posts.map(function(post, i){
+            return (
+                <div>
+                    {post.title}
+                </div>
+            )
+        })
+
 		return(
 			<div>
                 <Nav transparent="no" />
@@ -101,6 +110,8 @@ class Community extends Component {
                                 <textarea onChange={this.updatePost} id="text" placeholder="Post Text" className="form-control"></textarea><br /> 
                                 <button onClick={this.addPost} className="btn btn-success">Add Post</button><br />
                                 <hr style={{borderTop: '1px solid red #444'}} />
+
+                                {postList}
 
                                 <div className="list-group">
                                     <a href="#" className="list-group-item">
@@ -130,7 +141,8 @@ const stateToProps = function(state){
     var communitiesArray = state.communityReducer.communitiesArray
 
     return{
-        community: (communitiesArray.length == 0) ? {name:''} : communitiesArray[0]
+        community: (communitiesArray.length == 0) ? {name:''} : communitiesArray[0],
+        posts: state.postReducer.postsArray
     }
 
 }

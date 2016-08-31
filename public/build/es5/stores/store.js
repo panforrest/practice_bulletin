@@ -15,10 +15,13 @@ var profileReducer = _interopRequire(require("../reducers/profileReducer"));
 
 var accountReducer = _interopRequire(require("../reducers/accountReducer"));
 
+var postReducer = _interopRequire(require("../reducers/postReducer"));
+
 var reducers = combineReducers({
     communityReducer: communityReducer,
     profileReducer: profileReducer,
-    accountReducer: accountReducer
+    accountReducer: accountReducer,
+    postReducer: postReducer
 });
 
 var store = createStore(reducers, applyMiddleware(thunk));
