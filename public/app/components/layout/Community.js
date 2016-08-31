@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import api from '../../utils/api'
 import Nav from '../../components/Nav'
 import actions from '../../actions/actions'
 import store from '../../stores/store'
-import { connect } from 'react-redux'
 
 class Community extends Component {
 
@@ -11,24 +11,20 @@ class Community extends Component {
     	super(props, context)
         this.updatePost = this.updatePost.bind(this)
         this.addPost = this.addPost.bind(this)
+        this.fetchPosts = this.fetchPosts.bind(this)
     	this.state = {
-    		community: {
-    			name: ''
-    		},
             post: {
                 title:'',
                 text:'',
                 community:'',
-                profile:'',
-                timestamp:''
+                profile:''
+
             }
 
     	}
     }
 
     componentDidMount(){
-
-
     	var _this = this
     	var endpoint = '/api/community?slug='+this.props.slug
     	api.handleGet(endpoint, null, function(err, response){
@@ -43,7 +39,25 @@ class Community extends Component {
     		// 	community: community
     		// })
             store.dispatch(actions.communitiesReceived(results))  //THIS LINE OF CODE DON'T UNDERSTAND
+            _this.fetchPosts()
     	})
+
+    }
+
+    
+    fetchPosts() {
+        if (this.props.community.id  == null) 
+            return
+
+        var endpoint = '/api/post?community='+this.props.community.id
+        api.handleGet(endpoint, null, function(err, response){
+            if (err) {
+                alert(err.message)
+            }
+
+            console.log('fetchPosts: '+JSON.stringify(response.results))
+        })
+
     }
 
     updatePost(event){
@@ -66,7 +80,7 @@ class Community extends Component {
             }
             var result = response.result
             console.log('POST CREATED: '+JSON.stringify(response))
-
+            store.dispatch(actions.postCreated(response.result))
             //console.log('addPost: '+JSON.stringify(response.result))
         })
 

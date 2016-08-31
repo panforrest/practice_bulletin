@@ -25813,6 +25813,8 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
+	var _reactRedux = __webpack_require__(201);
+	
 	var _api = __webpack_require__(174);
 	
 	var _api2 = _interopRequireDefault(_api);
@@ -25828,8 +25830,6 @@
 	var _store = __webpack_require__(180);
 	
 	var _store2 = _interopRequireDefault(_store);
-	
-	var _reactRedux = __webpack_require__(201);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -25849,16 +25849,14 @@
 	
 	        _this2.updatePost = _this2.updatePost.bind(_this2);
 	        _this2.addPost = _this2.addPost.bind(_this2);
+	        _this2.fetchPosts = _this2.fetchPosts.bind(_this2);
 	        _this2.state = {
-	            community: {
-	                name: ''
-	            },
 	            post: {
 	                title: '',
 	                text: '',
 	                community: '',
-	                profile: '',
-	                timestamp: ''
+	                profile: ''
+	
 	            }
 	
 	        };
@@ -25868,7 +25866,6 @@
 	    _createClass(Community, [{
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
-	
 	            var _this = this;
 	            var endpoint = '/api/community?slug=' + this.props.slug;
 	            _api2.default.handleGet(endpoint, null, function (err, response) {
@@ -25883,6 +25880,21 @@
 	                // 	community: community
 	                // })
 	                _store2.default.dispatch(_actions2.default.communitiesReceived(results)); //THIS LINE OF CODE DON'T UNDERSTAND
+	                _this.fetchPosts();
+	            });
+	        }
+	    }, {
+	        key: 'fetchPosts',
+	        value: function fetchPosts() {
+	            if (this.props.community.id == null) return;
+	
+	            var endpoint = '/api/post?community=' + this.props.community.id;
+	            _api2.default.handleGet(endpoint, null, function (err, response) {
+	                if (err) {
+	                    alert(err.message);
+	                }
+	
+	                console.log('fetchPosts: ' + JSON.stringify(response.results));
 	            });
 	        }
 	    }, {
@@ -25908,7 +25920,7 @@
 	                }
 	                var result = response.result;
 	                console.log('POST CREATED: ' + JSON.stringify(response));
-	
+	                _store2.default.dispatch(_actions2.default.postCreated(response.result));
 	                //console.log('addPost: '+JSON.stringify(response.result))
 	            });
 	        }
