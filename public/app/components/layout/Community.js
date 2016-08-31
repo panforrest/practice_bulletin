@@ -9,10 +9,14 @@ class Community extends Component {
 
     constructor(props, context){
     	super(props, context)
+        this.updatePost = this.updatePost.bind(this)
     	this.state = {
     		community: {
     			name: ''
-    		}
+    		},
+            post: {
+
+            }
 
     	}
     }
@@ -37,7 +41,14 @@ class Community extends Component {
     	})
     }
 
-
+    updatePost(event){
+        console.log('updatePost: '+event.target.id+' - '+event.target.value)
+        // var updatedPost = Object.assign({}, )
+        // updatedPost[event.target.id] = event.target.value
+        // this.setState({
+        //     post: updatedPost
+        // })
+    }
 
     render(){
 		return(
@@ -50,8 +61,8 @@ class Community extends Component {
                             <div className="postcontent nobottommargin clearfix">
 
                                 <h4>{this.props.community.name}</h4>
-                                <input placeholder="Post Title" className="form-control" type="text" /><br />
-                                <textarea placeholder="Post Text" className="form-control"></textarea><br /> 
+                                <input onChange={this.updatePost} id="title" placeholder="Post Title" className="form-control" type="text" /><br />
+                                <textarea onChange={this.updatePost} id="text" placeholder="Post Text" className="form-control"></textarea><br /> 
                                 <button className="btn btn-success">Add Post</button><br />
                                 <hr style={{borderTop: '1px solid red #444'}} />
 

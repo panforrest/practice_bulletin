@@ -25847,10 +25847,12 @@
 	
 	        var _this2 = _possibleConstructorReturn(this, (Community.__proto__ || Object.getPrototypeOf(Community)).call(this, props, context));
 	
+	        _this2.updatePost = _this2.updatePost.bind(_this2);
 	        _this2.state = {
 	            community: {
 	                name: ''
-	            }
+	            },
+	            post: {}
 	
 	        };
 	        return _this2;
@@ -25877,6 +25879,16 @@
 	            });
 	        }
 	    }, {
+	        key: 'updatePost',
+	        value: function updatePost(event) {
+	            console.log('updatePost: ' + event.target.id + ' - ' + event.target.value);
+	            // var updatedPost = Object.assign({}, )
+	            // updatedPost[event.target.id] = event.target.value
+	            // this.setState({
+	            //     post: updatedPost
+	            // })
+	        }
+	    }, {
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -25900,9 +25912,9 @@
 	                                    null,
 	                                    this.props.community.name
 	                                ),
-	                                _react2.default.createElement('input', { placeholder: 'Post Title', className: 'form-control', type: 'text' }),
+	                                _react2.default.createElement('input', { onChange: this.updatePost, id: 'title', placeholder: 'Post Title', className: 'form-control', type: 'text' }),
 	                                _react2.default.createElement('br', null),
-	                                _react2.default.createElement('textarea', { placeholder: 'Post Text', className: 'form-control' }),
+	                                _react2.default.createElement('textarea', { onChange: this.updatePost, id: 'text', placeholder: 'Post Text', className: 'form-control' }),
 	                                _react2.default.createElement('br', null),
 	                                _react2.default.createElement(
 	                                    'button',

@@ -29,10 +29,12 @@ var Community = (function (Component) {
         _classCallCheck(this, Community);
 
         _get(Object.getPrototypeOf(Community.prototype), "constructor", this).call(this, props, context);
+        this.updatePost = this.updatePost.bind(this);
         this.state = {
             community: {
                 name: ""
-            }
+            },
+            post: {}
 
         };
     }
@@ -63,6 +65,13 @@ var Community = (function (Component) {
             writable: true,
             configurable: true
         },
+        updatePost: {
+            value: function updatePost(event) {
+                console.log("updatePost: " + event.target.id + " - " + event.target.value);
+            },
+            writable: true,
+            configurable: true
+        },
         render: {
             value: function render() {
                 return React.createElement(
@@ -86,9 +95,9 @@ var Community = (function (Component) {
                                         null,
                                         this.props.community.name
                                     ),
-                                    React.createElement("input", { placeholder: "Post Title", className: "form-control", type: "text" }),
+                                    React.createElement("input", { onChange: this.updatePost, id: "title", placeholder: "Post Title", className: "form-control", type: "text" }),
                                     React.createElement("br", null),
-                                    React.createElement("textarea", { placeholder: "Post Text", className: "form-control" }),
+                                    React.createElement("textarea", { onChange: this.updatePost, id: "text", placeholder: "Post Text", className: "form-control" }),
                                     React.createElement("br", null),
                                     React.createElement(
                                         "button",
@@ -167,3 +176,8 @@ var stateToProps = function (state) {
 
 module.exports = connect(stateToProps)(Community);
 //THIS LINE OF CODE DON'T UNDERSTAND
+// var updatedPost = Object.assign({}, )
+// updatedPost[event.target.id] = event.target.value
+// this.setState({
+//     post: updatedPost
+// })
