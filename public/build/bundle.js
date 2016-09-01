@@ -21638,6 +21638,8 @@
 	
 	        var _this = _possibleConstructorReturn(this, (Communities.__proto__ || Object.getPrototypeOf(Communities)).call(this, context, props));
 	
+	        _this.updateCredentials = _this.updateCredentials.bind(_this);
+	        _this.login = _this.login.bind(_this);
 	        _this.updateNewCommunity = _this.updateNewCommunity.bind(_this);
 	        _this.addNewCommunity = _this.addNewCommunity.bind(_this);
 	        _this.state = {
@@ -21646,6 +21648,10 @@
 	                address: '',
 	                city: '',
 	                state: ''
+	            },
+	            credentials: {
+	                email: '',
+	                password: ''
 	            }
 	        };
 	        return _this;
@@ -21662,6 +21668,31 @@
 	                }
 	
 	                _store2.default.dispatch(_actions2.default.communitiesReceived(response.results));
+	            });
+	        }
+	    }, {
+	        key: 'updateCredentials',
+	        value: function updateCredentials(event) {
+	            var credentials = Object.assign({}, this.state.credentials);
+	            credentials[event.target.id] = event.target.value;
+	            this.setState({
+	                credentials: credentials
+	            });
+	        }
+	    }, {
+	        key: 'login',
+	        value: function login(event) {
+	            event.preventDefault();
+	            // console.log('LOGIN: '+JSON.stringify(this.state.user))
+	            _api2.default.handlePost('/account/login', this.state.credentials, function (err, response) {
+	                // console.log('LOGIN TEST: ')
+	                if (err != null) {
+	                    alert(err.message);
+	                    return;
+	                }
+	
+	                console.log('USER LOGGED IN: ' + JSON.stringify(response));
+	                window.location.href = '/account';
 	            });
 	        }
 	    }, {
@@ -21692,91 +21723,84 @@
 	    }, {
 	        key: 'render',
 	        value: function render() {
-	            // console.log('RENDER: '+this.props.communities)
 	            var communityList = this.props.communities.map(function (community, i) {
 	                return _react2.default.createElement(_CommunityPreview2.default, { key: community.id, community: community });
 	            });
 	
+	            var loginOrAddCommunity = "";
+	            if (this.props.currentUser.id == null) {
+	
+	                loginOrAddCommunity = _react2.default.createElement(
+	                    'div',
+	                    { className: 'well well-lg nobottommargin' },
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Login'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'text', onChange: this.updateCredentials, id: 'email', placeholder: 'Email' }),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement('input', { type: 'text', onChange: this.updateCredentials, id: 'password', placeholder: 'Password' }),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { onClick: this.login },
+	                        'Login'
+	                    )
+	                );
+	            } else {
+	                loginOrAddCommunity = _react2.default.createElement(
+	                    'div',
+	                    null,
+	                    _react2.default.createElement(
+	                        'h2',
+	                        null,
+	                        'Add Community'
+	                    ),
+	                    _react2.default.createElement('input', { type: 'text', onChange: this.updateNewCommunity, id: 'name', placeholder: 'Name' }),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement('input', { type: 'text', onChange: this.updateNewCommunity, id: 'address', placeholder: 'Address' }),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement('input', { type: 'text', onChange: this.updateNewCommunity, id: 'city', placeholder: 'City' }),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement('input', { type: 'text', onChange: this.updateNewCommunity, id: 'state', placeholder: 'State' }),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement(
+	                        'button',
+	                        { onClick: this.addNewCommunity },
+	                        'Submit'
+	                    )
+	                );
+	            }
+	
 	            return _react2.default.createElement(
 	                'div',
-	                { className: 'container clearifx' },
+	                null,
 	                _react2.default.createElement(_Nav2.default, { transparent: 'yes' }),
 	                _react2.default.createElement('section', { id: 'slider', style: { background: 'url("/images/nyc.jpg") center', overflow: 'visible' }, 'data-height-lg': '450', 'data-height-md': '450', 'data-height-sm': '600', 'data-height-xs': '600', 'data-height-xxs': '600' }),
 	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col_three_fifth bothsidebar nobottommargin' },
+	                    'section',
+	                    { id: 'content' },
 	                    _react2.default.createElement(
 	                        'div',
-	                        { className: 'fancy-title title-border' },
+	                        { className: 'col_three_fifth bothsidebar nobottommargin' },
 	                        _react2.default.createElement(
-	                            'h3',
-	                            null,
-	                            'Communities'
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'div',
-	                        { id: 'posts', className: 'events small-thumbs' },
-	                        communityList
-	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    'Sign up'
-	                ),
-	                _react2.default.createElement(
-	                    'div',
-	                    { className: 'col_one_third nobottommargin' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { className: 'well well-lg nobottommargin' },
-	                        _react2.default.createElement(
-	                            'form',
-	                            { id: 'login-form', name: 'login-form', className: 'nobottommargin', action: '#', method: 'post' },
+	                            'div',
+	                            { className: 'fancy-title title-border' },
 	                            _react2.default.createElement(
 	                                'h3',
 	                                null,
-	                                'Free to Join'
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col_full' },
-	                                _react2.default.createElement(
-	                                    'label',
-	                                    { 'for': 'login-form-username' },
-	                                    'Username:'
-	                                ),
-	                                _react2.default.createElement('input', { type: 'text', id: 'login-form-username', name: 'login-form-username', value: '', className: 'required form-control input-block-level' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col_full' },
-	                                _react2.default.createElement(
-	                                    'label',
-	                                    { 'for': 'login-form-password' },
-	                                    'Password:'
-	                                ),
-	                                _react2.default.createElement('input', { type: 'password', id: 'login-form-password', name: 'login-form-password', value: '', className: 'required form-control input-block-level' })
-	                            ),
-	                            _react2.default.createElement(
-	                                'div',
-	                                { className: 'col_full nobottommargin' },
-	                                _react2.default.createElement(
-	                                    'button',
-	                                    { className: 'button button-3d nomargin', id: 'login-form-submit', name: 'login-form-submit', value: 'login' },
-	                                    'Login'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'a',
-	                                    { href: '#', className: 'fright' },
-	                                    'Forgot Password?'
-	                                )
+	                                'Communities'
 	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'div',
+	                            { id: 'posts', className: 'events small-thumbs' },
+	                            communityList
 	                        )
-	                    )
-	                ),
-	                _react2.default.createElement('br', null)
+	                    ),
+	                    loginOrAddCommunity
+	                )
 	            );
 	        }
 	    }]);
@@ -21785,10 +21809,11 @@
 	}(_react.Component);
 	
 	var propsToState = function propsToState(state) {
-	    // console.log('POPS TO STATE: '+JSON.stringify(state))
+	    console.log('POPS TO STATE: ' + JSON.stringify(state));
 	
 	    return {
-	        communities: state.communityReducer.communitiesArray
+	        communities: state.communityReducer.communitiesArray,
+	        currentUser: state.accountReducer.currentUser
 	    };
 	};
 	

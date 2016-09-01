@@ -10,6 +10,8 @@ class Communities extends Component {
 
 	constructor(context, props){
 		super(context, props)
+        this.updateCredentials = this.updateCredentials.bind(this)
+        this.login = this.login.bind(this)
 		this.updateNewCommunity = this.updateNewCommunity.bind(this)
 		this.addNewCommunity = this.addNewCommunity.bind(this)
 		this.state = {
@@ -18,6 +20,10 @@ class Communities extends Component {
             	address:'',
             	city:'',
             	state:''
+            },
+            credentials: {
+                email:'',
+                password:'' 
             }
 		}
 	}
@@ -33,6 +39,29 @@ class Communities extends Component {
             store.dispatch(actions.communitiesReceived(response.results))
         })
 
+    }
+
+    updateCredentials(event){
+        var credentials = Object.assign({}, this.state.credentials)
+        credentials[event.target.id] = event.target.value
+        this.setState({
+            credentials: credentials
+        })
+    }
+
+    login(event){
+        event.preventDefault()
+        // console.log('LOGIN: '+JSON.stringify(this.state.user))
+        api.handlePost('/account/login', this.state.credentials, function(err, response){
+            // console.log('LOGIN TEST: ')
+            if (err != null) {
+                alert(err.message)
+                return
+            }
+
+            console.log('USER LOGGED IN: '+JSON.stringify(response))
+            window.location.href = '/account'
+        })
     }
 
     addNewCommunity(event){
@@ -58,63 +87,72 @@ class Communities extends Component {
         })
 	}
 
+    
+
+
+
     render() {
-        // console.log('RENDER: '+this.props.communities)
         var communityList = this.props.communities.map(function(community, i){
             return <CommunityPreview key={community.id} community={community} />
+
         })
 
-    	return(
-    		<div className="container clearifx">
+        var loginOrAddCommunity = ""
+        if (this.props.currentUser.id == null) {
+
+            loginOrAddCommunity = <div className="well well-lg nobottommargin">
+
+                                    <h2>Login</h2>
+                                    <input type="text" onChange={this.updateCredentials} id="email" placeholder="Email" /><br />
+                                    <input type="text" onChange={this.updateCredentials} id="password" placeholder="Password" /><br />
+                                    <button onClick={this.login}>Login</button>
+                                  </div>
+        }
+        else {                        
+            loginOrAddCommunity = <div>
+                                    <h2>Add Community</h2>
+                                    <input type="text" onChange={this.updateNewCommunity} id="name" placeholder="Name" /><br />
+                                    <input type="text" onChange={this.updateNewCommunity} id="address" placeholder="Address" /><br />
+                                    <input type="text" onChange={this.updateNewCommunity} id="city" placeholder="City" /><br />
+                                    <input type="text" onChange={this.updateNewCommunity} id="state" placeholder="State" /><br /><button onClick={this.addNewCommunity}>Submit</button>
+                                  </div>
+        }
+
+
+
+    	
+
+
+
+
+
+
+        return(
+    		<div>
                 <Nav transparent="yes" />
 
                 <section id="slider" style={{background: 'url("/images/nyc.jpg") center', overflow:'visible'}} data-height-lg="450" data-height-md="450" data-height-sm="600" data-height-xs="600" data-height-xxs="600" >
                 </section>
 
-                <div className="col_three_fifth bothsidebar nobottommargin">
-                    <div className="fancy-title title-border">
-                        <h3>Communities</h3>
-                    </div>
+                <section id="content">
 
-                    <div id="posts" className="events small-thumbs">
-                        {communityList}
-                    </div>    
-                </div>
-
-                <h3>Sign up</h3>
-
-                    <div className="col_one_third nobottommargin">
-
-                        <div className="well well-lg nobottommargin">
-                            <form id="login-form" name="login-form" className="nobottommargin" action="#" method="post">
-
-                                <h3>Free to Join</h3>
-
-                                <div className="col_full">
-                                    <label for="login-form-username">Username:</label>
-                                    <input type="text" id="login-form-username" name="login-form-username" value="" className="required form-control input-block-level" />
-                                </div>
-
-                                <div className="col_full">
-                                    <label for="login-form-password">Password:</label>
-                                    <input type="password" id="login-form-password" name="login-form-password" value="" className="required form-control input-block-level" />
-                                </div>
-
-                                <div className="col_full nobottommargin">
-                                    <button className="button button-3d nomargin" id="login-form-submit" name="login-form-submit" value="login">Login</button>
-                                    <a href="#" className="fright">Forgot Password?</a>
-                                </div>
-
-                            </form>
+                    <div className="col_three_fifth bothsidebar nobottommargin">
+                        <div className="fancy-title title-border">
+                            <h3>Communities</h3>
                         </div>
 
+                        <div id="posts" className="events small-thumbs">
+                            {communityList}
+                        </div>    
                     </div>
 
+                    {loginOrAddCommunity}
 
-            
 
-                <br />
+                
 
+
+                </section>
     		</div>
 
     	)
@@ -122,10 +160,11 @@ class Communities extends Component {
 }
 
 const propsToState = function(state){
-    // console.log('POPS TO STATE: '+JSON.stringify(state))
+    console.log('POPS TO STATE: '+JSON.stringify(state))
 
     return {
-        communities: state.communityReducer.communitiesArray
+        communities: state.communityReducer.communitiesArray,
+        currentUser: state.accountReducer.currentUser
     }
     
 }

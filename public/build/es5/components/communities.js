@@ -31,6 +31,8 @@ var Communities = (function (Component) {
         _classCallCheck(this, Communities);
 
         _get(Object.getPrototypeOf(Communities.prototype), "constructor", this).call(this, context, props);
+        this.updateCredentials = this.updateCredentials.bind(this);
+        this.login = this.login.bind(this);
         this.updateNewCommunity = this.updateNewCommunity.bind(this);
         this.addNewCommunity = this.addNewCommunity.bind(this);
         this.state = {
@@ -39,6 +41,10 @@ var Communities = (function (Component) {
                 address: "",
                 city: "",
                 state: ""
+            },
+            credentials: {
+                email: "",
+                password: ""
             }
         };
     }
@@ -56,6 +62,35 @@ var Communities = (function (Component) {
                     }
 
                     store.dispatch(actions.communitiesReceived(response.results));
+                });
+            },
+            writable: true,
+            configurable: true
+        },
+        updateCredentials: {
+            value: function updateCredentials(event) {
+                var credentials = Object.assign({}, this.state.credentials);
+                credentials[event.target.id] = event.target.value;
+                this.setState({
+                    credentials: credentials
+                });
+            },
+            writable: true,
+            configurable: true
+        },
+        login: {
+            value: function login(event) {
+                event.preventDefault();
+                // console.log('LOGIN: '+JSON.stringify(this.state.user))
+                api.handlePost("/account/login", this.state.credentials, function (err, response) {
+                    // console.log('LOGIN TEST: ')
+                    if (err != null) {
+                        alert(err.message);
+                        return;
+                    }
+
+                    console.log("USER LOGGED IN: " + JSON.stringify(response));
+                    window.location.href = "/account";
                 });
             },
             writable: true,
@@ -92,91 +127,92 @@ var Communities = (function (Component) {
         },
         render: {
             value: function render() {
-                // console.log('RENDER: '+this.props.communities)
                 var communityList = this.props.communities.map(function (community, i) {
                     return React.createElement(CommunityPreview, { key: community.id, community: community });
                 });
 
+                var loginOrAddCommunity = "";
+                if (this.props.currentUser.id == null) {
+                    loginOrAddCommunity = React.createElement(
+                        "div",
+                        { className: "well well-lg nobottommargin" },
+                        React.createElement(
+                            "h2",
+                            null,
+                            "Login"
+                        ),
+                        React.createElement("input", { type: "text", onChange: this.updateCredentials, id: "email", placeholder: "Email" }),
+                        React.createElement("br", null),
+                        React.createElement("input", { type: "text", onChange: this.updateCredentials, id: "password", placeholder: "Password" }),
+                        React.createElement("br", null),
+                        React.createElement(
+                            "button",
+                            { onClick: this.login },
+                            "Login"
+                        )
+                    );
+                } else {
+                    loginOrAddCommunity = React.createElement(
+                        "div",
+                        null,
+                        React.createElement(
+                            "h2",
+                            null,
+                            "Add Community"
+                        ),
+                        React.createElement("input", { type: "text", onChange: this.updateNewCommunity, id: "name", placeholder: "Name" }),
+                        React.createElement("br", null),
+                        React.createElement("input", { type: "text", onChange: this.updateNewCommunity, id: "address", placeholder: "Address" }),
+                        React.createElement("br", null),
+                        React.createElement("input", { type: "text", onChange: this.updateNewCommunity, id: "city", placeholder: "City" }),
+                        React.createElement("br", null),
+                        React.createElement("input", { type: "text", onChange: this.updateNewCommunity, id: "state", placeholder: "State" }),
+                        React.createElement("br", null),
+                        React.createElement(
+                            "button",
+                            { onClick: this.addNewCommunity },
+                            "Submit"
+                        )
+                    );
+                }
+
+
+
+
+
+
+
+
+
+
                 return React.createElement(
                     "div",
-                    { className: "container clearifx" },
+                    null,
                     React.createElement(Nav, { transparent: "yes" }),
                     React.createElement("section", { id: "slider", style: { background: "url(\"/images/nyc.jpg\") center", overflow: "visible" }, "data-height-lg": "450", "data-height-md": "450", "data-height-sm": "600", "data-height-xs": "600", "data-height-xxs": "600" }),
                     React.createElement(
-                        "div",
-                        { className: "col_three_fifth bothsidebar nobottommargin" },
+                        "section",
+                        { id: "content" },
                         React.createElement(
                             "div",
-                            { className: "fancy-title title-border" },
+                            { className: "col_three_fifth bothsidebar nobottommargin" },
                             React.createElement(
-                                "h3",
-                                null,
-                                "Communities"
-                            )
-                        ),
-                        React.createElement(
-                            "div",
-                            { id: "posts", className: "events small-thumbs" },
-                            communityList
-                        )
-                    ),
-                    React.createElement(
-                        "h3",
-                        null,
-                        "Sign up"
-                    ),
-                    React.createElement(
-                        "div",
-                        { className: "col_one_third nobottommargin" },
-                        React.createElement(
-                            "div",
-                            { className: "well well-lg nobottommargin" },
-                            React.createElement(
-                                "form",
-                                { id: "login-form", name: "login-form", className: "nobottommargin", action: "#", method: "post" },
+                                "div",
+                                { className: "fancy-title title-border" },
                                 React.createElement(
                                     "h3",
                                     null,
-                                    "Free to Join"
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col_full" },
-                                    React.createElement(
-                                        "label",
-                                        { "for": "login-form-username" },
-                                        "Username:"
-                                    ),
-                                    React.createElement("input", { type: "text", id: "login-form-username", name: "login-form-username", value: "", className: "required form-control input-block-level" })
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col_full" },
-                                    React.createElement(
-                                        "label",
-                                        { "for": "login-form-password" },
-                                        "Password:"
-                                    ),
-                                    React.createElement("input", { type: "password", id: "login-form-password", name: "login-form-password", value: "", className: "required form-control input-block-level" })
-                                ),
-                                React.createElement(
-                                    "div",
-                                    { className: "col_full nobottommargin" },
-                                    React.createElement(
-                                        "button",
-                                        { className: "button button-3d nomargin", id: "login-form-submit", name: "login-form-submit", value: "login" },
-                                        "Login"
-                                    ),
-                                    React.createElement(
-                                        "a",
-                                        { href: "#", className: "fright" },
-                                        "Forgot Password?"
-                                    )
+                                    "Communities"
                                 )
+                            ),
+                            React.createElement(
+                                "div",
+                                { id: "posts", className: "events small-thumbs" },
+                                communityList
                             )
-                        )
-                    ),
-                    React.createElement("br", null)
+                        ),
+                        loginOrAddCommunity
+                    )
                 );
             },
             writable: true,
@@ -188,10 +224,11 @@ var Communities = (function (Component) {
 })(Component);
 
 var propsToState = function (state) {
-    // console.log('POPS TO STATE: '+JSON.stringify(state))
+    console.log("POPS TO STATE: " + JSON.stringify(state));
 
     return {
-        communities: state.communityReducer.communitiesArray
+        communities: state.communityReducer.communitiesArray,
+        currentUser: state.accountReducer.currentUser
     };
 };
 
